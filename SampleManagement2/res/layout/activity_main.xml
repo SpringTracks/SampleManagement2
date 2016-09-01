@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#008B8B"
+    android:orientation="vertical" >
+	
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Samplemanagement System"
+        android:textSize="20px"
+        android:textStyle=""
+        />
+        
+    
+    <GridView
+        android:id="@+id/gview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0.1"
+        android:columnWidth="80dp"
+        android:gravity="center"
+        android:numColumns="2"
+        android:stretchMode="columnWidth" >
+
+    </GridView>
+
+</LinearLayout>
