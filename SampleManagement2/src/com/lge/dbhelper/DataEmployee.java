@@ -2,24 +2,36 @@ package com.lge.dbhelper;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-
+/**
+ * ÈËÔ±±í EMPLOYEE_TABLE_NAME = "EmployeeTable"
+ * @author qiangyt.zhang
+ *
+ */
 public interface DataEmployee extends DataCommon {
-	
+	/**
+	 * ²éÑ¯ÈËÔ±µÄËùÓĞĞÅÏ¢
+	 * @return
+	 */
 	public Cursor queryAllDataEmployee();
+
+	/**
+	 * ¸ù¾İemployee_id²éÑ¯ÈËÔ±
+	 * @param employee_id
+	 * @return
+	 */
+    public Cursor queryPersonByEmployeeIDIfVague(String employee_id, boolean vague);
+
     /**
-     *  æŸ¥è¯¢æ•°æ®
-     * @param name ""æŸ¥è¯¢å…¨éƒ¨æ•°æ®ï¼Œå¦åˆ™æ ¹æ®employee_idæŸ¥è¯¢
+     * ÏòÈËÔ±±íÀï²åÈëĞÅÏ¢
      * @return
      */
-    public Cursor queryPersonByEmployeeID(String employee_id);
-
-    // æ ¹æ®employee_id æ¨¡ç³ŠæŸ¥è¯¢
-    public Cursor queryVaguePersonByEmployeeID(String employee_id);
-
-    // æ’å…¥æ•°æ®æˆåŠŸè¿”å› 1ï¼Œ æ’å…¥æ•°æ®å¤±è´¥ï¼Œè¿”å› -1
     public int insertDataToEmployee(String employee_id, String employee_name);
     public long insertDataToEmployee(ContentValues values);
 
-    // åˆ é™¤æ•°æ®æˆåŠŸ,è¿”å› 1ï¼Œ åˆ é™¤æ•°æ®å¤±è´¥è¿”å› -1
+    /**
+     * ¸ù¾İemployee_idÉ¾³ıÖ¸¶¨ĞÅÏ¢
+     * @param employee_id
+     * @return
+     */
     public int deletePersonByEmployeeID(String employee_id);
 }

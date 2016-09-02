@@ -4,22 +4,64 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 /**
- * æ‰€æœ‰æ•°æ®åº“çš„æ“ä½œ
+ * Êı¾İ¿âµÄ²Ù×÷¶¼ÔÚ´Ë´¦ÊµÏÖÁË¶¨Òå
  * @author qiangyt.zhang
  *
  */
 public interface DataCommon {
 	/**
-	 * æ ¹æ®è¡¨åæŸ¥è¯¢æ‰€æœ‰æ•°æ®
-	 * @param tablename
-	 * @return è¿”å›æŸ¥è¯¢æ•°æ®
+	 * ¸ù¾İ±íÃû£¬²éÑ¯ËùÓĞµÄÊı¾İ
+	 * @param table
+	 * @return ²éÑ¯½á¹û
 	 */
-	public Cursor selectAllData(String tablename);
-	// æ ¹æ®è¡¨åï¼Œå‘æ•°æ®åº“é‡Œé¢æ’å…¥æ•°æ®
+	public Cursor queryAllData(String table);
+	
+	/**
+	 * ÔÚÖ¸¶¨±íÀï²éÑ¯Ö¸¶¨Êı¾İ
+	 * @param table ±íÃû
+	 * @param key  ±íÖĞÖ¸¶¨ÁĞÃû
+	 * @param value  ²éÑ¯µÄÖµ
+	 * @return ²éÑ¯½á¹û
+	 */
+	public Cursor queryDataByKey(String table, String key, String value);
+	
+	/**
+	 * Ä£ºı²éÕÒ±íÀïµÄÊı¾İ
+	 * @param table ±íÃû
+	 * @param key  ±íÖĞÖ¸¶¨ÁĞÃû
+	 * @param value  ²éÑ¯µÄÖµ
+	 * @return  ²éÑ¯½á¹û
+	 */
+	public Cursor queryVagueDataByKey(String table, String key, String value);
+	
+	/**
+	 * ²éÑ¯Ö¸¶¨±íÖĞÊı¾İµÄÊıÁ¿
+	 * @param table ±íÃû
+	 * @param key  ±íÖĞÖ¸¶¨ÁĞÃû
+	 * @param value ²éÑ¯µÄÖµ
+	 * @return
+	 */
+	public int queryDataCount(String table, String key, String value);
+	
+	/**
+	 * ÏòÖ¸¶¨µÄ±íÀï²åÈëÊı¾İ
+	 * @param table  ±íÃû
+	 * @param values  ContentValues£¬ÀïÃæ°üº¬Òª²åÈëµÄÊı¾İ
+	 * @return
+	 */
 	public long insertDataToDB(String table, ContentValues values);
-	// æŸ¥è¯¢æ•°æ®åº“æ•°æ®çš„æ•°é‡
-	public long getCount();
-	// æ•°æ®åº“æ“ä½œä¹‹åå…³é—­æ•°æ®åº“
-	void closeDataBase();
+	
+	/**
+	 * ²éÑ¯Ö¸¶¨±íÖĞÊı¾İµÄÊıÁ¿
+	 * @param table ±íÃû
+	 * @param key  ±íÖĞÖ¸¶¨ÁĞÃû
+	 * @param value ²éÑ¯µÄÖµ
+	 * @return
+	 */
+	public int deleteDataBykey(String table, String key, String value);
+	/**
+	 * Êı¾İ¿â²Ù×÷Íê³ÉÖ®ºó
+	 */
+	public void closeDataBase();
 	
 }

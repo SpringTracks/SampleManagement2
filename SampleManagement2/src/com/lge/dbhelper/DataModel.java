@@ -2,25 +2,40 @@ package com.lge.dbhelper;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-
+/**
+ * Ñù»ú±íSAMPLE_TABLE_NAME = "SampleTable"
+ * @author qiangyt.zhang
+ *
+ */
 public interface DataModel extends DataCommon {
 
-	// æŸ¥è¯¢æ‰€æœ‰å‹å·æ•°æ®
+	/**
+	 *  ²éÑ¯ÊÖ»ú±íÀïµÄËùÓĞĞÅÏ¢
+	 * @return
+	 */
 	public Cursor queryAllDataModel();
 
-	// æ ¹æ®Phone_idå’Œmodel_nameå‡†ç¡®æŸ¥æ‰¾ä¿¡æ¯
-	public Cursor queryModelByPhoneId(String phone_id);
-	public Cursor queryModelByName(String model_name);
+	/**
+	 * ¸ù¾İÖ¸¶¨µÄÖµÀ´²éÑ¯Êı¾İ
+	 * @param phone_id
+	 * @param vague true Ä£ºı²éÑ¯
+	 * @return
+	 */
+	public Cursor queryModelByPhoneIdIfVague(String phone_id, boolean vague);
+	public Cursor queryModelByNameIfVague(String model_name, boolean vague);
 
-	// æ ¹æ®Phone_idå’Œmodel_nameæ¨¡ç³ŠæŸ¥è¯¢
-	public Cursor queryVagueModelByPhoneId(String phone_id);
-	public Cursor queryVagueModelByName(String model_name);
-
-	// æ’å…¥æ•°æ®æˆåŠŸè¿”å› 1ï¼Œ æ’å…¥æ•°æ®å¤±è´¥ï¼Œè¿”å› -1
+	/**
+	 * ÏòÊÖ»úÀï²åÈëÊı¾İ
+	 * @return
+	 */
 	public int insertDataToModel(String phone_id, String model_name);
 	public long insertDataToModel(ContentValues values);
 
-	// åˆ é™¤æ•°æ®æˆåŠŸ,è¿”å› 1ï¼Œ åˆ é™¤æ•°æ®å¤±è´¥è¿”å› -1
+	/**
+	 * ¸ù¾İÊÖ»úÂëÉ¾³ıÊÖ»ú±íÀïµÄÏà¹ØĞÅÏ¢
+	 * @param phone_id
+	 * @return
+	 */
 	public int deleteModelByPhoneId(String phone_id);
 
 }

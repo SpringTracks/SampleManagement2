@@ -8,23 +8,26 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-public class DBManager implements DataEmployee, DataModel{
+public class DBManager implements DataEmployee, DataModel,
+						DataLend {
 	private final String TAG = DBManager.class.getSimpleName();
 	
     private DBOpenHandler dbOpenHandler;
     SQLiteDatabase db;
     Cursor cursor;
-    Context context;  // 现在测试使用弹出Toast使用，后期删除
+    Context context; // �������ʱ����Ҫ����Toast��ʾ������Ҫɾ��
 
     public DBManager(Context context) {
         this.dbOpenHandler = new DBOpenHandler(context);
+        db = dbOpenHandler.getWritableDatabase();
+        
         this.context = context;
     }
     
     @Override
-	public Cursor selectAllData(String tablename) {
+	public Cursor queryAllData(String table) {
     	try {
-            String sql = "select * from " + tablename;
+            String sql = "select * from " + table;
             Cursor cursor = db.rawQuery(sql, null);
             return cursor;
         }catch (SQLException e) {
@@ -32,79 +35,71 @@ public class DBManager implements DataEmployee, DataModel{
             return null;
         }
 	}
-
-	public long insertDataToDB(String table, ContentValues cv) {
-        
-        db = dbOpenHandler.getWritableDatabase();// Get DB operation
-        
-        //define a long parameter to return the insert value
-        long revalue = 0;
-        
-        revalue = db.insert(table, null, cv);
-        
-        Log.i("AndrioidDBTest","insert sucessfully");
-        return revalue;
-    }
-
-    public void delete(Integer id) {// Delete Item
-        //SQLiteDatabase db = dbOpenHandler.getWritableDatabase();
-        //db.execSQL("delete from t_users where id=?", new Object[] { id.toString() });
-        //db.close();
-    }
-
-    public void update() {// Update Item
-        //SQLiteDatabase db = dbOpenHandler.getWritableDatabase();
-        //db.execSQL("update t_users set username=?,pass=? where" + " id=?", new Object[] { tusers.getUsername(), tusers.getPass(), tusers.getId() });
-        //db.close();
-    }
-
+    
     @Override
-    public Cursor queryAllDataEmployee() {
-    	cursor = selectAllData(DBOpenHandler.EMPLOYEE_TABLE_NAME);
+    public Cursor queryDataByKey(String table, String key, String value) {
+    	String sql = "select * from " + table + " where " + key + "='" + value + "'";
+    	cursor = db.rawQuery(sql, null);
     	return cursor;
     }
 
     @Override
-    public Cursor queryPersonByEmployeeID(String employee_id) {
-        try {
-            // 根据邮件查询数据
-            String sql = "select * from " + DBOpenHandler.EMPLOYEE_TABLE_NAME + " where " +
-            		DBOpenHandler.EMPLOYEE_TABLE_KEY[0] + "='" + employee_id + "'";
-            cursor = db.rawQuery(sql, null);
-            return cursor;
-
-        } catch (SQLException e) {
-            toastError(e);
-            return null;
-        }
-    }
-
-    @Override
-    public Cursor queryVaguePersonByEmployeeID(String employee_id) {
-        try {
-            String sql = "select * from " + DBOpenHandler.EMPLOYEE_TABLE_NAME + " where " +
-            		DBOpenHandler.EMPLOYEE_TABLE_KEY[0] + " like '%" + employee_id + "%'";
+	public Cursor queryVagueDataByKey(String table, String key, String value) {
+    	try {
+            String sql = "select * from " + table + " where " + key + " like '%" + value + "%'";
             cursor = db.rawQuery(sql, null);
             return cursor;
         } catch (SQLException e) {
             toastError(e);
             return null;
         }
+	}
 
+	@Override
+    public int queryDataCount(String table, String key, String value) {
+    	String sql = "select count(*) from " + table +" where " + key + "='" +value + "'";
+    	cursor = db.rawQuery(sql, null);
+    	cursor.moveToFirst();
+    	return cursor.getInt(0);
     }
-
-    @Override
-    public int deletePersonByEmployeeID(String employee_id) {
-        try {
-            String sql = "delete from " + DBOpenHandler.EMPLOYEE_TABLE_NAME + " where "
-                    + DBOpenHandler.EMPLOYEE_TABLE_KEY[0] + "='" + employee_id + "'";
+    
+	public long insertDataToDB(String table, ContentValues values) {
+        return db.insert(table, null, values);
+    }
+	
+	public int deleteDataBykey(String table, String key, String value) {
+		try {
+            String sql = "delete from " + table + " where " + key + "='" + value + "'";
             db.execSQL(sql);
             return 1;
         } catch (SQLException e) {
             toastError(e);
             return -1;
         }
+	}
 
+    @Override
+    public Cursor queryAllDataEmployee() {
+    	cursor = queryAllData(DBOpenHandler.EMPLOYEE_TABLE_NAME);
+    	return cursor;
+    }
+
+    
+    @Override
+	public Cursor queryPersonByEmployeeIDIfVague(String employee_id, boolean vague) {
+		if (vague == true) {
+			return queryVagueDataByKey(DBOpenHandler.EMPLOYEE_TABLE_NAME, 
+					DBOpenHandler.EMPLOYEE_TABLE_KEY[0], employee_id);
+		} else {
+			return queryDataByKey(DBOpenHandler.EMPLOYEE_TABLE_NAME, 
+					DBOpenHandler.EMPLOYEE_TABLE_KEY[0], employee_id);
+		}
+	}
+
+    @Override
+    public int deletePersonByEmployeeID(String employee_id) {
+    	return deleteDataBykey(DBOpenHandler.EMPLOYEE_TABLE_NAME, 
+    				DBOpenHandler.EMPLOYEE_TABLE_KEY[0], employee_id);
     }
 
     @Override
@@ -121,66 +116,35 @@ public class DBManager implements DataEmployee, DataModel{
 
     @Override
     public long insertDataToEmployee(ContentValues values) {
-        return db.insert(DBOpenHandler.EMPLOYEE_TABLE_NAME, null, values);
+    	return insertDataToDB(DBOpenHandler.EMPLOYEE_TABLE_NAME, values);
     }
 
     @Override
     public Cursor queryAllDataModel() {
-    	cursor = selectAllData(DBOpenHandler.SAMPLE_TABLE_NAME);
-    	return cursor;
+    	return queryAllData(DBOpenHandler.SAMPLE_TABLE_NAME);
     }
 
     @Override
-    public Cursor queryModelByPhoneId(String phone_id) {
-        try {
-            String sql = "select * from " + DBOpenHandler.SAMPLE_TABLE_NAME +
-                    " where " + DBOpenHandler.SAMPLE_TABLE_KEY[0] + "'=" + phone_id +"'";
-            cursor = db.rawQuery(sql, null);
-            return  cursor;
-        } catch (SQLException e) {
-            toastError(e);
-            return null;
-        }
-
+    public Cursor queryModelByPhoneIdIfVague(String phone_id, boolean vague) {
+    	if (vague == true) {
+    		return queryVagueDataByKey(DBOpenHandler.SAMPLE_TABLE_NAME, 
+					DBOpenHandler.SAMPLE_TABLE_KEY[0], phone_id);
+		} else {
+			return queryDataByKey(DBOpenHandler.SAMPLE_TABLE_NAME, 
+					DBOpenHandler.SAMPLE_TABLE_KEY[0], phone_id);
+		}
     }
 
     @Override
-    public Cursor queryModelByName(String model_name) {
-        try {
-            String sql = "select * from " + DBOpenHandler.SAMPLE_TABLE_NAME +
-                        " where " + DBOpenHandler.SAMPLE_TABLE_KEY[1] + "='" + model_name +"'";
-            cursor = db.rawQuery(sql, null);
-            return  cursor;
-        } catch (SQLException e) {
-            toastError(e);
-            return null;
-        }
-    }
-
-    @Override
-    public Cursor queryVagueModelByPhoneId(String phone_id) {
-        try {
-            String sql = "select * from " + DBOpenHandler.SAMPLE_TABLE_NAME +
-                    " where " + DBOpenHandler.SAMPLE_TABLE_KEY[0] + " like '%" + phone_id +"%'";
-            cursor = db.rawQuery(sql, null);
-            return  cursor;
-        } catch (SQLException e) {
-            toastError(e);
-            return null;
-        }
-    }
-
-    @Override
-    public Cursor queryVagueModelByName(String model_name) {
-        try {
-            String sql = "select * from " + DBOpenHandler.SAMPLE_TABLE_NAME +
-                    " where " + DBOpenHandler.SAMPLE_TABLE_KEY[1] + " like '%" + model_name +"%'";
-            cursor = db.rawQuery(sql, null);
-            return  cursor;
-        } catch (SQLException e) {
-            toastError(e);
-            return null;
-        }
+    public Cursor queryModelByNameIfVague(String model_name, boolean vague) {
+    	if (vague == true) {
+    		return queryVagueDataByKey(DBOpenHandler.SAMPLE_TABLE_NAME, 
+					DBOpenHandler.SAMPLE_TABLE_KEY[1], model_name);
+		} else {
+			return queryDataByKey(DBOpenHandler.SAMPLE_TABLE_NAME, 
+					DBOpenHandler.SAMPLE_TABLE_KEY[1], model_name);
+		}
+    	
     }
 
     @Override
@@ -197,44 +161,43 @@ public class DBManager implements DataEmployee, DataModel{
 
     @Override
     public long insertDataToModel(ContentValues values) {
-        return db.insert(DBOpenHandler.SAMPLE_TABLE_NAME, null, values);
+    	return insertDataToDB(DBOpenHandler.SAMPLE_TABLE_NAME, values);
     }
 
     @Override
     public int deleteModelByPhoneId(String phone_id) {
-        try {
-            String sql = "delete from " + DBOpenHandler.SAMPLE_TABLE_NAME + " where " +
-            		DBOpenHandler.SAMPLE_TABLE_KEY[0] + "='" + phone_id + "'";
-            db.execSQL(sql);
-            return 1;
-        } catch (SQLException e) {
-            toastError(e);
-            return -1;
-        }
-
+    	return deleteDataBykey(DBOpenHandler.SAMPLE_TABLE_NAME, 
+    						DBOpenHandler.SAMPLE_TABLE_KEY[0], phone_id);
     }
 
-    /**
-     * 访问数据库异常时，打印log，并且抛出Toast
-     *
-     * @param e 异常
-     */
-    private void toastError(SQLException e) {
+    @Override
+	public Cursor queryAllDataLend() {
+		return queryAllData(DBOpenHandler.LEND_TABLE_NAME);
+	}
+
+	@Override
+	public Cursor queryLendByPhoneIdIfVague(String phone_id, boolean vague) {
+		if (vague == true) {
+			return queryVagueDataByKey(DBOpenHandler.LEND_TABLE_NAME, 
+					DBOpenHandler.LEND_TABLE_KEY[0], phone_id);
+		} else {
+			return queryDataByKey(DBOpenHandler.LEND_TABLE_NAME, 
+					DBOpenHandler.LEND_TABLE_KEY[0], phone_id);
+		}
+
+	}
+	
+	@Override
+	public long insertDataToLend(ContentValues values) {
+		return insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, values);
+	}
+
+	private void toastError(SQLException e) {
         Log.e(TAG, e.getMessage());
-        // TODO: 数据库操作不应该涉及到UI，后期应该删掉
         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
     }
-
-    public long getCount() {//Count the record number
-        cursor = db.rawQuery("select count(*) from t_users ", null);
-        cursor.moveToFirst();
-        closeDataBase();
-        return cursor.getLong(0);
-    }
     
-    /**
-     * 调用数据库之后要关掉数据库
-     */
+	@Override
     public void closeDataBase() {
         dbOpenHandler.close();
     }
