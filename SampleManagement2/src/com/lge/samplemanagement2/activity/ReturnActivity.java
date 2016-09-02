@@ -48,11 +48,20 @@ public class ReturnActivity   extends Activity{
             @Override
             public void onClick(View v) {
                 System.out.println("点击了扫描");
+                
+            //调用扫描并请求结果    
                 Intent intent = new Intent();
-				intent.setClass(ReturnActivity.this,Sign.class);
+				intent.setClass(ReturnActivity.this,MipcaActivityCapture.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
 				Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
+                
+             //测试签名及返回   
+//                Intent intent = new Intent();
+//				intent.setClass(ReturnActivity.this,Sign.class);
+//				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//				startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
+//				Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -81,26 +90,49 @@ public class ReturnActivity   extends Activity{
 
 
 //        db.close();
-        
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-		System.out.println("111111111111111111111111111");
-        switch (requestCode) {
-		case SCANNIN_GREQUEST_CODE:
+	
+	
+	 //测试签名及返回  
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//		System.out.println("111111111111111111111111111");
+//        switch (requestCode) {
+//		case SCANNIN_GREQUEST_CODE:
+//			System.out.println("222222222222222222");
+//			if(resultCode == RESULT_OK){
+//				System.out.println("222222222222222222");
+//				Bundle bundle = data.getExtras();
+//				byte[]  bts = bundle.getByteArray("result");
+//				System.out.println(bts);
+//				ImageView imageSign = (ImageView) findViewById(R.id.imageView1);
+//				Bitmap bmpout = BitmapFactory.decodeByteArray(bts, 0, bts.length);
+//				imageSign.setImageBitmap(bmpout);
+//				//显示扫描到的内容
+//			//	mTextView.setText(bundle.getString("result"));
+//			}
+//			break;
+//		}
+//    }
+	
+//接收扫描返回值及动作
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  super.onActivityResult(requestCode, resultCode, data);
+	System.out.println("111111111111111111111111111");
+  switch (requestCode) {
+	case SCANNIN_GREQUEST_CODE:
+		System.out.println("222222222222222222");
+		if(resultCode == RESULT_OK){
 			System.out.println("222222222222222222");
-			if(resultCode == RESULT_OK){
-				System.out.println("222222222222222222");
-				Bundle bundle = data.getExtras();
-				byte[]  bts = bundle.getByteArray("result");
-				System.out.println(bts);
-				ImageView imageSign = (ImageView) findViewById(R.id.imageView1);
-				Bitmap bmpout = BitmapFactory.decodeByteArray(bts, 0, bts.length);
-				imageSign.setImageBitmap(bmpout);
-				//显示扫描到的内容
-			//	mTextView.setText(bundle.getString("result"));
-			}
-			break;
-		}
-    }
+			Bundle bundle = data.getExtras();
+			String  imei = bundle.getString("result");
+			TextView imeiEt = (TextView) findViewById(R.id.editText);
+			imeiEt.setText(imei);
 
+			//显示扫描到的内容
+		//	mTextView.setText(bundle.getString("result"));
+		}
+		break;
+	}
+}
+	
 }
