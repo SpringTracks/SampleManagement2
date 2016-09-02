@@ -24,4 +24,11 @@
     <string name="lend_date">Lend Date</string>
     <string name="imge_view_lend_user">It should display user signature</string>
    <string name="people_name_change">Search according to AD</string>
+   
+<!--  -->
+    <string name="one_export">EXPORT ALL</string>
+    <string name="model_import">Model Import</string>
+    <string name="user_import">User Import</string>
+    <string name="lend_import">Lend Info. Import</string>
+    <string name="user_manage">Model/User MANAGE</string>
 </resources>
