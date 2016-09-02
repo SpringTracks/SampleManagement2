@@ -76,7 +76,6 @@ public class MainActivity extends Activity {
 					Intent intent = new Intent();
 					intent.setClass(MainActivity.this,ReturnActivity.class);
 					startActivity(intent);
-					Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
 					break;
 				case 2:
 				//Ìø×ªµ½²éÑ¯Activity
