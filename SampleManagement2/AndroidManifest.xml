@@ -29,6 +29,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
+        <activity android:name=".activity.ReturnActivity"></activity>
+                  <activity android:name=".activity.Sign"></activity>
     </application>
 
     <uses-permission android:name="android.permission.VIBRATE" />

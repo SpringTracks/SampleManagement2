@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.lge.dbhelper.DBOpenHandler;
+import com.lge.samplemanagement2.activity.ReturnActivity;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -71,9 +73,9 @@ public class MainActivity extends Activity {
 					break;
 				case 1:
 				//Ìø×ªµ½·µ»¹Activity
-/*					Intent intent = new Intent();
-					intent.setClass(MainActivity.this,ReturnActivitiy.class);
-					startActivity(intent);*/
+					Intent intent = new Intent();
+					intent.setClass(MainActivity.this,ReturnActivity.class);
+					startActivity(intent);
 					Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
 					break;
 				case 2:
