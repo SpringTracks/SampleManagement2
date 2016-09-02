@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DymantecEdittext</string>
+    <string name="app_name">样机辅助管理系统</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
     <string name="phone_id">手机标识</string>
 	<string name="model_name">型号名</string>
 	<string name="ad_id">AD 账号</string>
