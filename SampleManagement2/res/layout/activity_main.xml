@@ -2,26 +2,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#008B8B"
+    android:background="@drawable/mmtitle_bg_alpha"
     android:orientation="vertical" >
 	
-    <TextView
+    <include
+            android:id="@+id/include1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to Samplemanagement System"
-        android:textSize="20px"
-        android:textStyle=""
-        />
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_main_title"         />
         
     
-    <GridView
+<GridView
         android:id="@+id/gview"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_weight="0.1"
         android:columnWidth="80dp"
         android:gravity="center"
-        android:numColumns="2"
+        android:numColumns="3"
         android:stretchMode="columnWidth" >
 
     </GridView>
