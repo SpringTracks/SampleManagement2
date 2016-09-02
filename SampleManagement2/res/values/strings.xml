@@ -9,7 +9,19 @@
     <string name="returnback">Return</string>
     <string name="searchinfo">Search</string>
 
-<string name="menu_settings">Settings</string>
+    <string name="menu_settings">Settings</string>
     
     <string name="scan_text">Plrease focus code bar/n in rect frame</string>
+    <string name="phone_id">Phone ID</string>
+    <string name="model_name">Model Name</string>
+    <string name="ad_id">AD ID</string>
+    <string name="user_name">User Name</string>
+    <string name="expired_date">Expected Date</string>
+    <string name="sign">Signature</string>
+    <string name="lend_save">Save</string>
+    <string name="sign_info">Signature Information</string>
+    <string name="select_date_picker">Select Date</string>
+    <string name="lend_date">Lend Date</string>
+    <string name="imge_view_lend_user">It should display user signature</string>
+   <string name="people_name_change">Search according to AD</string>
 </resources>

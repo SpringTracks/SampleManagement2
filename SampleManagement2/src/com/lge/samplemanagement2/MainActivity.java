@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lge.dbhelper.DBOpenHandler;
+import com.lge.samplemanagement2.activity.LendOutActivity;
 import com.lge.samplemanagement2.activity.ReturnActivity;
 
 import android.view.View;
@@ -66,10 +67,9 @@ public class MainActivity extends Activity {
 				switch(position){
 				//跳转到借出Activity
 				case 0:
-/*					Intent intent = new Intent();
-					intent.setClass(MainActivity.this,LendActivitiy.class);
-					startActivity(intent);*/
-					Toast.makeText(getApplicationContext(),"Plz start LendActivity",Toast.LENGTH_SHORT).show();
+					Intent intentlend = new Intent();
+					intentlend.setClass(MainActivity.this,LendOutActivity.class);
+					startActivity(intentlend);					
 					break;
 				case 1:
 				//跳转到返还Activity

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DymantecEdittext</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="phone_id">手机标识</string>
+	<string name="model_name">型号名</string>
+	<string name="ad_id">AD 账号</string>
+	<string name="user_name">借用人</string>
+	<string name="expired_date">预计返还日期</string>
+	<string name="sign">签名</string>
+	<string name="lend_save">保存</string>
+	<string name="sign_info">签名信息</string>
+	<string name="lend_date">借用日期</string>
+	<string name="imge_view_lend_user">此处应显示借用人签名</string>
+	<string name="people_name_change">根据AD自动搜索</string>
+</resources>
