@@ -131,8 +131,6 @@ super.onOptionsItemSelected(item);
             break;
         case R.id.manage:	
             break; 
-        case R.id.help:
-            break;
         }
 		return true;
 	}
