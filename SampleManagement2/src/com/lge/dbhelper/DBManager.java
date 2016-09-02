@@ -20,7 +20,20 @@ public class DBManager implements DataEmployee, DataModel{
         this.dbOpenHandler = new DBOpenHandler(context);
         this.context = context;
     }
-    public long insertDataToDB(String table, ContentValues cv) {
+    
+    @Override
+	public Cursor selectAllData(String tablename) {
+    	try {
+            String sql = "select * from " + tablename;
+            Cursor cursor = db.rawQuery(sql, null);
+            return cursor;
+        }catch (SQLException e) {
+            toastError(e);
+            return null;
+        }
+	}
+
+	public long insertDataToDB(String table, ContentValues cv) {
         
         db = dbOpenHandler.getWritableDatabase();// Get DB operation
         
@@ -30,8 +43,6 @@ public class DBManager implements DataEmployee, DataModel{
         revalue = db.insert(table, null, cv);
         
         Log.i("AndrioidDBTest","insert sucessfully");
-        // Close DB
-        closeDataBase();
         return revalue;
     }
 
@@ -49,14 +60,8 @@ public class DBManager implements DataEmployee, DataModel{
 
     @Override
     public Cursor queryAllDataEmployee() {
-        try {
-            String sql = "select * from " + DBOpenHandler.EMPLOYEE_TABLE_NAME;
-            cursor = db.rawQuery(sql, null);
-            return cursor;
-        }catch (SQLException e) {
-            toastError(e);
-            return null;
-        }
+    	cursor = selectAllData(DBOpenHandler.EMPLOYEE_TABLE_NAME);
+    	return cursor;
     }
 
     @Override
@@ -121,14 +126,8 @@ public class DBManager implements DataEmployee, DataModel{
 
     @Override
     public Cursor queryAllDataModel() {
-        try {
-            String sql = "select * from " + DBOpenHandler.SAMPLE_TABLE_NAME;
-            cursor = db.rawQuery(sql, null);
-            return cursor;
-        } catch (SQLException e) {
-            toastError(e);
-            return null;
-        }
+    	cursor = selectAllData(DBOpenHandler.SAMPLE_TABLE_NAME);
+    	return cursor;
     }
 
     @Override
