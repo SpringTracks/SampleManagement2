@@ -116,11 +116,25 @@ public class MainActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+super.onOptionsItemSelected(item);
+		switch (item.getItemId())
+        {
+        case R.id.export:	
+        	Toast.makeText(getApplicationContext(), "信息已导出",Toast.LENGTH_SHORT).show();
+            break;
+        case R.id.import_model:	
+        	Toast.makeText(getApplicationContext(), "型号信息导入",Toast.LENGTH_SHORT).show();
+            break;
+        case R.id.import_user:	
+            break;
+        case R.id.import_lend:	
+            break;
+        case R.id.manage:	
+            break; 
+        case R.id.help:
+            break;
+        }
+		return true;
 	}
          private void createDB(){
 	    	DBOpenHandler dbHandler = new DBOpenHandler(getApplicationContext());// Create DB file  
