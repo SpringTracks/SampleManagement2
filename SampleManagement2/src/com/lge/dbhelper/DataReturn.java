@@ -25,7 +25,7 @@ public interface DataReturn extends DataCommon {
      * @param employee_id
      * @return
      */
-    public int deleteLendByPhoneId(String employee_id);
+    public int deleteLendByPhoneId(String phone_id);
 
 
 }

@@ -30,7 +30,13 @@ import android.widget.Toast;
 public  class ReturnActivity   extends Activity {
 
 	protected static final int SCANNIN_GREQUEST_CODE = 1;
-	DataReturn dbReturn ;
+	private  DataReturn dbReturn ;
+    private  String phonename;
+    private String person;
+    private String personid;
+    private  String date;
+    private String  imei;
+    private  String nowString;
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setTitle("Return");
@@ -52,7 +58,7 @@ public  class ReturnActivity   extends Activity {
         String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
         String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
  //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
-        String nowString=((mYear)+"."+(mMonth)+"."+mDay);
+         nowString=((mYear)+"."+(mMonth)+"."+mDay);
         TextView rTextView = (TextView) findViewById(R.id.textView9);
         rTextView.setText(nowString);
 
@@ -96,6 +102,15 @@ public  class ReturnActivity   extends Activity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//            	ContentValues cv = new ContentValues();
+//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[0],imei);
+//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[1],phonename);
+//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[2],personid);
+//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[3],person);
+//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[4],date);
+//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[5],nowString);
+//            	dbReturn.insertDataToLendHistory(cv);
+//            	dbReturn.deleteLendByPhoneId(imei);
                 System.out.println("点击了确定归还");
                 
             }
@@ -142,21 +157,27 @@ public  class ReturnActivity   extends Activity {
 		    if(resultCode == RESULT_OK){
 //			System.out.println("222222222222222222");
 			    Bundle bundle = data.getExtras();
-			    String  imei = bundle.getString("result");
+			     imei = bundle.getString("result");
 		    	TextView imeiEt = (TextView) findViewById(R.id.editText);
 			    imeiEt.setText(imei);
 
 //查询借出信息并显示
- //                  Cursor cursor =dbReturn. queryLendByPhoneId(imei);
-//               String phonename = cursor.getString(cursor.getColumnIndex("model_name"));
-//               String person = cursor.getString(cursor.getColumnIndex("employee_name"));
-//               String date = cursor.getString(cursor.getColumnIndex("lend_date"));
+//                Cursor cursor =dbReturn. queryLendByPhoneId(imei);
+//			    if  (cursor==null){
+//			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+//			    }else{
+//               phonename = cursor.getString(cursor.getColumnIndex("model_name"));
+//               person = cursor.getString(cursor.getColumnIndex("employee_name"));
+//               date = cursor.getString(cursor.getColumnIndex("lend_date"));
+//               personid = cursor.getString(cursor.getColumnIndex("employee_id"));			    
 //               TextView lTextView = (TextView) findViewById(R.id.textView8);
 //               lTextView.setText(date);
 //               TextView pnTextView = (TextView) findViewById(R.id.textView3);
 //               pnTextView.setText(phonename);
 //               TextView personTextView = (TextView) findViewById(R.id.textView7);
 //               personTextView.setText(person);
+			    
+//			    }
 		}
 		break;
 	}
