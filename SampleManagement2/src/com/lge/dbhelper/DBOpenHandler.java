@@ -69,9 +69,9 @@ public class DBOpenHandler extends SQLiteOpenHelper {
         sLendBuffer.append("[sign] BLOB)");
         db.execSQL(sLendBuffer.toString());
         //Create Sample Table
-        db.execSQL("CREATE TABLE IF NOT EXISTS SAMPLE_TABLE_NAME([_id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,[phone_id] varchar(30),[model_name] varchar(20))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS SampleTable([_id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,[phone_id] varchar(30),[model_name] varchar(20))");
         //Create Employee Table
-        db.execSQL("CREATE TABLE IF NOT EXISTS EMPLOYEE_TABLE_NAME([_id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,[employee_id] varchar(30),[employee_name] varchar(30))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS EmployeeTable([_id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,[employee_id] varchar(30),[employee_name] varchar(30))");
         
         //Create a lend history
         StringBuffer sLendHistoryBuffer = new StringBuffer();
