@@ -120,14 +120,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.32"
-                android:text="龙鸿鹏"
+                android:text="熊大"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text=" 12.8.30"
                 android:id="@+id/textView8"
                 android:layout_weight="0.23" />
 
@@ -135,7 +134,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="13"
                 android:id="@+id/textView9"
                 android:layout_weight="0.48" />
         </LinearLayout>

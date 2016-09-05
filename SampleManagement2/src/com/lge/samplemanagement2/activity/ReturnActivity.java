@@ -55,15 +55,7 @@ public  class ReturnActivity   extends Activity {
 //        	}
 
         
-        Calendar c = Calendar.getInstance(); 
-        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00")); 
-        String mYear = String.valueOf(c.get(Calendar.YEAR));// 获取当前年份 
-        String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
-        String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
- //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
-         nowString=((mYear)+"."+(mMonth)+"."+mDay);
-        TextView rTextView = (TextView) findViewById(R.id.textView9);
-        rTextView.setText(nowString);
+
 
 //        DBOpenHandler dbHandler = new DBOpenHandler(getApplicationContext());
 //        db = dbHandler.getWritableDatabase();
@@ -111,7 +103,16 @@ public  class ReturnActivity   extends Activity {
 //             TextView pnTextView = (TextView) findViewById(R.id.textView3);
 //             pnTextView.setText(phonename);
 //             TextView personTextView = (TextView) findViewById(R.id.textView7);
-//             personTextView.setText(person);            	
+//             personTextView.setText(person); 
+                Calendar c = Calendar.getInstance(); 
+                c.setTimeZone(TimeZone.getTimeZone("GMT+8:00")); 
+                String mYear = String.valueOf(c.get(Calendar.YEAR));// 获取当前年份 
+                String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
+                String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
+         //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
+                 nowString=((mYear)+"."+(mMonth)+"."+mDay);
+                TextView rTextView = (TextView) findViewById(R.id.textView9);
+                rTextView.setText(nowString);
                 System.out.println("点击了确定"+imei);
             }
         });
@@ -196,6 +197,15 @@ public  class ReturnActivity   extends Activity {
 //               personTextView.setText(person);
 			    
 //			    }
+		        Calendar c = Calendar.getInstance(); 
+		        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00")); 
+		        String mYear = String.valueOf(c.get(Calendar.YEAR));// 获取当前年份 
+		        String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
+		        String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
+		 //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
+		         nowString=((mYear)+"."+(mMonth)+"."+mDay);
+		        TextView rTextView = (TextView) findViewById(R.id.textView9);
+		        rTextView.setText(nowString);
 		}
 		break;
 	}
