@@ -37,10 +37,13 @@ public  class ReturnActivity   extends Activity {
     private  String date;
     private String  imei;
     private  String nowString;
+    
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setTitle("Return");
         setContentView(R.layout.activity_return);
+        
+        final EditText input = (EditText) findViewById(R.id.editText);
         dbReturn = new DBManager(ReturnActivity.this);
        //DBManager mdbm= new DBManager(ReturnActivity.this);
         
@@ -94,7 +97,22 @@ public  class ReturnActivity   extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("点击了确定");
+            	String imei = input.getText().toString();
+//             Cursor cursor =dbReturn. queryLendByPhoneId(imei);
+//			  if  (cursor==null){
+//			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+//			    }else{
+//             phonename = cursor.getString(cursor.getColumnIndex("model_name"));
+//             person = cursor.getString(cursor.getColumnIndex("employee_name"));
+//             date = cursor.getString(cursor.getColumnIndex("lend_date"));
+//             personid = cursor.getString(cursor.getColumnIndex("employee_id"));			    
+//             TextView lTextView = (TextView) findViewById(R.id.textView8);
+//             lTextView.setText(date);
+//             TextView pnTextView = (TextView) findViewById(R.id.textView3);
+//             pnTextView.setText(phonename);
+//             TextView personTextView = (TextView) findViewById(R.id.textView7);
+//             personTextView.setText(person);            	
+                System.out.println("点击了确定"+imei);
             }
         });
 
