@@ -62,6 +62,18 @@ public class DBManager implements DataEmployee, DataSample,
 	}
 
 	@Override
+	public Cursor queryDataByBAndA(String table, String KeyA, String KeyB, String a, String b) {
+		try {
+			String sql = "select * from " + table + " where " + KeyA + "='" + a + "' and " + KeyB + "='" + b + "'";
+			cursor = db.rawQuery(sql, null);
+			return cursor;
+		} catch (SQLException e) {
+			toastError(e);
+			return null;
+		}
+	}
+
+	@Override
     public int queryDataCount(String table, String key, String value) {
     	String sql = "select count(*) from " + table +" where " + key + "='" +value + "'";
     	cursor = db.rawQuery(sql, null);
@@ -82,14 +94,18 @@ public class DBManager implements DataEmployee, DataSample,
             return -1;
         }
 	}
-
+	
     @Override
+	public int updateDataBy_id(String table, ContentValues values, int _id) {
+		return db.update(table, values, "_id=", new String[]{""+_id} );
+	}
+
+	@Override
     public Cursor queryAllDataEmployee() {
     	cursor = queryAllData(DBOpenHandler.EMPLOYEE_TABLE_NAME);
     	return cursor;
     }
 
-    
     @Override
 	public Cursor queryPersonByEmployeeIDIfVague(String employee_id, boolean vague) {
 		if (vague == true) {
@@ -101,13 +117,18 @@ public class DBManager implements DataEmployee, DataSample,
 		}
 	}
 
-    @Override
+	@Override
     public int deletePersonByEmployeeID(String employee_id) {
     	return deleteDataBykey(DBOpenHandler.EMPLOYEE_TABLE_NAME, 
     				DBOpenHandler.EMPLOYEE_TABLE_KEY[0], employee_id);
     }
 
     @Override
+	public int updatePersonBy_Id(ContentValues values, int _id) {
+		return updateDataBy_id(DBOpenHandler.EMPLOYEE_TABLE_NAME, values, _id);
+	}
+
+	@Override
     public int insertDataToEmployee(String employee_id, String employee_name) {
         try {
             String sql = "insert into " + DBOpenHandler.EMPLOYEE_TABLE_NAME + " values(null, ?, ?)";
@@ -154,16 +175,8 @@ public class DBManager implements DataEmployee, DataSample,
     
     @Override
 	public Cursor querySampleByIdAndNmae(String phone_id, String model_name) {
-		try {
-			String sql = "select * from " + DBOpenHandler.SAMPLE_TABLE_NAME + " where " +
-						DBOpenHandler.SAMPLE_TABLE_KEY[0] + "='" + phone_id + "' and " +
-						DBOpenHandler.SAMPLE_TABLE_KEY[1] + "='" + model_name + "'";
-			cursor = db.rawQuery(sql, null);
-			return cursor;
-		} catch (SQLException e) {
-			toastError(e);
-			return null;
-		}
+    	return queryDataByBAndA(DBOpenHandler.SAMPLE_TABLE_NAME, DBOpenHandler.SAMPLE_TABLE_KEY[0],
+    			DBOpenHandler.SAMPLE_TABLE_KEY[1], phone_id, model_name);
 	}
 
 	@Override
@@ -190,6 +203,11 @@ public class DBManager implements DataEmployee, DataSample,
     }
 
     @Override
+	public int updateSampleBy_Id(ContentValues values, int _id) {
+		return updateDataBy_id(DBOpenHandler.SAMPLE_TABLE_NAME, values, _id);
+	}
+
+	@Override
 	public Cursor queryAllDataLend() {
 		return queryAllData(DBOpenHandler.LEND_TABLE_NAME);
 	}
@@ -209,6 +227,11 @@ public class DBManager implements DataEmployee, DataSample,
 	@Override
 	public long insertDataToLend(ContentValues values) {
 		return insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, values);
+	}
+	
+	@Override
+	public int updateLendBy_Id(ContentValues values, int _id) {
+		return updateDataBy_id(DBOpenHandler.LEND_TABLE_NAME, values, _id);
 	}
 
 	private void toastError(SQLException e) {

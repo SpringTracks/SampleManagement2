@@ -27,4 +27,12 @@ public interface DataLend extends DataCommon {
 	 * @return
 	 */
 	public long insertDataToLend(ContentValues values);
+	
+	/**
+	 * 更新手机借用表的数据
+	 * @param values
+	 * @param _id
+	 * @return 返回更新影响的记录条数
+	 */
+	public int updateLendBy_Id(ContentValues values, int _id);
 }

@@ -45,4 +45,11 @@ public interface DataSample extends DataCommon {
 	 */
 	public int deleteSampleByPhoneId(String phone_id);
 
+	/**
+	 * 根据手机样机表中的主键_id来更新数据
+	 * @param values
+	 * @param _id
+	 * @return 返回更新影响的记录条数
+	 */
+	public int updateSampleBy_Id(ContentValues values, int _id);
 }

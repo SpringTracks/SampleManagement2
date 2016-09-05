@@ -35,6 +35,15 @@ public interface DataCommon {
 	public Cursor queryVagueDataByKey(String table, String key, String value);
 	
 	/**
+	 * 根据条件A和条件B查询table中的数据
+	 * @param table 要查询的表
+	 * @param a  条件A
+	 * @param b  条件B
+	 * @return
+	 */
+	public Cursor queryDataByBAndA(String table, String KeyA, String KeyB, String a, String b);
+	
+	/**
 	 * 查询指定表中数据的数量
 	 * @param table 表名
 	 * @param key  表中指定列名
@@ -59,6 +68,15 @@ public interface DataCommon {
 	 * @return
 	 */
 	public int deleteDataBykey(String table, String key, String value);
+	
+	/**
+	 * 根据表中_id的值来更新数据
+	 * @param table  要更新的表
+	 * @param values  表中的数据
+	 * @param id     表中的主键_id
+	 * @return  返回更新影响的记录条数
+	 */
+	public int updateDataBy_id(String table, ContentValues values, int _id);
 	/**
 	 * 数据库操作完成之后
 	 */

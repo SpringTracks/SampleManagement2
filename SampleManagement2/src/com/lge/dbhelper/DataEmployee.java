@@ -34,4 +34,12 @@ public interface DataEmployee extends DataCommon {
      * @return
      */
     public int deletePersonByEmployeeID(String employee_id);
+    
+    /**
+     * 根据表中的第一列的主键更新人员信息
+     * @param values
+     * @param _id
+     * @return 返回更新影响的记录条数
+     */
+    public int updatePersonBy_Id(ContentValues values, int _id);
 }
