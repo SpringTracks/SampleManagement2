@@ -30,12 +30,12 @@ import android.widget.Toast;
 public  class ReturnActivity   extends Activity {
 
 	protected static final int SCANNIN_GREQUEST_CODE = 1;
-
+	DataReturn dbReturn ;
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setTitle("Return");
         setContentView(R.layout.activity_return);
-        
+        dbReturn = new DBManager(ReturnActivity.this);
        //DBManager mdbm= new DBManager(ReturnActivity.this);
         
 //        public void getDBManager(){
@@ -147,7 +147,7 @@ public  class ReturnActivity   extends Activity {
 			    imeiEt.setText(imei);
 
 //查询借出信息并显示
-//               Cursor cursor = queryLendByPhoneId(imei);
+ //                  Cursor cursor =dbReturn. queryLendByPhoneId(imei);
 //               String phonename = cursor.getString(cursor.getColumnIndex("model_name"));
 //               String person = cursor.getString(cursor.getColumnIndex("employee_name"));
 //               String date = cursor.getString(cursor.getColumnIndex("lend_date"));
