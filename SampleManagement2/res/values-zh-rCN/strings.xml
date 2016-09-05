@@ -13,6 +13,10 @@
 	<string name="lend_save">保存</string>
 	<string name="sign_info">签名信息</string>
 	<string name="lend_date">借用日期</string>
+	<string name="return_date">归还日期</string>
+	<string name="doscan">扫描</string>
+	 <string name="return_confirm">确定归还</string>
+	 <string name="othernote">如无法扫描请手动输入并点击ok</string>
 	<string name="imge_view_lend_user">此处应显示借用人签名</string>
 	<string name="people_name_change">根据AD自动搜索</string>
 	

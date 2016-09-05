@@ -22,8 +22,14 @@
     <string name="sign_info">Signature Information</string>
     <string name="select_date_picker">Select Date</string>
     <string name="lend_date">Lend Date</string>
+    <string name="return_date">Return Date</string>
+    <string name="doscan">scan</string>
+    <string name="return_confirm">return confirm</string>
+    <string name="othernote">Input phone id and click ok  if you can not scan it.</string>
     <string name="imge_view_lend_user">It should display user signature</string>
    <string name="people_name_change">Search according to AD</string>
+   
+ 
    
 <string name="employee_id">AD: </string>
    <string name="employee_name">Name: </string>
