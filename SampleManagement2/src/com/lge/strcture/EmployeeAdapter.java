@@ -15,8 +15,10 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 public class EmployeeAdapter extends CursorAdapter implements Filterable {
+    private static final String TAG = "EmployeeAdapter";
 
 	private Context context;
+	
 	private DBManager mDBManager;
 	
 	public EmployeeAdapter(Context context, Cursor c, boolean autoRequery) {
@@ -28,6 +30,11 @@ public class EmployeeAdapter extends CursorAdapter implements Filterable {
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		// TODO Auto-generated method stub
+		ViewHolder viewHolder = (ViewHolder)view.getTag();
+		String employee_id = cursor.getString(cursor.getColumnIndex(DBOpenHandler.EMPLOYEE_TABLE_KEY[0]));
+		String employee_name = cursor.getString(cursor.getColumnIndex(DBOpenHandler.EMPLOYEE_TABLE_KEY[1]));		
+		viewHolder.tv_ad.setText(context.getResources().getString(R.string.employee_id) + employee_id);
+		viewHolder.tv_name.setText(context.getResources().getString(R.string.employee_name) + employee_name);
 		
 	}
 

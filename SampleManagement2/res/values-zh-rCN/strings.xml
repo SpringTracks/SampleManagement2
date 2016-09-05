@@ -16,6 +16,8 @@
 	<string name="imge_view_lend_user">此处应显示借用人签名</string>
 	<string name="people_name_change">根据AD自动搜索</string>
 	
+<string name="employee_name">姓名: </string>
+	
 <!--  -->
     <string name="one_export">一键导出</string>
     <string name="model_import">型号导入</string>

@@ -25,6 +25,9 @@
     <string name="imge_view_lend_user">It should display user signature</string>
    <string name="people_name_change">Search according to AD</string>
    
+<string name="employee_id">AD: </string>
+   <string name="employee_name">Name: </string>
+   
 <!--  -->
     <string name="one_export">EXPORT ALL</string>
     <string name="model_import">Model Import</string>
