@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class DBManager implements DataEmployee, DataModel,
-						DataLend {
+						DataLend ,DataReturn{
 	private final String TAG = DBManager.class.getSimpleName();
 	
     private DBOpenHandler dbOpenHandler;
@@ -184,9 +184,9 @@ public class DBManager implements DataEmployee, DataModel,
 			return queryDataByKey(DBOpenHandler.LEND_TABLE_NAME, 
 					DBOpenHandler.LEND_TABLE_KEY[0], phone_id);
 		}
-
 	}
 	
+
 	@Override
 	public long insertDataToLend(ContentValues values) {
 		return insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, values);
@@ -201,4 +201,29 @@ public class DBManager implements DataEmployee, DataModel,
     public void closeDataBase() {
         dbOpenHandler.close();
     }
+
+//	@Override
+//	public int deleteLendByPhoneId(String employee_id) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+	
+	//DataReturn ·½·¨
+	  @Override	
+		public Cursor queryLendByPhoneId(String phone_id) {
+				return queryDataByKey(DBOpenHandler.LEND_TABLE_NAME, 
+						DBOpenHandler.LEND_TABLE_KEY[0], phone_id);
+		}
+		
+	  @Override
+	   public long insertDataToLendHistory(ContentValues values) {
+		       return insertDataToDB(DBOpenHandler.LEND_HISTORY_TABLE_NAME, values);
+	   }
+	  
+		@Override
+		public int deleteLendByPhoneId(String phone_id) {
+			// TODO Auto-generated method stub
+			return deleteDataBykey(DBOpenHandler.LEND_TABLE_NAME, 
+					DBOpenHandler.LEND_TABLE_KEY[0], phone_id);
+		}
 }
