@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-public class DBManager implements DataEmployee, DataModel,
+public class DBManager implements DataEmployee, DataSample,
 						DataLend ,DataReturn{
 	private final String TAG = DBManager.class.getSimpleName();
 	
@@ -38,9 +38,15 @@ public class DBManager implements DataEmployee, DataModel,
     
     @Override
     public Cursor queryDataByKey(String table, String key, String value) {
-    	String sql = "select * from " + table + " where " + key + "='" + value + "'";
-    	cursor = db.rawQuery(sql, null);
-    	return cursor;
+    	try {
+    		String sql = "select * from " + table + " where " + key + "='" + value + "'";
+        	cursor = db.rawQuery(sql, null);
+        	return cursor;
+		} catch (SQLException e) {
+			toastError(e);
+            return null;
+		}
+    	
     }
 
     @Override
@@ -59,8 +65,7 @@ public class DBManager implements DataEmployee, DataModel,
     public int queryDataCount(String table, String key, String value) {
     	String sql = "select count(*) from " + table +" where " + key + "='" +value + "'";
     	cursor = db.rawQuery(sql, null);
-    	cursor.moveToFirst();
-    	return cursor.getInt(0);
+    	return cursor.getCount();
     }
     
 	public long insertDataToDB(String table, ContentValues values) {
@@ -120,12 +125,12 @@ public class DBManager implements DataEmployee, DataModel,
     }
 
     @Override
-    public Cursor queryAllDataModel() {
+    public Cursor queryAllDataSample() {
     	return queryAllData(DBOpenHandler.SAMPLE_TABLE_NAME);
     }
 
     @Override
-    public Cursor queryModelByPhoneIdIfVague(String phone_id, boolean vague) {
+    public Cursor querySampleByPhoneIdIfVague(String phone_id, boolean vague) {
     	if (vague == true) {
     		return queryVagueDataByKey(DBOpenHandler.SAMPLE_TABLE_NAME, 
 					DBOpenHandler.SAMPLE_TABLE_KEY[0], phone_id);
@@ -136,7 +141,7 @@ public class DBManager implements DataEmployee, DataModel,
     }
 
     @Override
-    public Cursor queryModelByNameIfVague(String model_name, boolean vague) {
+    public Cursor querySampleByNameIfVague(String model_name, boolean vague) {
     	if (vague == true) {
     		return queryVagueDataByKey(DBOpenHandler.SAMPLE_TABLE_NAME, 
 					DBOpenHandler.SAMPLE_TABLE_KEY[1], model_name);
@@ -146,9 +151,23 @@ public class DBManager implements DataEmployee, DataModel,
 		}
     	
     }
-
+    
     @Override
-    public int insertDataToModel(String phone_id, String model_name) {
+	public Cursor querySampleByIdAndNmae(String phone_id, String model_name) {
+		try {
+			String sql = "select * from " + DBOpenHandler.SAMPLE_TABLE_NAME + " where " +
+						DBOpenHandler.SAMPLE_TABLE_KEY[0] + "='" + phone_id + "' and " +
+						DBOpenHandler.SAMPLE_TABLE_KEY[1] + "='" + model_name + "'";
+			cursor = db.rawQuery(sql, null);
+			return cursor;
+		} catch (SQLException e) {
+			toastError(e);
+			return null;
+		}
+	}
+
+	@Override
+    public int insertDataToSample(String phone_id, String model_name) {
         try {
             String sql = "insert into " + DBOpenHandler.SAMPLE_TABLE_NAME + " values(null, ?, ?)";
             db.execSQL(sql, DBOpenHandler.SAMPLE_TABLE_KEY);
@@ -160,12 +179,12 @@ public class DBManager implements DataEmployee, DataModel,
     }
 
     @Override
-    public long insertDataToModel(ContentValues values) {
+    public long insertDataToSample(ContentValues values) {
     	return insertDataToDB(DBOpenHandler.SAMPLE_TABLE_NAME, values);
     }
 
     @Override
-    public int deleteModelByPhoneId(String phone_id) {
+    public int deleteSampleByPhoneId(String phone_id) {
     	return deleteDataBykey(DBOpenHandler.SAMPLE_TABLE_NAME, 
     						DBOpenHandler.SAMPLE_TABLE_KEY[0], phone_id);
     }
