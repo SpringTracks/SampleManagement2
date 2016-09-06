@@ -2,29 +2,35 @@ package com.lge.samplemanagement2.activity;
 
 import java.util.Calendar;
 
-import com.lge.samplemanagement2.R;
-import com.lge.strcture.EmployeeAdapter;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.lge.dbhelper.DBManager;
+import com.lge.samplemanagement2.R;
+import com.lge.strcture.EmployeeAdapter;
 
 public class LendOutActivity extends Activity {
 	private static final String TAG = "LendOutActivity";
+	
+	protected static final int SCANNIN_GREQUEST_CODE = 1;
+	
+	protected static final int SIGN_GREQUEST_CODE = 2;
 	
 	private ImageView mImageview;
 	
@@ -38,10 +44,23 @@ public class LendOutActivity extends Activity {
 	
 	private EmployeeAdapter mEmployeeAdapter;
 
+	private EditText mSampleID;
+	
+	private EditText mModelName;
+	
+	private Button mSign;
+	
+	private Button mSave;
+	
+	private DBManager mDBManager = null;
+	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lendout);		
+		mSampleID = (EditText)findViewById(R.id.Phone_ID_Edit);
+		mModelName = (EditText)findViewById(R.id.Model_Name_Edit);
 		mImageview = (ImageView)findViewById(R.id.Scan);
 		mLendDate = (EditText)findViewById(R.id.Lend_Date_Edit);
 		mExpiredDate = (EditText)findViewById(R.id.Return_Date_Edit);
@@ -52,7 +71,7 @@ public class LendOutActivity extends Activity {
 		final int currentyear = ca.get(Calendar.YEAR);
 		final int currentmonth = ca.get(Calendar.MONTH);
 		final int currentday = ca.get(Calendar.DAY_OF_MONTH);
-		
+
 		//Init employee Adapter
 		mEmployeeAdapter = new EmployeeAdapter(this,null,false);
 		mEmployeeID.setThreshold(1);
@@ -75,7 +94,7 @@ public class LendOutActivity extends Activity {
 					mEmployeeName.setText(cu.getString(cu.getColumnIndex("employee_name")));
 				}
 			}
-			
+
 		});
 		
 		//借出日期是当天日期，不可编辑
@@ -107,9 +126,11 @@ public class LendOutActivity extends Activity {
 		});	
 		//click to start scan activity
 		mImageview.setOnClickListener(new OnClickListener() {
-			public void onClick(View v){					
-				Toast to = Toast.makeText(getApplicationContext(), "Need start scan activity", 1);
-				to.show();
+			public void onClick(View v){
+				 Intent intent = new Intent();
+					intent.setClass(LendOutActivity.this,MipcaActivityCapture.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
 			}
 		});
 	}
@@ -135,11 +156,39 @@ public class LendOutActivity extends Activity {
 	*/
 	@Override
 	public void onDestroy(){			
+		Log.i(TAG,"onDestroy!!!");
 		if (mEmployeeAdapter != null && mEmployeeAdapter.getCursor() != null) {  
 			Log.i(TAG,"Close adapter cursor!!!");
 			mEmployeeAdapter.getCursor().close();    
 	    }
+		if (mDBManager != null) {
+			Log.i(TAG,"Close DB!!!");
+			mDBManager.closeDataBase();
+		}
 		super.onDestroy();		
 	}
- }	
+	
+	//Get response from scan activity
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		  super.onActivityResult(requestCode, resultCode, data);
+		  switch (requestCode) {
+			case SCANNIN_GREQUEST_CODE:
+				if(resultCode == RESULT_OK){
+					Bundle bundle = data.getExtras();
+					String  imei = bundle.getString("result");
+					mSampleID.setText(imei);
+				
+				}
+				break;
+			}
+		}
+	
+	 public DBManager getDBManager() {
+		 if (mDBManager == null) {
+			 mDBManager = new DBManager(this);
+		 }
+		 return mDBManager;
+	 }
 		
+ }
