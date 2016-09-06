@@ -66,7 +66,7 @@ public class ModelFragment extends Fragment {
 				model_values.put("phone_id", model_id);
 				model_values.put("model_name", model_name);
 
-				modelManage.insertDataToModel(model_values);
+				modelManage.insertDataToSample(model_values);
 
 				// TODO Auto-generated method stub
 				Toast.makeText(getActivity(), "数据插入成功", 0).show();
