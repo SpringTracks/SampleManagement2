@@ -40,4 +40,8 @@
     <string name="user_import">User Import</string>
     <string name="lend_import">Lend Info. Import</string>
     <string name="user_manage">Model/User MANAGE</string>
+    
+    <string name="import_success">Import success</string>
+    <string name="import_Exception">Insert to db Exception, please check excel file information</string>
+    <string name="export_success">Export success</string>
 </resources>

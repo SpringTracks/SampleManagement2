@@ -28,4 +28,8 @@
     <string name="user_import">用户导入</string>
     <string name="lend_import">借用信息导入</string>
     <string name="user_manage">型号/人员管理</string>
+    
+    <string name="import_success">导入成功</string>
+    <string name="import_Exception">插入数据库异常，请确认excel文件信息</string>
+    <string name="export_success">导出成功</string>
 </resources>
