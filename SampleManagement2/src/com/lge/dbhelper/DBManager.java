@@ -77,7 +77,9 @@ public class DBManager implements DataEmployee, DataSample,
     public int queryDataCount(String table, String key, String value) {
     	String sql = "select count(*) from " + table +" where " + key + "='" +value + "'";
     	cursor = db.rawQuery(sql, null);
-    	return cursor.getCount();
+    	cursor.moveToFirst();
+    	return cursor.getInt(0);
+//    	return cursor.getCount();
     }
     
 	public long insertDataToDB(String table, ContentValues values) {

@@ -73,24 +73,26 @@ public class EIOperation {
             if(table.equals(sample)||table.equals(lend)){
                 key = cvalues.get("phone_id").toString();
                 count = dbm.queryDataCount(table,"phone_id",key);
+                Log.i(TAG, "zlp-- table="+table+", count(phone_id)= "+count);
             }else{
                 key = cvalues.get("employee_id").toString();
                 count = dbm.queryDataCount(table,"employee_id",key);
-                Log.i(TAG, "zlp--EIOperation--table="+table+"count employee id = "+count);
+                Log.i(TAG, "zlp--EIOperation--table="+table+", count(employee_id) = "+count);
             }
             
             if(count==0){
                 rowId = dbm.insertDataToDB(table, cvalues);
+                Log.i(TAG, "zlp--count=0, rowID="+rowId+", key= "+key);
             }
             else{
                 rowId = 10086;
-                Log.i(TAG, "zlp--data already inserted in db£¬phone_id or employee id = "+key);
+                Log.i(TAG, "zlp--data already inserted in db, phone_id or employee id = "+key);
                 
             }
             
             if(rowId < 0){
                 toast(rowId);
-                Log.i(TAG, "zlp--data insert fail£¬phone_id or employee id = "+key);
+                Log.i(TAG, "zlp--data insert fail, phone_id or employee id = "+key);
             }
     }
         return rowId;
