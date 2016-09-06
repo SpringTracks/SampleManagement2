@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">SampleManagement2</string>
+	<string name="app_name2">Manage</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     
@@ -44,4 +45,15 @@
     <string name="import_success">Import success</string>
     <string name="import_Exception">Insert to db Exception, please check excel file information</string>
     <string name="export_success">Export success</string>
+	
+	    <string name="model_name_manage">Model Name：</string>
+	<string name="model_id">Phone ID：</string>
+	<string name="update">Add</string>
+	<string name="cancel">Cancel</string>
+	
+	<string name="user_name_manage">User Name：</string>
+	<string name="user_email">E-mail：</string>	
+	
+<string name="welcome1">WELCOME</string>
+<string name="welcome2">WELCOME</string>
 </resources>

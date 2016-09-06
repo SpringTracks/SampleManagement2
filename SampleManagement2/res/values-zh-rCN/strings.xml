@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">样机辅助管理系统</string>
+	<string name="app_name2">管理</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">设置</string>
     <string name="phone_id">手机标识</string>
@@ -32,4 +33,15 @@
     <string name="import_success">导入成功</string>
     <string name="import_Exception">插入数据库异常，请确认excel文件信息</string>
     <string name="export_success">导出成功</string>
+	
+	<string name="model_name_manage">型号名：</string>
+	<string name="model_id">手机编号：</string>
+	<string name="update">添加</string>
+	<string name="cancel">取消</string>
+	
+	<string name="user_name_manage">人员名：</string>
+	<string name="user_email">邮箱：</string>	
+	
+	<string name="welcome1">欢迎手动管理型号</string>
+	<string name="welcome2">欢迎手动管理人员信息</string>
 </resources>

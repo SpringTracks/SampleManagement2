@@ -19,6 +19,7 @@ import com.lge.dbhelper.DBOpenHandler;
 import com.lge.excel.EIOperation;
 import com.lge.samplemanagement2.activity.LendOutActivity;
 import com.lge.samplemanagement2.activity.ReturnActivity;
+import com.lge.samplemanagement2.manage.ManageActivity;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -159,14 +160,9 @@ super.onOptionsItemSelected(item);
             operation.toast(rowId2);
             break;
         case R.id.manage:	
-            Cursor mCrusor = dbm.queryAllData(sample);
-           while (mCrusor.moveToNext()) {
-               System.out.print("zlp--");
-               for (int i=0;i<mCrusor.getColumnCount();i++) {
-                   System.out.print(mCrusor.getString(i)+",");
-               }
-               System.out.println();
-           }
+         	Intent intent3 = new Intent();
+ 			intent3.setClass(MainActivity.this, ManageActivity.class);
+ 			startActivity(intent3);
             break; 
         }
 		return true;
