@@ -11,7 +11,7 @@
 
     <string name="menu_settings">Settings</string>
     
-    <string name="scan_text">Plrease focus code bar/n in rect frame</string>
+    <string name="scan_text">Plrease focus code\nin rect frame</string>
     <string name="phone_id">Phone ID</string>
     <string name="model_name">Model Name</string>
     <string name="ad_id">AD ID</string>
