@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lge.dbhelper.DBManager;
+import com.lge.dbhelper.DBOpenHandler;
 import com.lge.samplemanagement2.R;
 import com.lge.strcture.EmployeeAdapter;
 
@@ -74,6 +76,7 @@ public class LendOutActivity extends Activity {
 		mEmployeeName = (EditText)findViewById(R.id.Peple_Name_Edit);
 		mSign = (Button)findViewById(R.id.Sign_Button);
 		mDisplaySign = (ImageView)findViewById(R.id.Return_Sign);
+		mSave = (Button)findViewById(R.id.Save_Button);
 		
 		//用Calendar类获取系统当前日期传递给日期选择器
 		final Calendar ca = Calendar.getInstance();
@@ -154,6 +157,31 @@ public class LendOutActivity extends Activity {
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivityForResult(intent, SIGN_GREQUEST_CODE);
 					//Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
+			}
+			
+		});
+		
+		//Click save button
+		mSave.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ContentValues cv = new ContentValues();
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[0], mSampleID.getText().toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[1], mModelName.getText().toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[2], mEmployeeID.getText().toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[3], mEmployeeName.getText().toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[4], mLendDate.getText().toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[5], mExpiredDate.getText().toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[6], "");
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[7], mSignInfo);
+				if(getDBManager().insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, cv)>0) {
+					Toast.makeText(getApplicationContext(),"Insert Sucessfully!",Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(getApplicationContext(),"Fail to insert!",Toast.LENGTH_SHORT).show();
+				}
+				
 			}
 			
 		});
