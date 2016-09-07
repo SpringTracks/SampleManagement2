@@ -122,7 +122,8 @@ public class MipcaActivityCapture extends Activity implements Callback {
 			Intent resultIntent = new Intent();
 			Bundle bundle = new Bundle();
 			bundle.putString("result", resultString);
-			bundle.putParcelable("bitmap", barcode);
+		//	stone.wang blocked for abnormal stopped on 160907  
+		//	bundle.putParcelable("bitmap", barcode);
 			resultIntent.putExtras(bundle);
 			this.setResult(RESULT_OK, resultIntent);
 		}
