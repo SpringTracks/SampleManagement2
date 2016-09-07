@@ -43,8 +43,9 @@
     <string name="user_manage">Model/User MANAGE</string>
     
     <string name="import_success">Import success</string>
-    <string name="import_Exception">Insert to db Exception, please check excel file information</string>
+    <string name="import_Exception">Import Exception or empty excel, please check excel file</string>
     <string name="export_success">Export success</string>
+    <string name="select_wrong_file">select wrong file, please reselect right file to import: %s</string>
 	
 	    <string name="model_name_manage">Model Name：</string>
 	<string name="model_id">Phone ID：</string>

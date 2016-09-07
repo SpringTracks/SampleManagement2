@@ -17,6 +17,7 @@ import java.util.Map;
 import com.lge.dbhelper.DBManager;
 import com.lge.dbhelper.DBOpenHandler;
 import com.lge.excel.EIOperation;
+import com.lge.samplemanagement2.activity.FileExplorerActivity;
 import com.lge.samplemanagement2.activity.LendOutActivity;
 import com.lge.samplemanagement2.activity.ReturnActivity;
 import com.lge.samplemanagement2.manage.ManageActivity;
@@ -30,6 +31,9 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	protected final static int REQUEST_SAMPLE=0;
+	protected final static int REQUEST_EMPLOYEE=1;
+	protected final static int REQUEST_LEND=2;
 	private SQLiteDatabase db  = null;
 	private String TAG = "MainActivity";
 	
@@ -148,16 +152,21 @@ super.onOptionsItemSelected(item);
             Toast.makeText(MainActivity.this,R.string.export_success,Toast.LENGTH_SHORT).show();
             break;
         case R.id.import_model:	
-            long rowId = operation.insertToDb(sample, key_sample);
-            operation.toast(rowId);
+//        	operation.insertToDb(sample, key_sample);
+				Intent import_sample = new Intent(MainActivity.this, FileExplorerActivity.class);
+				startActivityForResult(import_sample,REQUEST_SAMPLE);
             break;
         case R.id.import_user:	
-            long rowId1 = operation.insertToDb(employee, key_employee);
-            operation.toast(rowId1);
+				Intent import_employee = new Intent(MainActivity.this, FileExplorerActivity.class);
+				startActivityForResult(import_employee,REQUEST_EMPLOYEE);
+//				long rowId1 = operation.insertToDb(employee, key_employee,import_file_path1);
+//        		operation.toast(rowId1);
             break;
         case R.id.import_lend:	
-            long rowId2 = operation.insertToDb(lend,key_lend);
-            operation.toast(rowId2);
+				Intent import_lend = new Intent(MainActivity.this, FileExplorerActivity.class);
+				startActivityForResult(import_lend,REQUEST_LEND);
+//				long rowId2 = operation.insertToDb(lend,key_lend,import_file_path2);
+//        		operation.toast(rowId2);
             break;
         case R.id.manage:	
          	Intent intent3 = new Intent();
@@ -174,6 +183,45 @@ super.onOptionsItemSelected(item);
 	        Log.i(TAG, "createDB sucessfully!!!");
 	    }
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode){
+			case REQUEST_SAMPLE:
+				if (resultCode==RESULT_OK) {
+					String import_sample_path = data.getStringExtra("filePath");
+						Log.i("zlp-", "import_sample_path=" + import_sample_path);
+						if (import_sample_path.contains(sample)) {
+							long rowId = operation.insertToDb(sample, key_sample, import_sample_path);
+							operation.toast(rowId);
+						} else
+							Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file,"SampleTable.xls"), Toast.LENGTH_SHORT).show();
+					}
+				break;
+			case REQUEST_EMPLOYEE:
+				if (resultCode==RESULT_OK) {
+					String import_employee_path = data.getStringExtra("filePath");
+					Log.i("zlp-", "import_employee_path=" + import_employee_path);
+					if (import_employee_path.contains(employee)) {
+						long rowId = operation.insertToDb(employee, key_employee, import_employee_path);
+						operation.toast(rowId);
+					} else
+						Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file,"EmployeeTable.xls"), Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case REQUEST_LEND:
+				if (resultCode==RESULT_OK) {
+					String import_lend_path = data.getStringExtra("filePath");
+					Log.i("zlp-", "import_lend_path=" + import_lend_path);
+					if (import_lend_path.contains(lend)&&!import_lend_path.contains("History")) {
+						long rowId = operation.insertToDb(lend, key_lend, import_lend_path);
+						operation.toast(rowId);
+					} else
+						Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file,"LendTable.xls"), Toast.LENGTH_SHORT).show();
+				}
+				break;
+		}
+	}
 
         @Override
         protected void onDestroy() {

@@ -156,6 +156,9 @@ public class DBManager implements DataEmployee, DataSample,
         
         if(count == 0){
             return insertDataToDB(table, values);
+        }else if(count >0){
+        	Log.i(TAG, "data dumplicate, count = "+count);
+        	return count;
         }
         else{
             return -1;
