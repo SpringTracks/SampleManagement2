@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,6 +56,10 @@ public class LendOutActivity extends Activity {
 	
 	private DBManager mDBManager = null;
 	
+	private byte[] mSignInfo = null;
+	
+	private ImageView mDisplaySign;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,9 @@ public class LendOutActivity extends Activity {
 		mExpiredDate = (EditText)findViewById(R.id.Return_Date_Edit);
 		mEmployeeID = (AutoCompleteTextView)findViewById(R.id.AD_ID_Edit);
 		mEmployeeName = (EditText)findViewById(R.id.Peple_Name_Edit);
+		mSign = (Button)findViewById(R.id.Sign_Button);
+		mDisplaySign = (ImageView)findViewById(R.id.Return_Sign);
+		
 		//用Calendar类获取系统当前日期传递给日期选择器
 		final Calendar ca = Calendar.getInstance();
 		final int currentyear = ca.get(Calendar.YEAR);
@@ -133,6 +142,21 @@ public class LendOutActivity extends Activity {
 					startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
 			}
 		});
+		
+		//Click sign button
+		mSign.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				   Intent intent = new Intent();
+					intent.setClass(LendOutActivity.this,Sign.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivityForResult(intent, SIGN_GREQUEST_CODE);
+					//Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
+			}
+			
+		});
 	}
 /*
 	@Override
@@ -180,6 +204,16 @@ public class LendOutActivity extends Activity {
 					mSampleID.setText(imei);
 				
 				}
+				break;
+			case SIGN_GREQUEST_CODE:
+				if(resultCode == RESULT_OK){				
+				Bundle bundle = data.getExtras();
+				mSignInfo = bundle.getByteArray("result");								
+				Bitmap bmpout = BitmapFactory.decodeByteArray(mSignInfo, 0, mSignInfo.length);
+				mDisplaySign.setImageBitmap(bmpout);
+				//显示扫描到的内容
+				Log.i(TAG,mSignInfo.toString());
+			    }
 				break;
 			}
 		}
