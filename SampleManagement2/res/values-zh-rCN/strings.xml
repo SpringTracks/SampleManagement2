@@ -44,4 +44,9 @@
 	
 	<string name="welcome1">欢迎手动管理型号</string>
 	<string name="welcome2">欢迎手动管理人员信息</string>
+	
+	<string name="icon1">借出</string>
+	<string name="icon2">返还</string>
+	<string name="icon3">查询</string>
+	<string name="MAIN">主页</string>
 </resources>

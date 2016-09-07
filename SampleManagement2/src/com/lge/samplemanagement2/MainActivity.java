@@ -40,8 +40,6 @@ public class MainActivity extends Activity {
 	
 	private int[] icon = { R.drawable.lendout, R.drawable.returnback , R.drawable.searchinfo };
 	
-	private String[] iconName = { "借出","返还", "查询" };
-	
 	//define table name
 	private String sample = DBOpenHandler.SAMPLE_TABLE_NAME;
 	private String lend = DBOpenHandler.LEND_TABLE_NAME;
@@ -64,13 +62,15 @@ public class MainActivity extends Activity {
 
 		dbm = new DBManager(MainActivity.this);
 		operation = new EIOperation(MainActivity.this,dbm);
-		
+		final String[] iconName = { getApplicationContext().getResources().getString(R.string.icon1),
+			getApplicationContext().getResources().getString(R.string.icon2),
+			getApplicationContext().getResources().getString(R.string.icon3) };
 		
 		gview = (GridView) findViewById(R.id.gview);
 		//新建List
 		data_list = new ArrayList<Map<String,Object>>();
 		//获取数据
-		getData();
+		getData(iconName);
 		//新建适配器
 		String [] from ={"image","text"};
 		
@@ -111,13 +111,13 @@ public class MainActivity extends Activity {
 	}
 
 
-	public List<Map<String,Object>> getData() {
+	public List<Map<String,Object>> getData(String[] args) {
 		// TODO Auto-generated method stub
 		//icon和iconName的长度是相同的，这里任选其一即可
 		for(int i=0;i<icon.length;i++){
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("image",icon[i]);
-			map.put("text",iconName[i]);
+			map.put("text",args[i]);
 			data_list.add(map);
 		}
 		
