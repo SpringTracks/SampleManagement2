@@ -27,6 +27,13 @@ public interface DataEmployee extends DataCommon {
      */
     public int insertDataToEmployee(String employee_id, String employee_name);
     public long insertDataToEmployee(ContentValues values);
+    
+    /**
+     * 向人员表中插入数据首先根据employee_id判断数据是否有重复
+     * @param values
+     * @return 有重复数据返回-1，不插入数据，否则返回插入影响的行数
+     */
+    public long insertDataToEmployeeIfNoRepeatValue(ContentValues values);
 
     /**
      * 根据employee_id删除指定信息

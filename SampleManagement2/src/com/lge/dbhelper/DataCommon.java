@@ -61,6 +61,13 @@ public interface DataCommon {
 	public long insertDataToDB(String table, ContentValues values);
 	
 	/**
+	 * 向数据库中插入数据之间先根据表中phone_id,employee_id等判断是否有重复数据
+	 * @param table
+	 * @param values
+	 * @return 有重复数据返回-1，不插入数据，否则返回插入影响的行数
+	 */
+	public long insertDataToDBIfNoRepeatValue(String table, ContentValues values);
+	/**
 	 * 查询指定表中数据的数量
 	 * @param table 表名
 	 * @param key  表中指定列名

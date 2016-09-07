@@ -141,11 +141,37 @@ public class DBManager implements DataEmployee, DataSample,
             return -1;
         }
     }
+	
+	@Override
+	public long insertDataToDBIfNoRepeatValue(String table, ContentValues values) {
+		int count = -1;
+        if(table.equals(DBOpenHandler.SAMPLE_TABLE_NAME) 
+        		 ||table.equals(DBOpenHandler.LEND_TABLE_NAME)){
+           String key = values.getAsString("phone_id");
+            count = queryDataCount(table,"phone_id",key);
+        }else if(table.equals(DBOpenHandler.EMPLOYEE_TABLE_NAME)){
+            String key = values.getAsString("employee_id");
+            count = queryDataCount(table,"employee_id",key);
+        }
+        
+        if(count == 0){
+            return insertDataToDB(table, values);
+        }
+        else{
+            return -1;
+            
+        }
+	}
 
     @Override
     public long insertDataToEmployee(ContentValues values) {
     	return insertDataToDB(DBOpenHandler.EMPLOYEE_TABLE_NAME, values);
     }
+    
+    @Override
+	public long insertDataToEmployeeIfNoRepeatValue(ContentValues values) {
+		return insertDataToDBIfNoRepeatValue(DBOpenHandler.SAMPLE_TABLE_NAME, values);
+	}
 
     @Override
     public Cursor queryAllDataSample() {
@@ -197,8 +223,13 @@ public class DBManager implements DataEmployee, DataSample,
     public long insertDataToSample(ContentValues values) {
     	return insertDataToDB(DBOpenHandler.SAMPLE_TABLE_NAME, values);
     }
+    
+	@Override
+	public long insertDataToSampleIfNoRepeatValue(ContentValues values) {
+		return insertDataToDBIfNoRepeatValue(DBOpenHandler.SAMPLE_TABLE_NAME, values);
+	}
 
-    @Override
+	@Override
     public int deleteSampleByPhoneId(String phone_id) {
     	return deleteDataBykey(DBOpenHandler.SAMPLE_TABLE_NAME, 
     						DBOpenHandler.SAMPLE_TABLE_KEY[0], phone_id);
@@ -231,6 +262,11 @@ public class DBManager implements DataEmployee, DataSample,
 		return insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, values);
 	}
 	
+	@Override
+	public long insertDataToLendIfNoRepeatValue(ContentValues values) {
+		return insertDataToDBIfNoRepeatValue(DBOpenHandler.LEND_TABLE_NAME, values);
+	}
+
 	@Override
 	public int updateLendBy_Id(ContentValues values, int _id) {
 		return updateDataBy_id(DBOpenHandler.LEND_TABLE_NAME, values, _id);

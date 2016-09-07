@@ -38,6 +38,12 @@ public interface DataSample extends DataCommon {
 	public int insertDataToSample(String phone_id, String model_name);
 	public long insertDataToSample(ContentValues values);
 
+    /**
+     * 向样机表中插入数据首先根据phone_id判断数据是否有重复
+     * @param values
+     * @return 有重复数据返回-1，不插入数据，否则返回插入影响的行数
+     */
+    public long insertDataToSampleIfNoRepeatValue(ContentValues values);
 	/**
 	 * 根据手机码删除手机表里的相关信息
 	 * @param phone_id

@@ -27,6 +27,12 @@ public interface DataLend extends DataCommon {
 	 * @return
 	 */
 	public long insertDataToLend(ContentValues values);
+	/**
+	 * 向手机借出表中插入数据之前，先根据phone_id判断是否有重复数据
+	 * @param values
+	 * @return 有重复数据返回-1，不插入数据，否则返回插入影响的行数
+	 */
+	public long insertDataToLendIfNoRepeatValue(ContentValues values);
 	
 	/**
 	 * 更新手机借用表的数据
