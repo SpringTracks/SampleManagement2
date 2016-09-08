@@ -65,4 +65,13 @@
 	<string name="icon3">Search</string>
 	
 	<string name="MAIN">MAIN</string>
+	
+		<!-- add by min.pang 2016/09/08  -->
+	<string name="query">Query</string>
+	<string name="id">ID</string>
+	<string name="more">More</string>
+	<string name="showAll">Show All</string>
+	<string name="clear">Clear</string>
+	<string name="export">Export</string>
+	<string name="search">Search</string>
 </resources>

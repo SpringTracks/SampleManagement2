@@ -46,7 +46,7 @@ public class QueryActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		getActionBar().setTitle("查询");
+		getActionBar().setTitle(R.string.query);
 		setContentView(R.layout.activity_query);
 		
 		dbOH = new DBOpenHandler(QueryActivity.this);
@@ -270,7 +270,7 @@ public class QueryActivity extends Activity{
 	    			 c= dbM.queryVagueDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[2],metext2);
 	    			 if(c.getCount()==0)
 	    			 {
-	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 Email ID 的借出记录！",Toast.LENGTH_SHORT).show();
+	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 员工 的借出记录！",Toast.LENGTH_SHORT).show();
 	    			 }	    		
 	    			 else
 	    			 {
@@ -283,7 +283,7 @@ public class QueryActivity extends Activity{
 	    			 c = dbM.queryVagueDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[1],metext1);
 	    			 if(c.getCount()==0)
 	    			 {
-	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 型号 的借出记录！",Toast.LENGTH_SHORT).show();
+	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 Email ID 的借出记录！",Toast.LENGTH_SHORT).show();
 	    			 }
 	    			 else
 	    			 {

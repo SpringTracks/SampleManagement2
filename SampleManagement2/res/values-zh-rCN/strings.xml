@@ -51,4 +51,13 @@
 	<string name="icon3">查询</string>
 	<string name="MAIN">主页</string>
 	<string name="memo">备注</string>
+	
+	<!-- add by min.pang 2016/09/08  -->
+	<string name="query">查询</string>
+	<string name="id">序号</string>
+	<string name="more">更多</string>
+	<string name="showAll">显示全部</string>
+	<string name="clear">清空</string>
+	<string name="export">导出</string>
+	<string name="search">搜索</string>
 </resources>

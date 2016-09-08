@@ -35,7 +35,7 @@ public class QueryDetailsActivity extends Activity{
 	           
 	    getWindow().setAttributes(p);     //…Ë÷√…˙–ß
 	
-	    TextView tv0=(TextView)findViewById(R.id.details_id);	    
+	   // TextView tv0=(TextView)findViewById(R.id.details_id);	    
 		TextView tv1=(TextView)findViewById(R.id.details_model);
 		TextView tv2=(TextView)findViewById(R.id.details_spmsId);	
 		TextView tv3=(TextView)findViewById(R.id.details_email);	
@@ -48,7 +48,7 @@ public class QueryDetailsActivity extends Activity{
 		Bundle bundle=intent.getExtras();
 		String[] s=bundle.getStringArray("text");
 		
-		tv0.setText(s[0]);
+		//tv0.setText(s[0]);
 		tv1.setText(s[1]);
 		tv2.setText(s[2]);
 		tv3.setText(s[3]);
