@@ -76,7 +76,7 @@ public class DBManager implements DataEmployee, DataSample,
 	// add by min.pang 2016/09/08***start
     public Cursor queryVagueDataByBAndA(String table, String KeyA, String KeyB, String a, String b) {
 		try {
-			String sql = "select * from " + table + " where " + KeyA + "like '%" + a + "%' and " + KeyB + "like '%" + b + "%'";
+			String sql = "select * from " + table + " where " + KeyA + " like '%" + a + "%' and " + KeyB + " like '%" + b + "%'";
 			cursor = db.rawQuery(sql, null);
 			return cursor;
 		} catch (SQLException e) {
