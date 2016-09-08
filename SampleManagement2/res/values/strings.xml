@@ -37,23 +37,23 @@
    
 <!--  -->
     <string name="one_export">EXPORT ALL</string>
-    <string name="model_import">Model Import</string>
-    <string name="user_import">User Import</string>
+    <string name="model_import">Sample Import</string>
+    <string name="user_import">Employee Import</string>
     <string name="lend_import">Lend Info. Import</string>
-    <string name="user_manage">Model/User MANAGE</string>
+    <string name="user_manage">Sample/Employee MANAGE</string>
     
     <string name="import_success">Import success</string>
     <string name="import_Exception">Import Exception or empty excel, please check excel file</string>
     <string name="export_success">Export success</string>
     <string name="select_wrong_file">select wrong file, please reselect right file to import: %s</string>
 	
-	    <string name="model_name_manage">Model Name：</string>
-	<string name="model_id">Phone ID：</string>
+	    <string name="model_name_manage">Sample Name：</string>
+	<string name="model_id">Sample ID：</string>
 	<string name="update">Add</string>
 	<string name="cancel">Cancel</string>
 	
-	<string name="user_name_manage">User Name：</string>
-	<string name="user_email">E-mail：</string>	
+	<string name="user_name_manage">Employee Name：</string>
+	<string name="user_email">AD ：</string>	
 	
 <string name="welcome1">WELCOME</string>
 <string name="welcome2">WELCOME</string>

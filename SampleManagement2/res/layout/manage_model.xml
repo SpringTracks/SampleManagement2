@@ -31,8 +31,6 @@
             android:inputType="text" />
     </TableRow>
 
-    <!-- 输入密码的行 -->
-
     <TableRow>
 
         <TextView
@@ -45,7 +43,6 @@
             android:id="@+id/ModelIDEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:text="" />
     </TableRow>
     <!-- 定义登录、取消按钮的行 -->

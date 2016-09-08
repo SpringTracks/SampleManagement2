@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_name_manage"
+            android:text="@string/user_email"
             android:textSize="@dimen/label_font_size" />
 
         <EditText
@@ -38,14 +38,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_email"
+            android:text="@string/user_name_manage"
             android:textSize="@dimen/label_font_size" />
 
         <EditText
             android:id="@+id/pwdEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:text="" />
     </TableRow>
     <!-- 定义登录、取消按钮的行 -->
