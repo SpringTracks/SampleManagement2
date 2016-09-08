@@ -99,6 +99,9 @@ public  class ReturnActivity   extends Activity {
             public void onClick(View v) {
             	String imei = input.getText().toString();
              Cursor cursor =dbReturn. queryLendByPhoneId(imei);
+             if (cursor.getCount()==0) {
+          	   Toast.makeText(getApplicationContext(),"找不到对应记录，请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+			} 
 			  if  (cursor==null){
 			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
 			    }else{
@@ -203,6 +206,10 @@ public  class ReturnActivity   extends Activity {
 
 //查询借出信息并显示
                 Cursor cursor =dbReturn. queryLendByPhoneId(imei);
+                //判断数据是否存在
+               if (cursor.getCount()==0) {
+            	   Toast.makeText(getApplicationContext(),"找不到对应记录，请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+			} 
 			    if  (cursor==null){
 			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
 			    }else{
