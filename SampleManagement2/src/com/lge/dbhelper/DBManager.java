@@ -72,7 +72,20 @@ public class DBManager implements DataEmployee, DataSample,
 			return null;
 		}
 	}
-
+	
+	// add by min.pang 2016/09/08***start
+    public Cursor queryVagueDataByBAndA(String table, String KeyA, String KeyB, String a, String b) {
+		try {
+			String sql = "select * from " + table + " where " + KeyA + "like '%" + a + "%' and " + KeyB + "like '%" + b + "%'";
+			cursor = db.rawQuery(sql, null);
+			return cursor;
+		} catch (SQLException e) {
+			toastError(e);
+			return null;
+		}
+	}
+	//add by min.pang 2016/09/08*** end
+	
 	@Override
     public int queryDataCount(String table, String key, String value) {
     	String sql = "select count(*) from " + table +" where " + key + "='" +value + "'";
@@ -81,7 +94,7 @@ public class DBManager implements DataEmployee, DataSample,
     	return cursor.getInt(0);
 //    	return cursor.getCount();
     }
-    
+	
 	public long insertDataToDB(String table, ContentValues values) {
         return db.insert(table, null, values);
     }
