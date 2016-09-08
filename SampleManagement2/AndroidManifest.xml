@@ -40,6 +40,10 @@
         </activity>
         <activity android:name=".activity.FileExplorerActivity" >
         </activity>
+        <activity android:name=".activity.QueryActivity"></activity>
+        <activity android:name=".activity.QueryDetailsActivity"
+                  android:theme="@style/Theme.DetailsActivity">            
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.VIBRATE" />

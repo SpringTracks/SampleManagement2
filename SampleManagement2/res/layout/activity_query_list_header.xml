@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+     <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+      
+      
+        >
+        <TableRow 
+            android:id="@+id/list_header_row"
+            android:background="@color/powderblue"
+           >
+
+            <TextView 
+                android:id="@+id/list_header_id"
+                android:text="序号" 
+                android:layout_width="40dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"
+                android:padding="2dip" 
+                />
+           
+            <TextView 
+                android:id="@+id/list_header_model"
+                android:text="型号名" 
+                android:layout_width="60dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"
+                android:padding="2dip" 
+                />
+                     
+           
+            <TextView 
+                android:id="@+id/list_header_spmsId"
+                android:text="样机编号" 
+                android:layout_width="130dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"
+                android:padding="2dip" 
+                />
+          <TextView 
+                android:id="@+id/list_header_email"
+                android:text="Email ID"
+                android:layout_width="120dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip" 
+                />
+            
+            <TextView 
+                android:id="@+id/list_header_name"
+                android:text="借用人" 
+                android:layout_width="60dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"
+                android:padding="2dip" 
+                />
+
+          
+            <TextView 
+                android:id="@+id/list_header_lendDate"
+                android:text="借出日期"
+                android:layout_width="100dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip" 
+                />
+          
+            <TextView 
+                android:id="@+id/list_header_expireDate"
+                android:text="预计返还日期"
+                android:layout_width="100dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip" 
+                />
+            
+            <TextView 
+                android:id="@+id/list_header_more"
+                android:text="更多"
+                android:layout_width="35dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip"                 
+                />
+
+  
+            
+        </TableRow>
+    </TableLayout>
+
+

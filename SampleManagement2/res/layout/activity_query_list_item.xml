@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+     <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+       
+        <TableRow 
+            android:id="@+id/list_body_row">
+
+            <TextView 
+                android:id="@+id/list_body_id"
+                android:layout_width="40dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"              
+                android:padding="2dip" 
+           
+               
+                />
+         
+            <TextView 
+                android:id="@+id/list_body_model"
+                android:layout_width="60dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"
+                android:padding="2dip" 
+        
+               
+                />
+          
+            <TextView 
+                android:id="@+id/list_body_spmsId"
+                android:layout_width="130dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"
+                android:padding="2dip" 
+             
+              
+                />
+       
+            <TextView 
+                android:id="@+id/list_body_email"
+                android:layout_width="120dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip" 
+              
+              
+                />
+            
+            <TextView 
+                android:id="@+id/list_body_name"
+                android:layout_width="60dip"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="left"
+                android:padding="2dip" 
+            
+                
+                />
+         
+            
+         
+            <TextView 
+                android:id="@+id/list_body_lendDate"
+                android:layout_width="100dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip" 
+            
+               
+                />
+        
+            <TextView 
+                android:id="@+id/list_body_expireDate"
+                android:layout_width="100dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip" 
+            />
+            
+            <TextView 
+                android:layout_width="35dip" 
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" 
+                android:padding="2dip" 
+                android:text="..."
+            />
+        
+           
+            
+        </TableRow>
+    </TableLayout>
+
+
