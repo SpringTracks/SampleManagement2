@@ -178,6 +178,27 @@
 
 	</LinearLayout>      
     <TextView
+            android:id="@+id/Memo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"   
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:layout_marginTop="@dimen/textview_top_margin"
+            android:text="@string/memo"
+            android:layout_below="@+id/LinerLayoutExpiredDate"> </TextView>
+	 <EditText
+	      android:id="@+id/MemoEdit"
+	      android:layout_width="fill_parent"
+	      android:layout_height="40dp"
+	      android:layout_marginLeft="@dimen/sub_layout_magin_left"
+          android:layout_marginStart="@dimen/sub_layout_magin_left"
+          android:layout_marginTop="@dimen/textview_top_margin"
+          android:layout_marginRight="@dimen/linearlayout_right_margin"
+    	  android:layout_marginEnd="@dimen/linearlayout_end_margin"
+    	  android:background="@drawable/color_edit_text"
+	      android:layout_below="@+id/Memo"></EditText>
+	 
+    <TextView
             android:id="@+id/Sign_Info"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"   
@@ -185,11 +206,13 @@
             android:layout_marginStart="@dimen/sub_layout_magin_left"
             android:layout_marginTop="@dimen/textview_top_margin"
             android:text="@string/sign_info"
-            android:layout_below="@+id/LinerLayoutExpiredDate"> </TextView>
+            android:layout_below="@+id/MemoEdit"> </TextView>
      <ImageView 
             android:id="@+id/Return_Sign"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
             android:layout_marginTop="@dimen/textview_top_margin"
             android:layout_marginRight="@dimen/linearlayout_right_margin"
             android:layout_marginEnd="@dimen/linearlayout_end_margin"
@@ -207,8 +230,9 @@
 	    	android:layout_marginStart="@dimen/sub_layout_magin_left"
 	    	android:layout_marginTop="@dimen/button_magin_top"
 	    	android:text="@string/sign"
+	    	android:textColor="#00f"
 	    	android:textSize="@dimen/button_font_size"
-	    	android:textColor="#00f"></Button>
+	    	android:background="@android:color/holo_blue_light"></Button>
 	  <Button 
 	    	android:id="@+id/Save_Button"
 	    	android:layout_width="@dimen/button_width"
@@ -219,5 +243,8 @@
 	    	android:layout_marginTop="@dimen/button_magin_top"	    	
 	    	android:textSize="@dimen/button_font_size"
 	    	android:textColor="#00f"	    	
+	    	android:background="@android:color/holo_blue_light"
 	    	android:text="@string/lend_save"></Button>   
+	
+   
 </RelativeLayout>

@@ -50,4 +50,5 @@
 	<string name="icon2">返还</string>
 	<string name="icon3">查询</string>
 	<string name="MAIN">主页</string>
+	<string name="memo">备注</string>
 </resources>
