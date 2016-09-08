@@ -20,6 +20,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.DropBoxManager;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +54,14 @@ public  class ReturnActivity   extends Activity {
 //        	else {
 //        		mDBManager = new DBManager();}
 //        	}
-
+        //获取当前时间
+        Calendar c = Calendar.getInstance(); 
+        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00")); 
+        String mYear = String.valueOf(c.get(Calendar.YEAR));// 获取当前年份 
+        String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
+        String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
+ //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
+         nowString=((mYear)+"."+(mMonth)+"."+mDay);
         
 
 
@@ -90,30 +98,37 @@ public  class ReturnActivity   extends Activity {
             @Override
             public void onClick(View v) {
             	String imei = input.getText().toString();
-//             Cursor cursor =dbReturn. queryLendByPhoneId(imei);
-//			  if  (cursor==null){
-//			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
-//			    }else{
-//             phonename = cursor.getString(cursor.getColumnIndex("model_name"));
-//             person = cursor.getString(cursor.getColumnIndex("employee_name"));
-//             date = cursor.getString(cursor.getColumnIndex("lend_date"));
-//             personid = cursor.getString(cursor.getColumnIndex("employee_id"));			    
-//             TextView lTextView = (TextView) findViewById(R.id.textView8);
-//             lTextView.setText(date);
-//             TextView pnTextView = (TextView) findViewById(R.id.textView3);
-//             pnTextView.setText(phonename);
-//             TextView personTextView = (TextView) findViewById(R.id.textView7);
-//             personTextView.setText(person); 
-                Calendar c = Calendar.getInstance(); 
-                c.setTimeZone(TimeZone.getTimeZone("GMT+8:00")); 
-                String mYear = String.valueOf(c.get(Calendar.YEAR));// 获取当前年份 
-                String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
-                String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
-         //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
-                 nowString=((mYear)+"."+(mMonth)+"."+mDay);
+             Cursor cursor =dbReturn. queryLendByPhoneId(imei);
+			  if  (cursor==null){
+			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+			    }else{
+			    	while (cursor.moveToNext()) {
+             phonename = cursor.getString(cursor.getColumnIndex("model_name"));
+             person = cursor.getString(cursor.getColumnIndex("employee_name"));
+             date = cursor.getString(cursor.getColumnIndex("lend_date"));
+             personid = cursor.getString(cursor.getColumnIndex("employee_id"));	
+			    	
+             TextView lTextView = (TextView) findViewById(R.id.textView8);
+             lTextView.setText(date);
+             TextView pnTextView = (TextView) findViewById(R.id.textView3);
+             pnTextView.setText(phonename);
+             TextView personTextView = (TextView) findViewById(R.id.textView7);
+             personTextView.setText(person); 
+//                Calendar c = Calendar.getInstance(); 
+//                c.setTimeZone(TimeZone.getTimeZone("GMT+8:00")); 
+//                String mYear = String.valueOf(c.get(Calendar.YEAR));// 获取当前年份 
+//                String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
+//                String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
+//         //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
+//                 nowString=((mYear)+"."+(mMonth)+"."+mDay);
                 TextView rTextView = (TextView) findViewById(R.id.textView9);
                 rTextView.setText(nowString);
                 System.out.println("点击了确定"+imei);
+			    	}
+			    	if (cursor.moveToNext()==false) {
+			    		Toast.makeText(getApplicationContext(),"无此条借出记录，请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+					}
+            }
             }
         });
 
@@ -121,16 +136,28 @@ public  class ReturnActivity   extends Activity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//            	ContentValues cv = new ContentValues();
-//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[0],imei);
-//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[1],phonename);
-//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[2],personid);
-//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[3],person);
-//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[4],date);
-//            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[5],nowString);
-//            	dbReturn.insertDataToLendHistory(cv);
-//            	dbReturn.deleteLendByPhoneId(imei);
+            	ContentValues cv = new ContentValues();
+            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[0],imei);
+            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[1],phonename);
+            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[2],personid);
+            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[3],person);
+            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[4],date);
+            	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[5],nowString);
+            	dbReturn.insertDataToLendHistory(cv);
+            	Log.e("tag", "55555555555555555555555");
+            	dbReturn.deleteLendByPhoneId(imei);
                 System.out.println("点击了确定归还");
+                TextView lTextView = (TextView) findViewById(R.id.textView8);
+                lTextView.setText(null);
+                TextView pnTextView = (TextView) findViewById(R.id.textView3);
+                pnTextView.setText(null);
+                TextView personTextView = (TextView) findViewById(R.id.textView7);
+                personTextView.setText(null);
+		        TextView rTextView = (TextView) findViewById(R.id.textView9);
+		        rTextView.setText(null);
+		        TextView imeiEt = (TextView) findViewById(R.id.editText);
+			    imeiEt.setText(null);
+			    Toast.makeText(getApplicationContext(),"Return success!",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -181,31 +208,32 @@ public  class ReturnActivity   extends Activity {
 			    imeiEt.setText(imei);
 
 //查询借出信息并显示
-//                Cursor cursor =dbReturn. queryLendByPhoneId(imei);
-//			    if  (cursor==null){
-//			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
-//			    }else{
-//               phonename = cursor.getString(cursor.getColumnIndex("model_name"));
-//               person = cursor.getString(cursor.getColumnIndex("employee_name"));
-//               date = cursor.getString(cursor.getColumnIndex("lend_date"));
-//               personid = cursor.getString(cursor.getColumnIndex("employee_id"));			    
-//               TextView lTextView = (TextView) findViewById(R.id.textView8);
-//               lTextView.setText(date);
-//               TextView pnTextView = (TextView) findViewById(R.id.textView3);
-//               pnTextView.setText(phonename);
-//               TextView personTextView = (TextView) findViewById(R.id.textView7);
-//               personTextView.setText(person);
-			    
-//			    }
-		        Calendar c = Calendar.getInstance(); 
-		        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00")); 
-		        String mYear = String.valueOf(c.get(Calendar.YEAR));// 获取当前年份 
-		        String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
-		        String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
-		 //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
-		         nowString=((mYear)+"."+(mMonth)+"."+mDay);
-		        TextView rTextView = (TextView) findViewById(R.id.textView9);
-		        rTextView.setText(nowString);
+                Cursor cursor =dbReturn. queryLendByPhoneId(imei);
+			    if  (cursor==null){
+			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+			    }else{
+			    	while (cursor.moveToNext()) {
+			    	Log.e("tag", "1111111111111111111111111111111111111");
+                    phonename = cursor.getString(cursor.getColumnIndex("model_name"));
+                   Log.e("tag", "1111111111111111111111111111111111111");
+                   person = cursor.getString(cursor.getColumnIndex("employee_name"));
+                   date = cursor.getString(cursor.getColumnIndex("lend_date"));
+                   personid = cursor.getString(cursor.getColumnIndex("employee_id"));			    
+                   TextView lTextView = (TextView) findViewById(R.id.textView8);
+                   lTextView.setText(date);
+                   TextView pnTextView = (TextView) findViewById(R.id.textView3);
+                   pnTextView.setText(phonename);
+                   TextView personTextView = (TextView) findViewById(R.id.textView7);
+                   personTextView.setText(person);
+
+   		          TextView rTextView = (TextView) findViewById(R.id.textView9);
+   		          rTextView.setText(nowString);
+			    	}
+			    	if (cursor.moveToNext()==false) {
+			    		Toast.makeText(getApplicationContext(),"不存在此条借出记录",Toast.LENGTH_SHORT).show();
+					}
+			    }
+
 		}
 		break;
 	}
