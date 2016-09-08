@@ -20,6 +20,7 @@ import com.lge.excel.EIOperation;
 import com.lge.samplemanagement2.activity.FileExplorerActivity;
 import com.lge.samplemanagement2.activity.LendOutActivity;
 import com.lge.samplemanagement2.activity.ReturnActivity;
+import com.lge.samplemanagement2.activity.QueryActivity;
 import com.lge.samplemanagement2.manage.ManageActivity;
 
 import android.view.View;
@@ -104,10 +105,10 @@ public class MainActivity extends Activity {
 					break;
 				case 2:
 				//Ìø×ªµ½²éÑ¯Activity
-/*					Intent intent = new Intent();
-					intent.setClass(MainActivity.this,SearchActivitiy.class);
-					startActivity(intent);*/
-					Toast.makeText(getApplicationContext(),"Plz start SearchActivity",Toast.LENGTH_SHORT).show();
+					Intent intentQuery = new Intent();
+					intentQuery.setClass(MainActivity.this,QueryActivity.class);
+					startActivity(intentQuery);
+					//Toast.makeText(getApplicationContext(),"Plz start SearchActivity",Toast.LENGTH_SHORT).show();
 					break;
 				}		
 			}

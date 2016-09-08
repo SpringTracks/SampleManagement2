@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal" 
+    android:gravity="right"
+    android:paddingTop="4dp">
+     
+       <Button
+            android:id="@+id/showAll"
+            android:layout_width="75dp"
+            android:layout_height="33dp"
+            android:text="Show All"
+            android:textSize="12.5sp"/>
+       <Button
+            android:id="@+id/clear"
+            android:layout_width="60dp"
+            android:layout_height="33dp"
+            android:text="Clear"
+            android:textSize="12.5sp"/>
+       <Button
+            android:id="@+id/export"
+            android:layout_width="65dp"
+            android:layout_height="33dp"
+            android:text="Export"
+            android:textSize="12.5sp"/>
+       
+</LinearLayout>
+

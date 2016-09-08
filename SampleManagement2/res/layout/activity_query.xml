@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="5dp"
+    >
+    
+     <include 
+        layout="@layout/activity_query_search" />
+     
+     <include 
+        layout="@layout/activity_query_otherfunction" />
+     
+    <HorizontalScrollView 
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+       >
+        <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"         
+           android:orientation="vertical"
+           android:padding="2dp"
+           android:background="@color/powderblue"
+          >
+      
+           <include
+                  layout="@layout/activity_query_list_header" />
+        
+     
+           <ListView
+               android:id="@+id/list_view"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@color/snow"
+               android:cacheColorHint="#00000000"
+               android:scrollingCache="true" 
+               android:dividerHeight="1dip"
+               android:divider="@color/darkgrey"
+               android:fastScrollEnabled="true"
+               android:focusable="true"
+               android:listSelector="@color/pink"
+               
+               >
+           </ListView>
+      
+         </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>
+

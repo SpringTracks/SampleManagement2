@@ -17,4 +17,13 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+     <!-- add by min.pang 2016/09/08 -->
+	<style name="Theme.DetailsActivity" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/details_activity</item>
+        <item name="android:windowIsTranslucent">true</item> 
+        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+        <item name="android:windowNoTitle">true</item> 
+        
+    </style>
+    
 </resources>
