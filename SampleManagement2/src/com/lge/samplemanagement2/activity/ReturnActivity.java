@@ -65,8 +65,6 @@ public  class ReturnActivity   extends Activity {
         
 
 
-//        DBOpenHandler dbHandler = new DBOpenHandler(getApplicationContext());
-//        db = dbHandler.getWritableDatabase();
 
 
         Button scan = (Button) findViewById((Integer) R.id.button);
@@ -121,9 +119,7 @@ public  class ReturnActivity   extends Activity {
                 rTextView.setText(nowString);
                 System.out.println("点击了确定"+imei);
 			    	}
-//			    	if (cursor.moveToNext()==false) {
-//			    		Toast.makeText(getApplicationContext(),"无此条借出记录，请检查条码值是否正确",Toast.LENGTH_SHORT).show();
-//					}
+
 			    	cursor.close();
             }
             }
@@ -159,14 +155,6 @@ public  class ReturnActivity   extends Activity {
             }
         });
 	}
-//        TextView tv = (TextView)findViewById(R.id.textView7);
-//        tv.setText("str");
-//        EditText et  = (EditText)findViewById(R.id.editText);
-//        et.setText("str");
-
-
-//        db.close();
-	
 	
 	 //测试签名及返回  
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
