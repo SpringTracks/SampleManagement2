@@ -20,7 +20,7 @@ public class UserFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		System.out.println("ConputerFragment--->onCreateView");
-		return inflater.inflate(R.layout.manage_uesr, container, false);
+		return inflater.inflate(R.layout.manage_employee, container, false);
 	}
 
 	@Override
