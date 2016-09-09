@@ -21,10 +21,11 @@ public class EmployeeAdapter extends CursorAdapter implements Filterable {
 	
 	private DBManager mDBManager;
 	
-	public EmployeeAdapter(Context context, Cursor c, boolean autoRequery) {
+	public EmployeeAdapter(Context context, Cursor c, boolean autoRequery,DBManager dbm) {
 		super(context, c, autoRequery);
 		// TODO Auto-generated constructor stub
 		this.context = context;
+		this.mDBManager = dbm;
 	}
 
 	@Override
@@ -55,19 +56,14 @@ public class EmployeeAdapter extends CursorAdapter implements Filterable {
 	    public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
 	        Cursor mCursor = null;
 	        Log.i("ModelAdapter","runQueryOnBackgroundThread");
-	        if(getDBManager()==null){
+	        if(mDBManager==null){
 	        	Log.i("ModelAdapter","dbmanager is null");
 	        }
-	        mCursor = getDBManager().queryDataByKey(DBOpenHandler.EMPLOYEE_TABLE_NAME,DBOpenHandler.EMPLOYEE_TABLE_KEY[0],constraint.toString());
-	        getDBManager().closeDataBase();
+	        mCursor = mDBManager.queryDataByKey(DBOpenHandler.EMPLOYEE_TABLE_NAME,DBOpenHandler.EMPLOYEE_TABLE_KEY[0],constraint.toString());
+	       // getDBManager().closeDataBase();
 	        return mCursor;
 	    }
-	    public DBManager getDBManager() {
-	    	 if (mDBManager == null){
-	    		 mDBManager = new DBManager(context);
-	         }
-	    	 return mDBManager;
-	    }
+	 
 	public class ViewHolder {
 		public TextView tv_ad;  
 	    public TextView tv_name;  

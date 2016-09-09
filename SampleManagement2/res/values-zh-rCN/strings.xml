@@ -60,4 +60,13 @@
 	<string name="clear">清空</string>
 	<string name="export">导出</string>
 	<string name="search">搜索</string>
+	    <string name="save_successful">保存成功!</string>
+	<string name="save_fail">保存失败!</string>
+	<string name="repeat_record">重复的记录!</string>
+	<string name="sample_id_null">手机ID不能为空</string>
+	<string name="model_name_null">型号名不能为空</string>
+	<string name="expected_date_null">预计归还日期不能为空</string>
+	<string name="ad_null">AD账号不能为空</string>
+	<string name="employee_name_null">员工姓名不能为空</string>
+	<string name="sign_null">签名不能为空</string>
 </resources>
