@@ -33,7 +33,7 @@ public class ManageActivity extends FragmentActivity {
 	private ModelFragment mSampleFg;
 	private UserFragment mEmployeeFg;
 
-	//private int currentIndex;
+	private int currentIndex;
 
 	private int screenWidth;
 
@@ -67,7 +67,7 @@ public class ManageActivity extends FragmentActivity {
 		mPageVp.setAdapter(mFragmentAdapter);
 		mPageVp.setCurrentItem(0);
 	
-		/**mPageVp.setOnPageChangeListener(new OnPageChangeListener() {
+		mPageVp.addOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
 			public void onPageScrollStateChanged(int state) {
@@ -114,7 +114,7 @@ public class ManageActivity extends FragmentActivity {
 				}
 				currentIndex = position;
 			}
-		});*/
+		});
 
 	}
 
@@ -125,14 +125,14 @@ public class ManageActivity extends FragmentActivity {
 		screenWidth = dpMetrics.widthPixels;
 		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mTabLineIv
 				.getLayoutParams();
-		//lp.width = screenWidth / 2;
-		lp.width = screenWidth ;
+		lp.width = screenWidth / 2;
+		//lp.width = screenWidth ;
 		mTabLineIv.setLayoutParams(lp);
 	}
 
-	/**private void resetTextView() {
+	private void resetTextView() {
 		mTabSample.setTextColor(Color.BLACK);
 		mTabEmployee.setTextColor(Color.BLACK);
-	}*/
+	}
 
 }

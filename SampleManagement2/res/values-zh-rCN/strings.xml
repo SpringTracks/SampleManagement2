@@ -40,11 +40,11 @@
 	<string name="update">添加</string>
 	<string name="cancel">取消</string>
 	
-	<string name="user_name_manage">人员名：</string>
+	<string name="user_name_manage">性名：</string>
 	<string name="user_email">邮箱：</string>	
 	
-	<string name="welcome1">欢迎手动管理型号</string>
-	<string name="welcome2">欢迎手动管理人员信息</string>
+	<string name="welcome1">型号管理</string>
+	<string name="welcome2">人员管理</string>
 	
 	<string name="icon1">借出</string>
 	<string name="icon2">返还</string>

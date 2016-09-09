@@ -116,7 +116,7 @@ public class ModelFragment extends Fragment {
 		});
 	}
 
-	public long checkRepeSample(String key) {
+	public int checkRepeSample(String key) {
 		int count = 0;
 		Context context = getActivity();
 		DBManager sampleManage2 = new DBManager(context);
