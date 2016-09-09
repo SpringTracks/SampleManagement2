@@ -58,14 +58,16 @@ public class LendOutActivity extends Activity {
 	
 	private DBManager mDBManager = null;
 	
-	private byte[] mSignInfo = null;
+	private byte[] mSignInfo;
 	
 	private ImageView mDisplaySign;
 	
+	private EditText mMemoEdit;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActionBar().setTitle(R.string.icon1);
 		setContentView(R.layout.activity_lendout);		
 		mSampleID = (EditText)findViewById(R.id.Phone_ID_Edit);
 		mModelName = (EditText)findViewById(R.id.Model_Name_Edit);
@@ -77,7 +79,7 @@ public class LendOutActivity extends Activity {
 		mSign = (Button)findViewById(R.id.Sign_Button);
 		mDisplaySign = (ImageView)findViewById(R.id.Return_Sign);
 		mSave = (Button)findViewById(R.id.Save_Button);
-		
+		mMemoEdit = (EditText)findViewById(R.id.MemoEdit);		
 		//用Calendar类获取系统当前日期传递给日期选择器
 		final Calendar ca = Calendar.getInstance();
 		final int currentyear = ca.get(Calendar.YEAR);
@@ -85,7 +87,7 @@ public class LendOutActivity extends Activity {
 		final int currentday = ca.get(Calendar.DAY_OF_MONTH);
 
 		//Init employee Adapter
-		mEmployeeAdapter = new EmployeeAdapter(this,null,false);
+		mEmployeeAdapter = new EmployeeAdapter(this,null,false,getDBManager());
 		mEmployeeID.setThreshold(1);
 		mEmployeeID.setAdapter(mEmployeeAdapter);
 		
@@ -174,16 +176,21 @@ public class LendOutActivity extends Activity {
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[3], mEmployeeName.getText().toString());
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[4], mLendDate.getText().toString());
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[5], mExpiredDate.getText().toString());
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[6], "");
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[6], mMemoEdit.getText().toString());
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[7], mSignInfo);
+				if (CheckEditIsNullOrNot() == false) {
+				    if (CheckReLendOutRecord(mSampleID.getText().toString()) == 0) {
 				if(getDBManager().insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, cv)>0) {
-					Toast.makeText(getApplicationContext(),"Insert Sucessfully!",Toast.LENGTH_SHORT).show();
+				        	ClearAllRecordEdit();
+					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_successful),Toast.LENGTH_SHORT).show();
 				} else {
-					Toast.makeText(getApplicationContext(),"Fail to insert!",Toast.LENGTH_SHORT).show();
+					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_fail),Toast.LENGTH_SHORT).show();
+				        }
+				    } else {
+					    Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.repeat_record),Toast.LENGTH_SHORT).show();
+				    }
 				}
-				
 			}
-			
 		});
 	}
 /*
@@ -240,7 +247,9 @@ public class LendOutActivity extends Activity {
 				Bitmap bmpout = BitmapFactory.decodeByteArray(mSignInfo, 0, mSignInfo.length);
 				mDisplaySign.setImageBitmap(bmpout);
 				//显示扫描到的内容
+				    if (mSignInfo != null) {
 				Log.i(TAG,mSignInfo.toString());
+			    }
 			    }
 				break;
 			}
@@ -252,5 +261,46 @@ public class LendOutActivity extends Activity {
 		 }
 		 return mDBManager;
 	 }
+	private int CheckReLendOutRecord(String keyValue) {
+		int count = 0;
+		try {
+			count = getDBManager().queryDataCount(DBOpenHandler.LEND_TABLE_NAME, DBOpenHandler.LEND_TABLE_KEY[0], keyValue);
+		} catch (Exception e) {
+			Toast.makeText(getApplicationContext(), "Exception!!", 0).show();
+		} 
+		return count;
+	}
+	private boolean CheckEditIsNullOrNot() {
+		boolean recordIsNull = true ;		
+		if (mSampleID.getText().toString().isEmpty()) {
+			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sample_id_null),Toast.LENGTH_SHORT).show();
+		}else if (mModelName.getText().toString().isEmpty()) {
+			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.model_name_null),Toast.LENGTH_SHORT).show();
+		}else if (mEmployeeID.getText().toString().isEmpty()) {
+			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.ad_null),Toast.LENGTH_SHORT).show();
+		}else if (mEmployeeName.getText().toString().isEmpty()) {
+			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.employee_name_null),Toast.LENGTH_SHORT).show();
+		}
+        else if (mSignInfo == null){
+			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sign_null),Toast.LENGTH_SHORT).show();
+		}
+		else if(mExpiredDate.getText().toString().isEmpty()) {
+			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.expected_date_null),Toast.LENGTH_SHORT).show();
+		}
+		else {
+			recordIsNull = false;
+		}		
+		return recordIsNull;
+		
+	}
+	private void ClearAllRecordEdit(){
+		mSampleID.setText("");
+		mModelName.setText("");
+		//mEmployeeID.setText("");
+		//mEmployeeName.setText("");
+		//mExpiredDate.setText("");
+		mMemoEdit.setText("");	
+				
+	}
 		
  }

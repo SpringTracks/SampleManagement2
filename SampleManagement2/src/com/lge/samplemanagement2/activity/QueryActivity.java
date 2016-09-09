@@ -35,6 +35,7 @@ public class QueryActivity extends Activity{
 	private Cursor cursorLend;
 	private Cursor cursorEmployee;
 	private Cursor cursorSample;
+	private Cursor c=null;
 	private AutoCompleteTextView autoModelName;
 	private AutoCompleteTextView autoEmployeeID;
 	private ListView listview;
@@ -45,7 +46,7 @@ public class QueryActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		getActionBar().setTitle("查询");
+		getActionBar().setTitle(R.string.query);
 		setContentView(R.layout.activity_query);
 		
 		dbOH = new DBOpenHandler(QueryActivity.this);
@@ -255,9 +256,10 @@ public class QueryActivity extends Activity{
     	String metext2 = autoEmployeeID.getText().toString();
 	     if(metext1.isEmpty()&&metext2.isEmpty())
 	     {
-	    	 cursorLend = null;
+	    	/* cursorLend = null;
 	    	 updateListView(cursorLend);
-	    	 
+	    	 */
+	    	 Toast.makeText(getApplicationContext(),"请输入查询条件！",Toast.LENGTH_SHORT).show();	    	 
 	     }
 	     else 
 	     {
@@ -265,21 +267,45 @@ public class QueryActivity extends Activity{
 	    	 {
 	    		 if(metext1.isEmpty())
 	    		 {
-	    			 cursorLend = dbM.queryDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[2],metext2);
-	    			 updateListView(cursorLend);
+	    			 c= dbM.queryVagueDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[2],metext2);
+	    			 if(c.getCount()==0)
+	    			 {
+	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 员工 的借出记录！",Toast.LENGTH_SHORT).show();
+	    			 }	    		
+	    			 else
+	    			 {
+	    				 cursorLend = c;
+	    				 updateListView(cursorLend);
+	    			 }	    			 	      			 
 	    		 }
 	    		 else if(metext2.isEmpty())
 	    		 {
-	    			 cursorLend = dbM.queryDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[1],metext1);
-	    			 updateListView(cursorLend);
+	    			 c = dbM.queryVagueDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[1],metext1);
+	    			 if(c.getCount()==0)
+	    			 {
+	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 Email ID 的借出记录！",Toast.LENGTH_SHORT).show();
+	    			 }
+	    			 else
+	    			 {
+	    				 cursorLend = c;
+	    				 updateListView(cursorLend);
+	    			 }   			
 	    		 }
 	    	 }
 	    	 else
 	    	 {
-	    		 cursorLend = dbM.queryDataByBAndA(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[1], dbOH.LEND_TABLE_KEY[2], metext1, metext2);
-	    		 updateListView(cursorLend);
+	    		 c = dbM.queryVagueDataByBAndA(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[1], dbOH.LEND_TABLE_KEY[2], metext1, metext2);	    	    	
+	    		 if(c.getCount()==0)
+	    		 {
+	    			 Toast.makeText(getApplicationContext(),"lend表中没有该 型号+Email ID 的借出记录！",Toast.LENGTH_SHORT).show();
+	    		 }
+	    		 else
+	    		 {
+	    			 cursorLend =c;
+		    		 updateListView(cursorLend);
+	    		 }	    			    		 
 	    	 }
-	     }
+	     }	     
 	}
 	
 	@Override
@@ -293,6 +319,9 @@ public class QueryActivity extends Activity{
 		
 		if(cursorSample!=null)
 		cursorSample.close();
+	
+	    if(c!=null)
+		   c.close();
 		
 		dbM.closeDataBase();
 		

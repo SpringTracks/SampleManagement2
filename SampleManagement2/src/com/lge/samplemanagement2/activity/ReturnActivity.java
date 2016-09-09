@@ -41,7 +41,7 @@ public  class ReturnActivity   extends Activity {
     
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setTitle("Return");
+        getActionBar().setTitle(R.string.icon2);
         setContentView(R.layout.activity_return);
         
         final EditText input = (EditText) findViewById(R.id.editText);
@@ -95,7 +95,7 @@ public  class ReturnActivity   extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            	String imei = input.getText().toString();
+            	 imei = input.getText().toString();
              Cursor cursor =dbReturn. queryLendByPhoneId(imei);
              if (cursor.getCount()==0) {
           	   Toast.makeText(getApplicationContext(),"找不到对应记录，请检查条码值是否正确",Toast.LENGTH_SHORT).show();

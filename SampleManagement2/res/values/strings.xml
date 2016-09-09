@@ -54,15 +54,35 @@
 	<string name="update">Add</string>
 	<string name="cancel">Cancel</string>
 	
-	<string name="user_name_manage">Employee Name：</string>
+	<string name="user_name_manage">Name：</string>
 	<string name="user_email">AD ：</string>	
 	
-<string name="welcome1">WELCOME</string>
-<string name="welcome2">WELCOME</string>
+<string name="welcome1">Sample Manage</string>
+<string name="welcome2">Employee Manage</string>
 
 	<string name="icon1">Lend</string>
 	<string name="icon2">Return</string>
 	<string name="icon3">Search</string>
 	
 	<string name="MAIN">MAIN</string>
+	
+	<!-- add by min.pang 2016/09/08  -->
+	<string name="query">Query</string>
+	<string name="id">ID</string>
+	<string name="more">More</string>
+	<string name="showAll">Show All</string>
+	<string name="clear">Clear</string>
+	<string name="export">Export</string>
+	<string name="search">Search</string>
+    <string name="sample_manage">Sample MANAGE</string>
+	<string name="employee_manage">Employee MANAGE</string>
+	<string name="save_successful">Save Successfully!</string>
+	<string name="save_fail">Fail to save!</string>
+	<string name="repeat_record">Repeate Record!</string>
+	<string name="sample_id_null">Sample ID cannot be null</string>
+	<string name="model_name_null">Model Name cannot be null</string>
+	<string name="expected_date_null">Expected date cannot be null</string>
+	<string name="ad_null">AD cannot be null</string>
+	<string name="employee_name_null">Employee name cannot be null</string>
+	<string name="sign_null">Signature cannot be null</string>
 </resources>

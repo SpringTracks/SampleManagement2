@@ -3,7 +3,7 @@ package com.lge.samplemanagement2.manage;
 import com.lge.samplemanagement2.R;
 import com.lge.samplemanagement2.R.layout;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,7 @@ public class UserFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		System.out.println("ConputerFragment--->onCreateView");
-		return inflater.inflate(R.layout.manage_uesr, container, false);
+		return inflater.inflate(R.layout.manage_employee, container, false);
 	}
 
 	@Override
