@@ -21,7 +21,7 @@ import com.lge.samplemanagement2.activity.FileExplorerActivity;
 import com.lge.samplemanagement2.activity.LendOutActivity;
 import com.lge.samplemanagement2.activity.ReturnActivity;
 import com.lge.samplemanagement2.activity.QueryActivity;
-import com.lge.samplemanagement2.manage.ManageActivity;
+import com.lge.samplemanagement2.activity.ManageActivity;
 
 import android.view.View;
 import android.widget.AdapterView;

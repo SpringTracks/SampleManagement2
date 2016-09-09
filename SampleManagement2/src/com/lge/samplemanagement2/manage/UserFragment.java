@@ -3,7 +3,7 @@ package com.lge.samplemanagement2.manage;
 import com.lge.samplemanagement2.R;
 import com.lge.samplemanagement2.R.layout;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

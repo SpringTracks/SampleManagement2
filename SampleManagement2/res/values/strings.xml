@@ -54,11 +54,11 @@
 	<string name="update">Add</string>
 	<string name="cancel">Cancel</string>
 	
-	<string name="user_name_manage">Employee Name：</string>
+	<string name="user_name_manage">Name：</string>
 	<string name="user_email">AD ：</string>	
 	
-<string name="welcome1">WELCOME</string>
-<string name="welcome2">WELCOME</string>
+<string name="welcome1">Sample Manage</string>
+<string name="welcome2">Employee Manage</string>
 
 	<string name="icon1">Lend</string>
 	<string name="icon2">Return</string>
@@ -74,4 +74,6 @@
 	<string name="clear">Clear</string>
 	<string name="export">Export</string>
 	<string name="search">Search</string>
+<string name="sample_manage">Sample MANAGE</string>
+	<string name="employee_manage">Employee MANAGE</string>
 </resources>

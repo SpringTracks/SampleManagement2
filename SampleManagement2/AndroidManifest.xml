@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.lge.samplemanagement2.manage.ManageActivity"
+            android:name=".activity.ManageActivity"
             android:label="@string/app_name2" >
         </activity>
         <activity

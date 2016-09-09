@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:stretchColumns="1" >
+
+    <TextView
+        android:id="@+id/manage_textview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/title_padding"
+        android:text="@string/welcome1"
+        android:textSize="@dimen/label_font_size" />
+    <!-- 输入型号名的行 -->
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/model_name_manage"
+            android:textSize="@dimen/label_font_size" />
+
+        <EditText
+            android:id="@+id/ModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/model_id"
+            android:textSize="@dimen/label_font_size" />
+
+        <EditText
+            android:id="@+id/ModelIDEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+    </TableRow>
+    <!-- 定义登录、取消按钮的行 -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bnCancel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/bnedit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update" />
+    </LinearLayout>
+
+</TableLayout>

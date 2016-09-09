@@ -1,9 +1,14 @@
 package com.lge.samplemanagement2.manage;
 
 import com.lge.samplemanagement2.R;
+
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import com.lge.dbhelper.DBManager;
 import com.lge.dbhelper.DBOpenHandler;
-import android.app.Fragment;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -40,8 +45,7 @@ public class ModelFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.manage_model, container, false);
-
+		return inflater.inflate(R.layout.manage_sample, container, false);
 	}
 
 	@Override
@@ -55,6 +59,8 @@ public class ModelFragment extends Fragment {
 
 		btn_ok = (Button) getActivity().findViewById(R.id.bnedit1);
 		btn_cancle = (Button) getActivity().findViewById(R.id.bnCancel1);
+		editText1 = (EditText) getActivity().findViewById(R.id.ModelEditText);
+		editText2 = (EditText) getActivity().findViewById(R.id.ModelIDEditText);
 			
 		btn_ok.setOnClickListener(new OnClickListener() {
 
@@ -63,10 +69,15 @@ public class ModelFragment extends Fragment {
 
 				Context context = getActivity();
 				DBManager sampleManage = new DBManager(context);
-				editText1 = (EditText) getActivity().findViewById(
-						R.id.ModelEditText);
-				editText2 = (EditText) getActivity().findViewById(
-						R.id.ModelIDEditText);
+				int editText1_length;
+				int editText2_length;
+				editText1_length = editText1.length();
+				editText2_length = editText2.length();
+				if (editText1_length == 0) {
+					Toast.makeText(getActivity(), "请输入型号名", 0).show();
+				} else if (editText2_length == 0) {
+					Toast.makeText(getActivity(), "请输入Sample ID", 0).show();
+				} else {
 				sample_name = editText1.getText().toString();
 				sample_id = editText2.getText().toString();
 				sample_values = new ContentValues();
@@ -81,8 +92,7 @@ public class ModelFragment extends Fragment {
 				} else {
 					Toast.makeText(getActivity(), "数据已存在，请检查", 0).show();
 				}
-				// TODO Auto-generated method stub
-				//Toast.makeText(getActivity(), "数据插入成功", 0).show();
+				}
 			}
 		});
 
@@ -90,8 +100,18 @@ public class ModelFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Toast.makeText(getActivity(), "取消", 0).show();
+				int editText1_length;
+				int editText2_length;
+				editText1_length = editText1.length();
+				editText2_length = editText2.length();
+				if (editText1_length == 0 && editText2_length == 0) {
+					Toast.makeText(getActivity(), "还未输入数据，不需清除", 0).show();
+				} else {
+					editText1.setText(null);
+					editText2.setText(null);
+
+					Toast.makeText(getActivity(), "数据已清除", 0).show();
+				}
 			}
 		});
 	}
@@ -105,7 +125,6 @@ public class ModelFragment extends Fragment {
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), "数据异常", 0).show();
 		} finally {
-			//Toast.makeText(getActivity(), "2", 0).show();
 		}
 		return count;
 	}
