@@ -85,4 +85,5 @@
 	<string name="ad_null">AD cannot be null</string>
 	<string name="employee_name_null">Employee name cannot be null</string>
 	<string name="sign_null">Signature cannot be null</string>
+	<string name="result_null">Query result is null,cannot export</string>
 </resources>

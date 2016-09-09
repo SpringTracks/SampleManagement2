@@ -69,4 +69,5 @@
 	<string name="ad_null">AD账号不能为空</string>
 	<string name="employee_name_null">员工姓名不能为空</string>
 	<string name="sign_null">签名不能为空</string>
+	<string name="result_null">查询结果为空，无法导出</string>
 </resources>

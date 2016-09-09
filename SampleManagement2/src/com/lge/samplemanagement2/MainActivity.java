@@ -146,28 +146,31 @@ super.onOptionsItemSelected(item);
 		switch (item.getItemId())
         {
         case R.id.export:	
-            operation.writeToExcel(sample, key_sample);
-            operation.writeToExcel(lend, key_lend);
-            operation.writeToExcel(lend_history, key_lend_history);
-            operation.writeToExcel(employee, key_employee);
+			Cursor sc = dbm.queryAllDataSample();
+            operation.writeToExcel(sc,sample, key_sample);
+			sc.close();
+			Cursor lc = dbm.queryAllDataLend();
+            operation.writeToExcel(lc,lend, key_lend);
+			lc.close();
+			Cursor lhc = dbm.queryAllData(DBOpenHandler.LEND_HISTORY_TABLE_NAME);
+            operation.writeToExcel(lhc,lend_history, key_lend_history);
+			lhc.close();
+			Cursor ec = dbm.queryAllDataEmployee();
+            operation.writeToExcel(ec,employee, key_employee);
+			ec.close();
             Toast.makeText(MainActivity.this,R.string.export_success,Toast.LENGTH_SHORT).show();
             break;
         case R.id.import_model:	
-//        	operation.insertToDb(sample, key_sample);
 				Intent import_sample = new Intent(MainActivity.this, FileExplorerActivity.class);
 				startActivityForResult(import_sample,REQUEST_SAMPLE);
             break;
         case R.id.import_user:	
 				Intent import_employee = new Intent(MainActivity.this, FileExplorerActivity.class);
 				startActivityForResult(import_employee,REQUEST_EMPLOYEE);
-//				long rowId1 = operation.insertToDb(employee, key_employee,import_file_path1);
-//        		operation.toast(rowId1);
             break;
         case R.id.import_lend:	
 				Intent import_lend = new Intent(MainActivity.this, FileExplorerActivity.class);
 				startActivityForResult(import_lend,REQUEST_LEND);
-//				long rowId2 = operation.insertToDb(lend,key_lend,import_file_path2);
-//        		operation.toast(rowId2);
             break;
         case R.id.manage:	
          	Intent intent3 = new Intent();

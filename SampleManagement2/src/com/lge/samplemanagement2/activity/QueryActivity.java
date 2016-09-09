@@ -40,6 +40,8 @@ public class QueryActivity extends Activity{
 	private AutoCompleteTextView autoEmployeeID;
 	private ListView listview;
 	private Button search;
+	private EIOperation operation;
+	String exportName;
 	//private View v=null;
 	
 	@Override
@@ -51,6 +53,7 @@ public class QueryActivity extends Activity{
 		
 		dbOH = new DBOpenHandler(QueryActivity.this);
 		dbM = new DBManager(QueryActivity.this);
+		operation = new EIOperation(QueryActivity.this,dbM);
 		
 		listview= (ListView)findViewById(R.id.list_view);		
 		listview.setOnItemClickListener(new OnItemClickListener(){   
@@ -95,6 +98,7 @@ public class QueryActivity extends Activity{
 		    public void onClick(View v){ 
 		    	
 		    	 cursorLend = null;
+				 exportName = null;
 		    	 updateListView(cursorLend);
 		    } 
 		});
@@ -107,8 +111,15 @@ public class QueryActivity extends Activity{
 		    	/*
 		    	 * 调用导出功能，接口处传入参数 cursorLend 
 		    	 */
-		    	Toast.makeText(getApplicationContext(),"尚未实现导出功能！",Toast.LENGTH_SHORT).show();
 
+				if (exportName==null){
+					Toast.makeText(QueryActivity.this,"Query result is null,cannot export",Toast.LENGTH_SHORT).show();
+				}
+				else {
+					cursorLend.moveToPosition(-1);
+					operation.writeToExcel(cursorLend, exportName, DBOpenHandler.LEND_TABLE_KEY);
+					Toast.makeText(getApplicationContext(), R.string.export_success, Toast.LENGTH_SHORT).show();
+				}
 		    } 
 		});
 	
@@ -227,6 +238,7 @@ public class QueryActivity extends Activity{
 	 */
 	void initListView()
 	{
+		exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_init,showAll"+"_Result";
 		cursorLend = dbM.queryAllDataLend();
 		
 		updateListView(cursorLend);
@@ -259,6 +271,7 @@ public class QueryActivity extends Activity{
 	    	/* cursorLend = null;
 	    	 updateListView(cursorLend);
 	    	 */
+             exportName = null;
 	    	 Toast.makeText(getApplicationContext(),"请输入查询条件！",Toast.LENGTH_SHORT).show();	    	 
 	     }
 	     else 
@@ -270,10 +283,12 @@ public class QueryActivity extends Activity{
 	    			 c= dbM.queryVagueDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[2],metext2);
 	    			 if(c.getCount()==0)
 	    			 {
+	    				 exportName = null;
 	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 员工 的借出记录！",Toast.LENGTH_SHORT).show();
 	    			 }	    		
 	    			 else
 	    			 {
+	    				 exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_"+metext2+"_Result";
 	    				 cursorLend = c;
 	    				 updateListView(cursorLend);
 	    			 }	    			 	      			 
@@ -283,10 +298,12 @@ public class QueryActivity extends Activity{
 	    			 c = dbM.queryVagueDataByKey(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[1],metext1);
 	    			 if(c.getCount()==0)
 	    			 {
+	    				 exportName = null;
 	    				 Toast.makeText(getApplicationContext(),"lend表中没有该 Email ID 的借出记录！",Toast.LENGTH_SHORT).show();
 	    			 }
 	    			 else
 	    			 {
+	    				 exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_"+metext1+"_Result";
 	    				 cursorLend = c;
 	    				 updateListView(cursorLend);
 	    			 }   			
@@ -297,10 +314,12 @@ public class QueryActivity extends Activity{
 	    		 c = dbM.queryVagueDataByBAndA(dbOH.LEND_TABLE_NAME,dbOH.LEND_TABLE_KEY[1], dbOH.LEND_TABLE_KEY[2], metext1, metext2);	    	    	
 	    		 if(c.getCount()==0)
 	    		 {
+	    			 exportName = null;
 	    			 Toast.makeText(getApplicationContext(),"lend表中没有该 型号+Email ID 的借出记录！",Toast.LENGTH_SHORT).show();
 	    		 }
 	    		 else
 	    		 {
+	    			 exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_"+metext1+","+metext2+"_Result";
 	    			 cursorLend =c;
 		    		 updateListView(cursorLend);
 	    		 }	    			    		 

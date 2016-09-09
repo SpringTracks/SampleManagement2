@@ -1,5 +1,6 @@
 package com.lge.excel;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import com.lge.dbhelper.DBManager;
@@ -27,28 +28,35 @@ public class EIOperation {
     }
     
     //initData, db to excel, Export-1
-    public void writeToExcel(String tableName,String[] columnName){
+    public void writeToExcel(Cursor c,String tableName,String[] columnName){
         //create Excel file /SampleManagement/tableName.xls
         String filepath = JxlExcelUtils.initExcel(tableName,columnName);
-        JxlExcelUtils.writeObjListToExcel(cursorToArrayList(tableName),filepath,context);
+        JxlExcelUtils.writeObjListToExcel(cursorToArrayList(c),filepath,context);
     }
     // convert cursor to ArrayList type, Export-2
-    public ArrayList<ArrayList<String>> cursorToArrayList(String tableName) {
-		System.out.println("zlp--tableName= "+tableName);
+    public ArrayList<ArrayList<String>> cursorToArrayList(Cursor mCursor) {
         ArrayList<ArrayList<String>> dbList = new ArrayList<ArrayList<String>>();
-        Cursor mCursor = dbm.queryAllData(tableName);
         while (mCursor.moveToNext()) {
             ArrayList<String> rowList=new ArrayList<String>();
 			System.out.println("zlp--mCursor.getString(1)="+mCursor.getString(1));
-			System.out.println("zlp--mCursor.getColumnCount()="+mCursor.getColumnCount());
 			for (int i=1;i<mCursor.getColumnCount();i++) {
+				if (i==8&&mCursor.getBlob(i)!=null){
+					byte[] signByte = mCursor.getBlob(i);
+					try {
+						String signStr = new String(signByte,"ISO-8859-1");
+						rowList.add(signStr);
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+				}
+				else {
                 rowList.add(mCursor.getString(i));
-				System.out.print(mCursor.getString(i)+" ");
+                System.out.print(mCursor.getString(i)+" ");
+				}
 			}
 			System.out.println();
             dbList.add(rowList);
         }
-        mCursor.close();
 		System.out.println("dbList.length= "+dbList.size());
         return dbList;
     }
@@ -62,9 +70,19 @@ public class EIOperation {
         for (int i=0;i<excelInfo.size();i++){
             ContentValues cvalues =new ContentValues();
             ArrayList<String> rowExcelInfo = excelInfo.get(i);
-            
             for (int j=0;j<rowExcelInfo.size();j++){
-                cvalues.put(ColumnName[j],rowExcelInfo.get(j).toString());
+				String sign = rowExcelInfo.get(j).toString();
+				if (j==rowExcelInfo.size()-1&&sign!=null){
+					try {
+						byte [] signByte = sign.getBytes("ISO-8859-1");
+						cvalues.put(ColumnName[j],signByte);
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+				}
+				else {
+                cvalues.put(ColumnName[j],sign);
+				}
             }
             rowId = dbm.insertDataToDBIfNoRepeatValue(table, cvalues);
             if(rowId < 0){
