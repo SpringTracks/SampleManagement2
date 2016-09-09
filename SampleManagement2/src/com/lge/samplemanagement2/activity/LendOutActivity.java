@@ -67,6 +67,7 @@ public class LendOutActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActionBar().setTitle(R.string.icon1);
 		setContentView(R.layout.activity_lendout);		
 		mSampleID = (EditText)findViewById(R.id.Phone_ID_Edit);
 		mModelName = (EditText)findViewById(R.id.Model_Name_Edit);

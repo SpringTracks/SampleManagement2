@@ -41,7 +41,7 @@ public  class ReturnActivity   extends Activity {
     
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setTitle("Return");
+        getActionBar().setTitle(R.string.icon2);
         setContentView(R.layout.activity_return);
         
         final EditText input = (EditText) findViewById(R.id.editText);
