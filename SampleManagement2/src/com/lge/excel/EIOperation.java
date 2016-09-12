@@ -40,7 +40,7 @@ public class EIOperation {
             ArrayList<String> rowList=new ArrayList<String>();
 			System.out.println("zlp--mCursor.getString(1)="+mCursor.getString(1));
 			for (int i=1;i<mCursor.getColumnCount();i++) {
-				if (i==8&&mCursor.getBlob(i)!=null){
+				if (i==8){
 					byte[] signByte = mCursor.getBlob(i);
 					try {
 						String signStr = new String(signByte,"ISO-8859-1");

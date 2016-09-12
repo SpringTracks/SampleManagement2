@@ -238,9 +238,13 @@ public class QueryActivity extends Activity{
 	 */
 	void initListView()
 	{
-		exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_init,showAll"+"_Result";
 		cursorLend = dbM.queryAllDataLend();
-		
+		if(cursorLend.getCount()!=0){
+			exportName = "QueryAll_Result";
+		}
+		else {
+			exportName = null;
+		}
 		updateListView(cursorLend);
 	}
 	
@@ -288,7 +292,7 @@ public class QueryActivity extends Activity{
 	    			 }	    		
 	    			 else
 	    			 {
-	    				 exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_"+metext2+"_Result";
+	    				 exportName = "Query_"+metext2+"_Result";
 	    				 cursorLend = c;
 	    				 updateListView(cursorLend);
 	    			 }	    			 	      			 
@@ -303,7 +307,7 @@ public class QueryActivity extends Activity{
 	    			 }
 	    			 else
 	    			 {
-	    				 exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_"+metext1+"_Result";
+	    				 exportName = "Query_"+metext1+"_Result";
 	    				 cursorLend = c;
 	    				 updateListView(cursorLend);
 	    			 }   			
@@ -319,7 +323,7 @@ public class QueryActivity extends Activity{
 	    		 }
 	    		 else
 	    		 {
-	    			 exportName = DBOpenHandler.LEND_TABLE_NAME+"_QueryAll_"+metext1+","+metext2+"_Result";
+	    			 exportName = "Query_"+metext1+","+metext2+"_Result";
 	    			 cursorLend =c;
 		    		 updateListView(cursorLend);
 	    		 }	    			    		 

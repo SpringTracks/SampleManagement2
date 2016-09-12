@@ -34,6 +34,7 @@
     <string name="import_Exception">导入异常或空的excel，请检查excel文件</string>
     <string name="export_success">导出成功</string>
     <string name="select_wrong_file">文件选择错误，请选择正确的文件导入：%s</string>
+    <string name="xls_support">仅支持<font color="#ff0000"><b>xls</b></font> 格式文件，请保存文件为xls格式</string>
 	
 	<string name="model_name_manage">型号名：</string>
 	<string name="model_id">手机编号：</string>

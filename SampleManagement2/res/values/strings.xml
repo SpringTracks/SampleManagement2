@@ -48,6 +48,7 @@
     <string name="import_Exception">Import Exception or empty excel, please check excel file</string>
     <string name="export_success">Export success</string>
     <string name="select_wrong_file">select wrong file, please reselect right file to import: %s</string>
+	<string name="xls_support">only support <font color="#ff0000"><b>xls</b></font> file, please save file as xls format</string>
 	
 	    <string name="model_name_manage">Sample Name：</string>
 	<string name="model_id">Sample ID：</string>
