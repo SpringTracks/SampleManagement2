@@ -86,4 +86,5 @@
 	<string name="employee_name_null">Employee name cannot be null</string>
 	<string name="sign_null">Signature cannot be null</string>
 	<string name="result_null">Query result is null,cannot export</string>
+<string name="sample_not_found">Cannot find the model name according to the ID, please check it!</string>
 </resources>

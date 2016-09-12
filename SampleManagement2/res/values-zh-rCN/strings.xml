@@ -70,4 +70,5 @@
 	<string name="employee_name_null">员工姓名不能为空</string>
 	<string name="sign_null">签名不能为空</string>
 	<string name="result_null">查询结果为空，无法导出</string>
+<string name="sample_not_found">根据此ID不能检测到型号名,请确认!</string>
 </resources>

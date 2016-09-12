@@ -237,7 +237,15 @@ public class LendOutActivity extends Activity {
 					Bundle bundle = data.getExtras();
 					String  imei = bundle.getString("result");
 					mSampleID.setText(imei);
-				
+					Cursor cu = getDBManager().querySampleByPhoneIdIfVague(imei,false);
+					if (cu.getCount() == 0){
+						Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sample_not_found),Toast.LENGTH_SHORT).show();
+					} else {
+						if (cu.moveToFirst()) {
+							mModelName.setText(cu.getString(cu.getColumnIndex(DBOpenHandler.SAMPLE_TABLE_KEY[1])));
+						}
+					}
+				    cu.close();
 				}
 				break;
 			case SIGN_GREQUEST_CODE:
