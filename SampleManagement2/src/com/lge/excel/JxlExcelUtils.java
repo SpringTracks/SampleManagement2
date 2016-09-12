@@ -156,7 +156,7 @@ public class JxlExcelUtils {
                 for (int c = 0; c<column;c++){
                     //获取每个单元格的内容
                     Cell cell = sheet.getCell(c,r);
-					System.out.print("3.zlp-getCell("+c+","+r+") ");
+					System.out.print("3.zlp-getCell("+r+","+c+") ");
                     String contents = cell.getContents();
 					System.out.println(" contents="+contents);
                     rowlist.add(contents);

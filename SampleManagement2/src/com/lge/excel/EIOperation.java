@@ -37,8 +37,9 @@ public class EIOperation {
     public ArrayList<ArrayList<String>> cursorToArrayList(Cursor mCursor) {
         ArrayList<ArrayList<String>> dbList = new ArrayList<ArrayList<String>>();
         while (mCursor.moveToNext()) {
+        	
             ArrayList<String> rowList=new ArrayList<String>();
-			System.out.println("zlp--mCursor.getString(1)="+mCursor.getString(1));
+            
 			for (int i=1;i<mCursor.getColumnCount();i++) {
 				if (i==8){
 					byte[] signByte = mCursor.getBlob(i);
@@ -54,7 +55,7 @@ public class EIOperation {
                 System.out.print(mCursor.getString(i)+" ");
 				}
 			}
-			System.out.println();
+			System.out.println("--zlp-"+TAG);
             dbList.add(rowList);
         }
 		System.out.println("dbList.length= "+dbList.size());
@@ -66,30 +67,33 @@ public class EIOperation {
         Log.i(TAG, "zlp--read excel path = "+filePath);
         ArrayList<ArrayList<String>> excelInfo = JxlExcelUtils.readFromExcel(filePath);
         String key = "";
-        long rowId = 0;
-        for (int i=0;i<excelInfo.size();i++){
-            ContentValues cvalues =new ContentValues();
-            ArrayList<String> rowExcelInfo = excelInfo.get(i);
-            for (int j=0;j<rowExcelInfo.size();j++){
+		long rowId = 0;
+		for (int i = 0; i < excelInfo.size(); i++) {
+			ContentValues cvalues = new ContentValues();
+			ArrayList<String> rowExcelInfo = excelInfo.get(i);
+			for (int j = 0; j < rowExcelInfo.size(); j++) {
 				String sign = rowExcelInfo.get(j).toString();
-				if (j==rowExcelInfo.size()-1&&sign!=null){
+				
+				//如果是往LendTable里插入数据，对签名进行转换处理再插入
+				if (table.equals(DBOpenHandler.LEND_TABLE_NAME) && j == 8) {
 					try {
-						byte [] signByte = sign.getBytes("ISO-8859-1");
-						cvalues.put(ColumnName[j],signByte);
+						byte[] signByte = sign.getBytes("ISO-8859-1");
+						cvalues.put(ColumnName[j], signByte);
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
 					}
+				} else {
+					cvalues.put(ColumnName[j], sign);
 				}
-				else {
-                cvalues.put(ColumnName[j],sign);
-				}
-            }
-            rowId = dbm.insertDataToDBIfNoRepeatValue(table, cvalues);
-            if(rowId < 0){
-                toast(rowId);
-                Log.i(TAG, "zlp--data insert fail, phone_id or employee id = "+key);
-            }
-    }
+			}
+			
+			rowId = dbm.insertDataToDBIfNoRepeatValue(table, cvalues);
+			
+			if (rowId < 0) {
+				toast(rowId);
+				Log.i(TAG, "zlp--data insert fail, phone_id or employee id = " + key);
+			}
+		}
         return rowId;
     }
     public void toast(long rowId){
