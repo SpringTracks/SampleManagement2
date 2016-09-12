@@ -186,7 +186,7 @@ public class QueryActivity extends Activity{
 	{
 		 Set<String> set = new HashSet<String>();  
 		 cursorSample=dbM.queryAllDataSample();
-		 cursorSample.moveToFirst();
+		 //cursorSample.moveToFirst();
 		 String t;
 	     while(cursorSample.moveToNext())
 	     {
@@ -217,7 +217,7 @@ public class QueryActivity extends Activity{
 		 */
 		Set<String> set = new HashSet<String>();  
 		cursorEmployee=dbM.queryAllDataEmployee();
-		cursorEmployee.moveToFirst();
+		//cursorEmployee.moveToFirst();
 		 String t;
 	     while(cursorEmployee.moveToNext())
 	     {
