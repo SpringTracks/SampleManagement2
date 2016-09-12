@@ -78,7 +78,7 @@ public class EIOperation {
 
 				// if insert data to LendTable£¬translate signature from string
 				// to byte then insert
-				if (table.equals(DBOpenHandler.LEND_TABLE_NAME) && j == 8) {
+				if (table.equals(DBOpenHandler.LEND_TABLE_NAME) && j == rowExcelInfo.size()-1) {
 					try {
 						byte[] signByte = sign.getBytes("ISO-8859-1");
 						cvalues.put(ColumnName[j], signByte);
