@@ -60,9 +60,11 @@ public class LendOutActivity extends Activity {
 	
 	private byte[] mSignInfo;
 	
-	private ImageView mDisplaySign;
+	private ImageView mDisplaySign,mModelSearch;
 	
 	private EditText mMemoEdit;
+
+	private Button mClearAllEdit;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,8 @@ public class LendOutActivity extends Activity {
 		mDisplaySign = (ImageView)findViewById(R.id.Return_Sign);
 		mSave = (Button)findViewById(R.id.Save_Button);
 		mMemoEdit = (EditText)findViewById(R.id.MemoEdit);		
+		mModelSearch = (ImageView)findViewById(R.id.Search);
+		mClearAllEdit = (Button)findViewById(R.id.Clear_All_Button);
 		//用Calendar类获取系统当前日期传递给日期选择器
 		final Calendar ca = Calendar.getInstance();
 		final int currentyear = ca.get(Calendar.YEAR);
@@ -148,6 +152,23 @@ public class LendOutActivity extends Activity {
 			}
 		});
 		
+		//Click Serch Button		
+		mModelSearch.setOnClickListener(new OnClickListener() {
+					public void onClick(View v){
+						if (mSampleID.getText() != null) {
+						    Cursor cu = getDBManager().querySampleByPhoneIdIfVague(mSampleID.getText().toString(),false);
+						    if (cu.getCount() == 0){
+							    Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sample_not_found),Toast.LENGTH_SHORT).show();
+						    } else {
+							    if (cu.moveToFirst()) {
+								    mModelName.setText(cu.getString(cu.getColumnIndex(DBOpenHandler.SAMPLE_TABLE_KEY[1])));
+							    }
+						    }
+					        cu.close();
+						} 
+					}
+				});
+		
 		//Click sign button
 		mSign.setOnClickListener(new OnClickListener(){
 
@@ -159,6 +180,17 @@ public class LendOutActivity extends Activity {
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivityForResult(intent, SIGN_GREQUEST_CODE);
 					//Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
+			}
+			
+		});
+		
+		//Click clear all button
+		mClearAllEdit.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				ClearAllRecordEdit();
 			}
 			
 		});
@@ -181,7 +213,7 @@ public class LendOutActivity extends Activity {
 				if (CheckEditIsNullOrNot() == false) {
 				    if (CheckReLendOutRecord(mSampleID.getText().toString()) == 0) {
 				if(getDBManager().insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, cv)>0) {
-				        	ClearAllRecordEdit();
+					        ClearSampleEdit();
 					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_successful),Toast.LENGTH_SHORT).show();
 				} else {
 					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_fail),Toast.LENGTH_SHORT).show();
@@ -301,13 +333,23 @@ public class LendOutActivity extends Activity {
 		return recordIsNull;
 		
 	}
-	private void ClearAllRecordEdit(){
+	private void ClearSampleEdit(){
 		mSampleID.setText("");
 		mModelName.setText("");
 		//mEmployeeID.setText("");
 		//mEmployeeName.setText("");
 		//mExpiredDate.setText("");
+		//mMemoEdit.setText("");	
+				
+	}
+	private void ClearAllRecordEdit(){
+		mSampleID.setText("");
+		mModelName.setText("");
+		mEmployeeID.setText("");
+		mEmployeeName.setText("");
+		mExpiredDate.setText("");
 		mMemoEdit.setText("");	
+		mDisplaySign.setImageBitmap(null);
 				
 	}
 		
