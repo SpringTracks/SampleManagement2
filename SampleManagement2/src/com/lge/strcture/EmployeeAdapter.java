@@ -59,8 +59,9 @@ public class EmployeeAdapter extends CursorAdapter implements Filterable {
 	        if(mDBManager==null){
 	        	Log.i("ModelAdapter","dbmanager is null");
 	        }
+	        if (constraint != null) {
 	        mCursor = mDBManager.queryVagueDataByKey(DBOpenHandler.EMPLOYEE_TABLE_NAME,DBOpenHandler.EMPLOYEE_TABLE_KEY[0],constraint.toString());
-	       // getDBManager().closeDataBase();
+	        }
 	        return mCursor;
 	    }
 	 
