@@ -1,5 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical" >
+<RelativeLayout    
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -8,35 +12,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.lge.test.DymanticEditText">
 
+<RelativeLayout
+    	android:id="@+id/RelativeLayoutPhoneID"
+   		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/LinerLayout01"  
         android:orientation="horizontal"  
     	android:layout_width="fill_parent"  
     	android:layout_height="wrap_content"
-    	android:layout_marginLeft="@dimen/sub_layout_magin_left">
+    	android:layout_marginRight="@dimen/linearlayout_right_margin"
+    		android:layout_marginEnd="@dimen/linearlayout_end_margin"
+    	    android:layout_marginLeft="@dimen/sub_layout_magin_left"    	    android:layout_marginStart="@dimen/sub_layout_magin_left" >
 
         <TextView
             android:id="@+id/Phone_ID"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/phone_id" 
+            android:layout_marginTop="@dimen/textview_top_margin"
+                android:text="@string/phone_id" 
             android:layout_weight="2"></TextView>
 
-        <TextView
-            android:id="@+id/Model_Name"
+<EditText
+        android:id="@+id/Phone_ID_Edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/model_name" 
-            android:layout_weight="3"></TextView>        
+            android:layout_weight="1"></EditText>             
 	</LinearLayout> 
 
+<ImageView
+            android:id="@+id/Scan"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" 
+            android:layout_marginTop="@dimen/image_top_margin"       
+            android:layout_alignParentRight="true"                 
+            android:layout_alignParentEnd="true"                        
+            android:src="@drawable/scan"           
+            android:clickable="true"
+            android:scaleType="centerInside"></ImageView>
+    </RelativeLayout> 
 	<RelativeLayout
     	android:id="@+id/RelativeLayout02"
    		android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-    	android:layout_alignRight="@+id/LinerLayout01"
-    	android:layout_alignEnd="@+id/LinerLayout01"
-    	android:layout_below="@id/LinerLayout01"
+    	android:layout_alignRight="@+id/RelativeLayoutPhoneID"
+    	android:layout_alignEnd="@+id/RelativeLayoutPhoneID"
+    	android:layout_below="@id/RelativeLayoutPhoneID"
     	android:layout_marginLeft="@dimen/sub_layout_magin_left"
     	android:layout_marginStart="@dimen/sub_layout_magin_left" >
 
@@ -47,27 +68,29 @@
     		android:layout_height="wrap_content"
     		android:layout_marginRight="@dimen/linearlayout_right_margin"
     		android:layout_marginEnd="@dimen/linearlayout_end_margin">
-        	<EditText
-            	android:id="@+id/Phone_ID_Edit"
+        	            	<TextView
+            android:id="@+id/Model_Name"
            	 	android:layout_width="fill_parent"
             	android:layout_height="wrap_content"                    
-            	android:layout_weight="1"></EditText>
+            	android:layout_marginTop="@dimen/textview_top_margin"
+            android:text="@string/model_name" 
+            android:layout_weight="2"></TextView>  
 
         	<EditText
             	android:id="@+id/Model_Name_Edit"
             	android:layout_width="fill_parent"
             	android:layout_height="wrap_content" 
            	 	android:inputType="none"           
-            	android:layout_weight="2"></EditText>
+            	android:layout_weight="1"></EditText>
 		</LinearLayout> 
         <ImageView
-            android:id="@+id/Scan"
+            android:id="@+id/Search"
             android:layout_width="wrap_content"
             android:layout_height="20dp" 
             android:layout_marginTop="@dimen/image_top_margin"       
             android:layout_alignParentRight="true"                 
             android:layout_alignParentEnd="true"                        
-            android:src="@drawable/scan"           
+            android:src="@drawable/search"           
             android:clickable="true"
             android:scaleType="centerInside"></ImageView>
 	</RelativeLayout>         
@@ -198,38 +221,50 @@
     	  android:background="@drawable/color_edit_text"
 	      android:layout_below="@+id/Memo"></EditText>
 	 
-    <TextView
-            android:id="@+id/Sign_Info"
+<LinearLayout
+    android:id="@+id/LinerLayoutSign"  
+            android:orientation="horizontal"  
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"   
-            android:layout_marginLeft="@dimen/sub_layout_magin_left"
-            android:layout_marginStart="@dimen/sub_layout_magin_left"
             android:layout_marginTop="@dimen/textview_top_margin"
-            android:text="@string/sign_info"
-            android:layout_below="@+id/MemoEdit"> </TextView>
+    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:layout_marginRight="@dimen/linearlayout_right_margin"
+    	android:layout_marginEnd="@dimen/linearlayout_end_margin"
+    	android:layout_below="@id/MemoEdit">
+     <Button 
+	    	android:id="@+id/Sign_Button"
+	    	android:layout_width="match_parent"
+	    	android:layout_height="60dp"	    
+	    	android:text="@string/sign"
+	    	android:layout_weight="2"
+	    	android:textColor="#00f"
+	    	android:layout_marginTop="@dimen/textview_top_margin"
+            android:textSize="@dimen/button_font_size"
+            android:background="@android:color/holo_blue_bright"></Button>   
      <ImageView 
             android:id="@+id/Return_Sign"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_weight="1"
             android:layout_marginLeft="@dimen/sub_layout_magin_left"
             android:layout_marginStart="@dimen/sub_layout_magin_left"
             android:layout_marginTop="@dimen/textview_top_margin"
-            android:layout_marginRight="@dimen/linearlayout_right_margin"
-            android:layout_marginEnd="@dimen/linearlayout_end_margin"
             android:contentDescription="@string/imge_view_lend_user"            
             android:background="@drawable/imageview_bg_color"            
-            android:layout_below="@+id/Sign_Info"></ImageView>
-	<Button 
-	    	android:id="@+id/Sign_Button"
+></ImageView>
+	</LinearLayout>
+	 <Button 
+	    	android:id="@+id/Clear_All_Button"
 	    	android:layout_width="@dimen/button_width"
 	    	android:layout_height="@dimen/button_height"
-	    	android:layout_below="@id/Return_Sign"
+	    	android:layout_below="@id/LinerLayoutSign"
 	    	android:layout_alignParentLeft="true"
 	    	android:layout_alignParentStart="true"
 	    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
 	    	android:layout_marginStart="@dimen/sub_layout_magin_left"
 	    	android:layout_marginTop="@dimen/button_magin_top"
-	    	android:text="@string/sign"
+	    	android:text="@string/clear_all"
 	    	android:textColor="#00f"
 	    	android:textSize="@dimen/button_font_size"
 	    	android:background="@android:color/holo_blue_light"></Button>
@@ -237,14 +272,14 @@
 	    	android:id="@+id/Save_Button"
 	    	android:layout_width="@dimen/button_width"
 	    	android:layout_height="@dimen/button_height"
-	    	android:layout_below="@id/Return_Sign"
-	    	android:layout_alignRight="@id/Return_Sign"
-	    	android:layout_alignEnd="@id/Return_Sign"
+	    	android:layout_below="@id/LinerLayoutSign"
+	    	android:layout_alignRight="@id/LinerLayoutSign"
+	    	android:layout_alignEnd="@id/LinerLayoutSign"
 	    	android:layout_marginTop="@dimen/button_magin_top"	    	
 	    	android:textSize="@dimen/button_font_size"
 	    	android:textColor="#00f"	    	
 	    	android:background="@android:color/holo_blue_light"
 	    	android:text="@string/lend_save"></Button>   
 	
-   
 </RelativeLayout>
+</ScrollView>
