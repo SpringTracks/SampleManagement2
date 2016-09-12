@@ -25,6 +25,12 @@
     		android:layout_marginEnd="@dimen/linearlayout_end_margin"
     	    android:layout_marginLeft="@dimen/sub_layout_magin_left"    	    android:layout_marginStart="@dimen/sub_layout_magin_left" >
 
+<LinearLayout 
+             android:layout_width="0px"  
+             android:layout_height="0px" 
+             android:focusable="true"  
+             android:focusableInTouchMode="true">        
+             </LinearLayout>
         <TextView
             android:id="@+id/Phone_ID"
             android:layout_width="fill_parent"
