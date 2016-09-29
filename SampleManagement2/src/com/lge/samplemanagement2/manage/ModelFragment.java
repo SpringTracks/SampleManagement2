@@ -2,6 +2,11 @@ package com.lge.samplemanagement2.manage;
 
 import com.lge.samplemanagement2.R;
 
+import com.lge.samplemanagement2.activity.LendOutActivity;
+import com.lge.samplemanagement2.activity.MipcaActivityCapture;
+import com.lge.samplemanagement2.activity.QueryActivity;
+
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +16,10 @@ import com.lge.dbhelper.DBManager;
 import com.lge.dbhelper.DBOpenHandler;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +28,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ModelFragment extends Fragment {
@@ -27,16 +37,18 @@ public class ModelFragment extends Fragment {
 	// private static final String TAG = "判断型号重复性";
 	private String sample = DBOpenHandler.SAMPLE_TABLE_NAME;
 	// private String employee = DBOpenHandler.EMPLOYEE_TABLE_NAME;
+	protected static final int SCANNIN_GREQUEST_CODE = 1;
 
 	private Button btn_ok;
 	private Button btn_cancle;
 	private EditText editText1;
 	private EditText editText2;
-
+	private ImageView imageScan;
 	String sample_name = "";
 	String sample_id = "";
 	private ContentValues sample_values;
 
+	private final int result_ok = -1;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
@@ -61,7 +73,19 @@ public class ModelFragment extends Fragment {
 		btn_cancle = (Button) getActivity().findViewById(R.id.bnCancel1);
 		editText1 = (EditText) getActivity().findViewById(R.id.ModelEditText);
 		editText2 = (EditText) getActivity().findViewById(R.id.ModelIDEditText);
+		imageScan = (ImageView) getActivity().findViewById(R.id.Scan);
 			
+		// 扫描添加Sample ID
+		imageScan.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), MipcaActivityCapture.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
+			}
+		});
+
+		// OK 添加样机进入数据库
 		btn_ok.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -73,10 +97,10 @@ public class ModelFragment extends Fragment {
 				int editText2_length;
 				editText1_length = editText1.length();
 				editText2_length = editText2.length();
-				if (editText1_length == 0) {
-					Toast.makeText(getActivity(), "请输入型号名", 0).show();
-				} else if (editText2_length == 0) {
+				if (editText2_length == 0) {
 					Toast.makeText(getActivity(), "请输入Sample ID", 0).show();
+				} else if (editText1_length == 0) {
+					Toast.makeText(getActivity(), "请输入Sample Name", 0).show();
 				} else {
 				sample_name = editText1.getText().toString();
 				sample_id = editText2.getText().toString();
@@ -129,4 +153,20 @@ public class ModelFragment extends Fragment {
 		return count;
 	}
 
+	// Get response from scan activity
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case SCANNIN_GREQUEST_CODE:
+			if (resultCode == result_ok) {
+				Bundle bundle = data.getExtras();
+				String imei = bundle.getString("result");
+				editText2.setText(imei);
+
+			}
+			break;
+		}
+
+	}	
 }

@@ -37,30 +37,33 @@
 <string name="employee_id">AD: </string>
    <string name="employee_name">Name: </string>
    
-<!--  -->
+<!-- wjm -->
     <string name="one_export">EXPORT ALL</string>
     <string name="model_import">Sample Import</string>
     <string name="user_import">Employee Import</string>
     <string name="lend_import">Lend Info. Import</string>
     <string name="user_manage">Sample/Employee MANAGE</string>
     
-    <string name="import_success">Import success</string>
+<string name="import_success">Import success</string>
     <string name="import_Exception">Import Exception or empty excel, please check excel file</string>
     <string name="export_success">Export success</string>
     <string name="select_wrong_file">select wrong file, please reselect right file to import: %s</string>
 	<string name="xls_support">only support <font color="#ff0000"><b>xls</b></font> file, please save file as xls format</string>
 	
-	    <string name="model_name_manage">Sample Name：</string>
+	    <string name="model_name_manage">Sample Name</string>
 	<string name="model_id">Sample ID：</string>
 	<string name="update">Add</string>
 	<string name="cancel">Cancel</string>
 	
-	<string name="user_name_manage">Name：</string>
+	<string name="user_name_manage">Name</string>
 	<string name="user_email">AD ：</string>	
 	
 <string name="welcome1">Sample Manage</string>
 <string name="welcome2">Employee Manage</string>
-
+<string name="prompt_sample">Input Phone ID by scan</string>
+<string name="help_welcome1">Welcome to use Sample Management System</string>
+<string name="help_first">1 . Please go to SD/SampleManagement file find Export results</string>
+<!-- wjm  -->
 	<string name="icon1">Lend</string>
 	<string name="icon2">Return</string>
 	<string name="icon3">Search</string>

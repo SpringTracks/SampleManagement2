@@ -36,17 +36,18 @@
     <string name="select_wrong_file">文件选择错误，请选择正确的文件导入：%s</string>
     <string name="xls_support">仅支持<font color="#ff0000"><b>xls</b></font> 格式文件，请保存文件为xls格式</string>
 	
-	<string name="model_name_manage">型号名：</string>
+	<string name="model_name_manage">型号名</string>
 	<string name="model_id">手机编号：</string>
 	<string name="update">添加</string>
 	<string name="cancel">取消</string>
 	
-	<string name="user_name_manage">姓名：</string>
+	<string name="user_name_manage">姓名</string>
 	<string name="user_email">邮箱：</string>	
 	
 	<string name="welcome1">型号管理</string>
 	<string name="welcome2">人员管理</string>
 	
+<string name="prompt_sample">扫描手机ID</string>
 	<string name="icon1">借出</string>
 	<string name="icon2">返还</string>
 	<string name="icon3">查询</string>
