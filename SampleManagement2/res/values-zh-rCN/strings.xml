@@ -42,12 +42,24 @@
 	<string name="cancel">取消</string>
 	
 	<string name="user_name_manage">姓名</string>
-	<string name="user_email">邮箱：</string>	
+	<string name="user_email">邮箱</string>	
 	
 	<string name="welcome1">型号管理</string>
 	<string name="welcome2">人员管理</string>
 	
-<string name="prompt_sample">扫描手机ID</string>
+	
+	<string name="toast_Sample_ID">请输入手机ID</string>
+    <string name="toast_Sample_Name">请输入型号名</string>
+    <string name="toast_Sample_manage1">数据插入成功</string>
+    <string name="toast_Sample_manage2">数据已存在，请检查</string>
+    <string name="toast_Sample_manage3">数据为空，不需清除</string>
+    <string name="toast_Sample_manage4">数据已清除</string>
+    <string name="toast_Sample_manage5">数据异常</string>
+    <string name="toast_user_AD">请输入AD账号</string>
+    <string name="toast_user_Name">请输入使用者姓名</string>
+
+<!-- wjm -->		
+    <string name="prompt_sample">扫描手机ID</string>
 	<string name="icon1">借出</string>
 	<string name="icon2">返还</string>
 	<string name="icon3">查询</string>

@@ -69,9 +69,9 @@ public class UserFragment extends Fragment {
 				editText1_length = editText_AD.length();
 				editText2_length = editText_Name.length();
 				if (editText1_length == 0) {
-					Toast.makeText(getActivity(), "请输入AD", 0).show();
+					Toast.makeText(getActivity(), R.string.toast_user_AD, 0).show();
 				} else if (editText2_length == 0) {
-					Toast.makeText(getActivity(), "请输入Name", 0).show();
+					Toast.makeText(getActivity(), R.string.toast_user_Name, 0).show();
 				} else {
 					AD = editText_AD.getText().toString();
 					Name = editText_Name.getText().toString();
@@ -83,9 +83,11 @@ public class UserFragment extends Fragment {
 					long i = checkRepeEmployee(key1);
 					if (i == 0) {
 						EmployeeManage.insertDataToEmployee(employee_values);
-						Toast.makeText(getActivity(), "数据插入成功", 0).show();
+						Toast.makeText(getActivity(), R.string.toast_Sample_manage1, 0).show();
+						editText_AD.setText(null);
+						editText_Name.setText(null);
 					} else {
-						Toast.makeText(getActivity(), "数据已存在，请检查", 0).show();
+						Toast.makeText(getActivity(), R.string.toast_Sample_manage2, 0).show();
 					}
 					// TODO Auto-generated method stub
 					// Toast.makeText(getActivity(), "数据插入成功", 0).show();
@@ -102,12 +104,12 @@ public class UserFragment extends Fragment {
 				editText1_length = editText_AD.length();
 				editText2_length = editText_Name.length();
 				if (editText1_length == 0 && editText2_length == 0) {
-					Toast.makeText(getActivity(), "还未输入数据，不需清除", 0).show();
+					Toast.makeText(getActivity(), R.string.toast_Sample_manage3, 0).show();
 				} else {
 					editText_AD.setText(null);
 					editText_Name.setText(null);
 
-					Toast.makeText(getActivity(), "数据已清除", 0).show();
+					Toast.makeText(getActivity(), R.string.toast_Sample_manage4, 0).show();
 				}
 			}
 		});
@@ -121,7 +123,7 @@ public class UserFragment extends Fragment {
 			count = EmployeeManage2
 					.queryDataCount(employee, "employee_id", key);
 		} catch (Exception e) {
-			Toast.makeText(getActivity(), "数据异常", 0).show();
+			Toast.makeText(getActivity(), R.string.toast_Sample_manage5, 0).show();
 		} finally {
 		}
 		return count;

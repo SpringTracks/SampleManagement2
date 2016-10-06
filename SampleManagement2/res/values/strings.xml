@@ -63,6 +63,17 @@
 <string name="prompt_sample">Input Phone ID by scan</string>
 <string name="help_welcome1">Welcome to use Sample Management System</string>
 <string name="help_first">1 . Please go to SD/SampleManagement file find Export results</string>
+
+<string name="toast_Sample_ID">Please input Sample ID</string>
+<string name="toast_Sample_Name">Please input Sample Name</string>
+<string name="toast_Sample_manage1">Data has been insert successfully</string>
+<string name="toast_Sample_manage2">Data already exists, please check!</string>
+<string name="toast_Sample_manage3">Data is empty</string>
+<string name="toast_Sample_manage4">Data has been cleared.</string>
+<string name="toast_Sample_manage5">Data is abnormal </string>
+<string name="toast_user_AD">Please input AD</string>
+<string name="toast_user_Name">Please input User Name</string>
+
 <!-- wjm  -->
 	<string name="icon1">Lend</string>
 	<string name="icon2">Return</string>
