@@ -3,289 +3,327 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical" >
-<RelativeLayout    
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.lge.test.DymanticEditText">
 
-<RelativeLayout
-    	android:id="@+id/RelativeLayoutPhoneID"
-   		android:layout_width="fill_parent"
-    	android:layout_height="wrap_content">
-    <LinearLayout
-        android:id="@+id/LinerLayout01"  
-        android:orientation="horizontal"  
-    	android:layout_width="fill_parent"  
-    	android:layout_height="wrap_content"
-    	android:layout_marginRight="@dimen/linearlayout_right_margin"
-    		android:layout_marginEnd="@dimen/linearlayout_end_margin"
-    	    android:layout_marginLeft="@dimen/sub_layout_magin_left"    	    android:layout_marginStart="@dimen/sub_layout_magin_left" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.lge.test.DymanticEditText" >
 
-<LinearLayout 
-             android:layout_width="0px"  
-             android:layout_height="0px" 
-             android:focusable="true"  
-             android:focusableInTouchMode="true">        
-             </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutPhoneID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/LinerLayout01"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/linearlayout_end_margin"
+                android:layout_marginLeft="@dimen/sub_layout_magin_left"
+                android:layout_marginRight="@dimen/linearlayout_right_margin"
+                android:layout_marginStart="@dimen/sub_layout_magin_left"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="0px"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/Phone_ID"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/textview_top_margin"
+                    android:layout_weight="2"
+                    android:text="@string/phone_id"
+                    android:textSize="@dimen/text_font_size" >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/Phone_ID_Edit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+                </EditText>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/Scan"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/image_top_margin"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/scan" >
+            </ImageView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/RelativeLayoutPhoneID"
+            android:layout_alignRight="@+id/RelativeLayoutPhoneID"
+            android:layout_below="@id/RelativeLayoutPhoneID"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginStart="@dimen/sub_layout_magin_left" >
+
+            <LinearLayout
+                android:id="@+id/LinerLayout02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/linearlayout_end_margin"
+                android:layout_marginRight="@dimen/linearlayout_right_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/Model_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/textview_top_margin"
+                    android:layout_weight="2"
+                    android:text="@string/model_name"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/text_font_size" >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/Model_Name_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="none" >
+                </EditText>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/Search"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/image_top_margin"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/search" >
+            </ImageView>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/LinerLayout03"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/RelativeLayout02"
+            android:layout_marginEnd="@dimen/linearlayout_end_margin"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginRight="@dimen/linearlayout_right_margin"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/Email_ID"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_top_margin"
+                android:layout_weight="2"
+                android:text="@string/ad_id"
+                android:textSize="@dimen/text_font_size" >
+            </TextView>
+
+            <AutoCompleteTextView
+                android:id="@+id/AD_ID_Edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="none" >
+            </AutoCompleteTextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinerLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LinerLayout03"
+            android:layout_marginEnd="@dimen/linearlayout_end_margin"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginRight="@dimen/linearlayout_right_margin"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_top_margin"
+                android:layout_weight="2"
+                android:text="@string/user_name"
+                android:textSize="@dimen/text_font_size" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/Peple_Name_Edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/people_name_change"
+                android:inputType="none" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinerLayoutLendDate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LinerLayout04"
+            android:layout_marginEnd="@dimen/linearlayout_end_margin"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginRight="@dimen/linearlayout_right_margin"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/Lend_Date"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_top_margin"
+                android:layout_weight="2"
+                android:text="@string/lend_date"
+                android:textSize="@dimen/text_font_size" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/Lend_Date_Edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:inputType="date" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinerLayoutExpiredDate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LinerLayoutLendDate"
+            android:layout_marginEnd="@dimen/linearlayout_end_margin"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginRight="@dimen/linearlayout_right_margin"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/Return_Date"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_top_margin"
+                android:layout_weight="2"
+                android:text="@string/expired_date"
+                android:textSize="@dimen/text_font_size" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/Return_Date_Edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="date" >
+            </EditText>
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/Phone_ID"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/textview_top_margin"
-                android:text="@string/phone_id" 
-            android:layout_weight="2"></TextView>
-
-<EditText
-        android:id="@+id/Phone_ID_Edit"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"></EditText>             
-	</LinearLayout> 
-
-<ImageView
-            android:id="@+id/Scan"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp" 
-            android:layout_marginTop="@dimen/image_top_margin"       
-            android:layout_alignParentRight="true"                 
-            android:layout_alignParentEnd="true"                        
-            android:src="@drawable/scan"           
-            android:clickable="true"
-            android:scaleType="centerInside"></ImageView>
-    </RelativeLayout> 
-	<RelativeLayout
-    	android:id="@+id/RelativeLayout02"
-   		android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_alignRight="@+id/RelativeLayoutPhoneID"
-    	android:layout_alignEnd="@+id/RelativeLayoutPhoneID"
-    	android:layout_below="@id/RelativeLayoutPhoneID"
-    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
-    	android:layout_marginStart="@dimen/sub_layout_magin_left" >
-
-		<LinearLayout
-    		android:id="@+id/LinerLayout02"  
-    		android:orientation="horizontal"  
-    		android:layout_width="fill_parent"  
-    		android:layout_height="wrap_content"
-    		android:layout_marginRight="@dimen/linearlayout_right_margin"
-    		android:layout_marginEnd="@dimen/linearlayout_end_margin">
-        	            	<TextView
-            android:id="@+id/Model_Name"
-           	 	android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"                    
-            	android:layout_marginTop="@dimen/textview_top_margin"
-            android:text="@string/model_name" 
-            android:layout_weight="2"></TextView>  
-
-        	<EditText
-            	android:id="@+id/Model_Name_Edit"
-            	android:layout_width="fill_parent"
-            	android:layout_height="wrap_content" 
-           	 	android:inputType="none"           
-            	android:layout_weight="1"></EditText>
-		</LinearLayout> 
-        <ImageView
-            android:id="@+id/Search"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp" 
-            android:layout_marginTop="@dimen/image_top_margin"       
-            android:layout_alignParentRight="true"                 
-            android:layout_alignParentEnd="true"                        
-            android:src="@drawable/search"           
-            android:clickable="true"
-            android:scaleType="centerInside"></ImageView>
-	</RelativeLayout>         
-	<LinearLayout
-    	android:id="@+id/LinerLayout03"  
-   	 	android:orientation="horizontal"  
-    	android:layout_width="fill_parent"  
-    	android:layout_height="wrap_content"
-    	android:layout_marginRight="@dimen/linearlayout_right_margin"
-    	android:layout_marginEnd="@dimen/linearlayout_end_margin"
-    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
-    	android:layout_marginStart="@dimen/sub_layout_magin_left"
-    	android:layout_below="@id/RelativeLayout02">
-        <TextView
-            android:id="@+id/Email_ID"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"            
-            android:layout_weight="2"
-            android:layout_marginTop="@dimen/textview_top_margin"
-            android:text="@string/ad_id"></TextView>
-
-        <AutoCompleteTextView
-            android:id="@+id/AD_ID_Edit"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"            
-            android:layout_weight="1"></AutoCompleteTextView>       
-
-	</LinearLayout> 
-	<LinearLayout
-    	android:id="@+id/LinerLayout04"  
-    	android:orientation="horizontal"  
-    	android:layout_width="fill_parent"  
-    	android:layout_height="wrap_content"
-    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
-    	android:layout_marginStart="@dimen/sub_layout_magin_left"
-    	android:layout_marginRight="@dimen/linearlayout_right_margin"
-    	android:layout_marginEnd="@dimen/linearlayout_end_margin"
-    	android:layout_below="@id/LinerLayout03">
-        <TextView
-            android:id="@+id/Name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"            
-            android:layout_weight="2"
-            android:layout_marginTop="@dimen/textview_top_margin"
-            android:text="@string/user_name"></TextView>
-
-        <EditText
-            android:id="@+id/Peple_Name_Edit"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:inputType="none"            
-            android:layout_weight="1"            
-            android:hint="@string/people_name_change"></EditText>       
-
-	</LinearLayout> 
-	<LinearLayout
-    	android:id="@+id/LinerLayoutLendDate"  
-    	android:orientation="horizontal"  
-    	android:layout_width="fill_parent"  
-    	android:layout_height="wrap_content"
-    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
-    	android:layout_marginStart="@dimen/sub_layout_magin_left"
-    	android:layout_marginRight="@dimen/linearlayout_right_margin"
-    	android:layout_marginEnd="@dimen/linearlayout_end_margin"
-    	android:layout_below="@id/LinerLayout04">        
-    	<TextView
-            android:id="@+id/Lend_Date"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"            
-            android:layout_weight="2"
-            android:layout_marginTop="@dimen/textview_top_margin"
-            android:text="@string/lend_date"></TextView>
-
-        <EditText
-            android:id="@+id/Lend_Date_Edit"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date" 
-            android:enabled="false"      
-            android:layout_weight="1"></EditText>  
-
-	</LinearLayout>
-	<LinearLayout
-    	android:id="@+id/LinerLayoutExpiredDate"  
-    	android:orientation="horizontal"  
-    	android:layout_width="fill_parent"  
-    	android:layout_height="wrap_content"
-    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
-    	android:layout_marginStart="@dimen/sub_layout_magin_left"
-    	android:layout_marginRight="@dimen/linearlayout_right_margin"
-    	android:layout_marginEnd="@dimen/linearlayout_end_margin"
-    	android:layout_below="@id/LinerLayoutLendDate">        
-    	<TextView
-            android:id="@+id/Return_Date"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"            
-            android:layout_weight="2"
-            android:layout_marginTop="@dimen/textview_top_margin"
-            android:text="@string/expired_date"></TextView>
-
-        <EditText
-            android:id="@+id/Return_Date_Edit"
-            android:layout_width="fill_parent"
-            android:inputType="date" 
-            android:layout_height="wrap_content"                       
-            android:layout_weight="1"></EditText>       
-
-	</LinearLayout>      
-    <TextView
             android:id="@+id/Memo"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"   
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LinerLayoutExpiredDate"
             android:layout_marginLeft="@dimen/sub_layout_magin_left"
             android:layout_marginStart="@dimen/sub_layout_magin_left"
             android:layout_marginTop="@dimen/textview_top_margin"
             android:text="@string/memo"
-            android:layout_below="@+id/LinerLayoutExpiredDate"> </TextView>
-	 <EditText
-	      android:id="@+id/MemoEdit"
-	      android:layout_width="fill_parent"
-	      android:layout_height="40dp"
-	      android:layout_marginLeft="@dimen/sub_layout_magin_left"
-          android:layout_marginStart="@dimen/sub_layout_magin_left"
-          android:layout_marginTop="@dimen/textview_top_margin"
-          android:layout_marginRight="@dimen/linearlayout_right_margin"
-    	  android:layout_marginEnd="@dimen/linearlayout_end_margin"
-    	  android:background="@drawable/color_edit_text"
-	      android:layout_below="@+id/Memo"></EditText>
-	 
-<LinearLayout
-    android:id="@+id/LinerLayoutSign"  
-            android:orientation="horizontal"  
+            android:textSize="@dimen/text_font_size" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/MemoEdit"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"   
-            android:layout_marginTop="@dimen/textview_top_margin"
-    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
-            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Memo"
+            android:layout_marginEnd="@dimen/linearlayout_end_margin"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
             android:layout_marginRight="@dimen/linearlayout_right_margin"
-    	android:layout_marginEnd="@dimen/linearlayout_end_margin"
-    	android:layout_below="@id/MemoEdit">
-     <Button 
-	    	android:id="@+id/Sign_Button"
-	    	android:layout_width="match_parent"
-	    	android:layout_height="60dp"	    
-	    	android:text="@string/sign"
-	    	android:layout_weight="2"
-	    	android:textColor="#00f"
-	    	android:layout_marginTop="@dimen/textview_top_margin"
-            android:textSize="@dimen/button_font_size"
-            android:background="@android:color/holo_blue_bright"></Button>   
-     <ImageView 
-            android:id="@+id/Return_Sign"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="1"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:layout_marginTop="@dimen/textview_top_margin"
+            android:background="@drawable/color_edit_text" >
+        </EditText>
+
+        <LinearLayout
+            android:id="@+id/LinerLayoutSign"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/MemoEdit"
+            android:layout_marginEnd="@dimen/linearlayout_end_margin"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginRight="@dimen/linearlayout_right_margin"
+            android:layout_marginStart="@dimen/sub_layout_magin_left"
+            android:layout_marginTop="@dimen/textview_top_margin"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/Sign_Button"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="@dimen/textview_top_margin"
+                android:layout_weight="2"
+                android:text="@string/sign"
+                android:textSize="@dimen/button_font_size" >
+            </Button>
+
+            <ImageView
+                android:id="@+id/Return_Sign"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="@dimen/sub_layout_magin_left"
+                android:layout_marginStart="@dimen/sub_layout_magin_left"
+                android:layout_marginTop="@dimen/textview_top_margin"
+                android:layout_weight="1"
+                android:background="@drawable/imageview_bg_color"
+                android:contentDescription="@string/imge_view_lend_user" >
+            </ImageView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/Clear_All_Button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/LinerLayoutSign"
             android:layout_marginLeft="@dimen/sub_layout_magin_left"
             android:layout_marginStart="@dimen/sub_layout_magin_left"
-            android:layout_marginTop="@dimen/textview_top_margin"
-            android:contentDescription="@string/imge_view_lend_user"            
-            android:background="@drawable/imageview_bg_color"            
-></ImageView>
-	</LinearLayout>
-	 <Button 
-	    	android:id="@+id/Clear_All_Button"
-	    	android:layout_width="@dimen/button_width"
-	    	android:layout_height="@dimen/button_height"
-	    	android:layout_below="@id/LinerLayoutSign"
-	    	android:layout_alignParentLeft="true"
-	    	android:layout_alignParentStart="true"
-	    	android:layout_marginLeft="@dimen/sub_layout_magin_left"
-	    	android:layout_marginStart="@dimen/sub_layout_magin_left"
-	    	android:layout_marginTop="@dimen/button_magin_top"
-	    	android:text="@string/clear_all"
-	    	android:textColor="#00f"
-	    	android:textSize="@dimen/button_font_size"
-	    	android:background="@android:color/holo_blue_light"></Button>
-	  <Button 
-	    	android:id="@+id/Save_Button"
-	    	android:layout_width="@dimen/button_width"
-	    	android:layout_height="@dimen/button_height"
-	    	android:layout_below="@id/LinerLayoutSign"
-	    	android:layout_alignRight="@id/LinerLayoutSign"
-	    	android:layout_alignEnd="@id/LinerLayoutSign"
-	    	android:layout_marginTop="@dimen/button_magin_top"	    	
-	    	android:textSize="@dimen/button_font_size"
-	    	android:textColor="#00f"	    	
-	    	android:background="@android:color/holo_blue_light"
-	    	android:text="@string/lend_save"></Button>   
-	
-</RelativeLayout>
+            android:layout_marginTop="@dimen/button_magin_top"
+            android:text="@string/clear_all"
+            android:textSize="@dimen/button_font_size" >
+        </Button>
+
+        <Button
+            android:id="@+id/Save_Button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/LinerLayoutSign"
+            android:layout_alignRight="@id/LinerLayoutSign"
+            android:layout_below="@id/LinerLayoutSign"
+            android:layout_marginTop="@dimen/button_magin_top"
+            android:text="@string/lend_save"
+            android:textSize="@dimen/button_font_size" >
+        </Button>
+    </RelativeLayout>
+
 </ScrollView>
