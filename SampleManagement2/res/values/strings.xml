@@ -25,18 +25,10 @@
     <string name="return_confirm">return confirm</string>
     <string name="othernote">Input phone id and click ok  if you can not scan it.</string>
     <string name="imge_view_lend_user">It should display user signature</string>
-<<<<<<< HEAD
-   <string name="people_name_change">Search according to AD</string>
-   
-<string name="memo">Remark</string>
-   <string name="Return_success">Return success</string>
- 
-   
-<string name="employee_id">AD: </string>
-   <string name="employee_name">Name: </string>
+       <string name="Return_success">Return success</string>
    
 <!-- wjm -->
-=======
+
     <string name="people_name_change">Search according to AD</string>
     <string name="model_name_change">Search according to phone ID</string>
     <string name="return_date_input">Choose the return date</string>
@@ -45,7 +37,7 @@
     <string name="employee_name">Name: </string>
 
     <!-- wjm -->
->>>>>>> ec563b062a521dbce16d15cebc116a895745f210
+
     <string name="one_export">EXPORT ALL</string>
     <string name="model_import">Sample Import</string>
     <string name="user_import">Employee Import</string>
