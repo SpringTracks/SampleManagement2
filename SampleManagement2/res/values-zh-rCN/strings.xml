@@ -2,10 +2,11 @@
 <resources>
 
     <string name="app_name">样机辅助管理系统</string>
-	<string name="app_name2">管理</string>
+    <string name="app_name2">管理</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">设置</string>
     <string name="phone_id">手机标识</string>
+<<<<<<< HEAD
 	<string name="model_name">型号名</string>
 	<string name="ad_id">AD 账号</string>
 	<string name="user_name">借用人</string>
@@ -25,54 +26,81 @@
 	 <string name="Return_success">归还成功</string>
  
 <!--  -->
+=======
+    <string name="model_name">型号名</string>
+    <string name="ad_id">AD 账号</string>
+    <string name="user_name">借用人</string>
+    <string name="expired_date">预返还日期</string>
+    <string name="sign">签名</string>
+    <string name="lend_save">保存</string>
+    <string name="sign_info">签名信息</string>
+    <string name="lend_date">借用日期</string>
+    <string name="return_date">归还日期</string>
+    <string name="doscan">扫描</string>
+    <string name="return_confirm">确定归还</string>
+    <string name="othernote">如无法扫描请手动输入并点击ok</string>
+    <string name="imge_view_lend_user">此处应显示借用人签名</string>
+    <string name="people_name_change">根据AD自动搜索</string>
+    <string name="model_name_change">根据手机ID搜索</string>
+    <string name="employee_name">姓名: </string>
+
+    <!--  -->
+>>>>>>> ec563b062a521dbce16d15cebc116a895745f210
     <string name="one_export">一键导出</string>
     <string name="model_import">型号导入</string>
     <string name="user_import">用户导入</string>
     <string name="lend_import">借用信息导入</string>
     <string name="user_manage">型号/人员管理</string>
-    
     <string name="import_success">导入成功</string>
     <string name="import_Exception">导入异常或空的excel，请检查excel文件</string>
     <string name="export_success">导出成功</string>
     <string name="select_wrong_file">文件选择错误，请选择正确的文件导入：%s</string>
     <string name="xls_support">仅支持<font color="#ff0000"><b>xls</b></font> 格式文件，请保存文件为xls格式</string>
-	
-	<string name="model_name_manage">型号名</string>
-	<string name="model_id">手机编号：</string>
-	<string name="update">添加</string>
-	<string name="cancel">取消</string>
-	
-	<string name="user_name_manage">姓名</string>
-	<string name="user_email">邮箱：</string>	
-	
-	<string name="welcome1">型号管理</string>
-	<string name="welcome2">人员管理</string>
-	
-<string name="prompt_sample">扫描手机ID</string>
-	<string name="icon1">借出</string>
-	<string name="icon2">返还</string>
-	<string name="icon3">查询</string>
-	<string name="MAIN">主页</string>
-	<string name="memo">备注</string>
-	
-	<!-- add by min.pang 2016/09/08  -->
-	<string name="query">查询</string>
-	<string name="id">序号</string>
-	<string name="more">更多</string>
-	<string name="showAll">显示全部</string>
-	<string name="clear">清空</string>
-	<string name="export">导出</string>
-	<string name="search">搜索</string>
-	    <string name="save_successful">保存成功!</string>
-	<string name="save_fail">保存失败!</string>
-	<string name="repeat_record">重复的记录!</string>
-	<string name="sample_id_null">手机ID不能为空</string>
-	<string name="model_name_null">型号名不能为空</string>
-	<string name="expected_date_null">预计归还日期不能为空</string>
-	<string name="ad_null">AD账号不能为空</string>
-	<string name="employee_name_null">员工姓名不能为空</string>
-	<string name="sign_null">签名不能为空</string>
-	<string name="result_null">查询结果为空，无法导出</string>
+    <string name="model_name_manage">型号名</string>
+    <string name="model_id">手机编号：</string>
+    <string name="update">添加</string>
+    <string name="cancel">取消</string>
+    <string name="user_name_manage">姓名</string>
+    <string name="user_email">邮箱</string>
+    <string name="welcome1">型号管理</string>
+    <string name="welcome2">人员管理</string>
+    <string name="toast_Sample_ID">请输入手机ID</string>
+    <string name="toast_Sample_Name">请输入型号名</string>
+    <string name="toast_Sample_manage1">数据插入成功</string>
+    <string name="toast_Sample_manage2">数据已存在，请检查</string>
+    <string name="toast_Sample_manage3">数据为空，不需清除</string>
+    <string name="toast_Sample_manage4">数据已清除</string>
+    <string name="toast_Sample_manage5">数据异常</string>
+    <string name="toast_user_AD">请输入AD账号</string>
+    <string name="toast_user_Name">请输入使用者姓名</string>
+
+    <!-- wjm -->
+    <string name="prompt_sample">扫描手机ID</string>
+    <string name="icon1">借出</string>
+    <string name="icon2">返还</string>
+    <string name="icon3">查询</string>
+    <string name="MAIN">主页</string>
+    <string name="memo">备注</string>
+
+    <!-- add by min.pang 2016/09/08 -->
+    <string name="query">查询</string>
+    <string name="id">序号</string>
+    <string name="more">更多</string>
+    <string name="showAll">显示全部</string>
+    <string name="clear">清空</string>
+    <string name="export">导出</string>
+    <string name="search">搜索</string>
+    <string name="save_successful">保存成功!</string>
+    <string name="save_fail">保存失败!</string>
+    <string name="repeat_record">重复的记录!</string>
+    <string name="sample_id_null">手机ID不能为空</string>
+    <string name="model_name_null">型号名不能为空</string>
+    <string name="expected_date_null">预计归还日期不能为空</string>
+    <string name="ad_null">AD账号不能为空</string>
+    <string name="employee_name_null">员工姓名不能为空</string>
+    <string name="sign_null">签名不能为空</string>
+    <string name="result_null">查询结果为空，无法导出</string>
     <string name="sample_not_found">根据此ID不能检测到型号名,请确认!</string>
     <string name="clear_all">全部清除</string>
+
 </resources>

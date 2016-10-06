@@ -1,5 +1,8 @@
 package com.lge.samplemanagement2.manage;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.lge.samplemanagement2.R;
 
 import com.lge.samplemanagement2.activity.LendOutActivity;
@@ -26,6 +29,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,6 +54,12 @@ public class ModelFragment extends Fragment {
 	private ContentValues sample_values;
 
 	private final int result_ok = -1;
+	
+	private AutoCompleteTextView autoSampleName;
+	private Cursor cursorSample;
+	private DBManager dbMW;
+	private DBOpenHandler dbOHW;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
@@ -69,11 +80,22 @@ public class ModelFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
+		Context context2 = getActivity();
+		dbOHW = new DBOpenHandler(context2);
+		dbMW = new DBManager(context2);
+		
+		
 		btn_ok = (Button) getActivity().findViewById(R.id.bnedit1);
 		btn_cancle = (Button) getActivity().findViewById(R.id.bnCancel1);
-		editText1 = (EditText) getActivity().findViewById(R.id.ModelEditText);
+		// editText1 = (EditText)
+		// getActivity().findViewById(R.id.ModelEditText);
 		editText2 = (EditText) getActivity().findViewById(R.id.ModelIDEditText);
 		imageScan = (ImageView) getActivity().findViewById(R.id.Scan);
+		autoSampleName = (AutoCompleteTextView) getActivity().findViewById(
+				R.id.ModelEditText);
+		autoSampleName.setDropDownHeight(500);  
+		autoSampleName.setThreshold(1);
+		initAutoModelName();
 			
 		// 扫描添加Sample ID
 		imageScan.setOnClickListener(new OnClickListener() {
@@ -95,14 +117,17 @@ public class ModelFragment extends Fragment {
 				DBManager sampleManage = new DBManager(context);
 				int editText1_length;
 				int editText2_length;
-				editText1_length = editText1.length();
+				editText1_length = autoSampleName.length();
 				editText2_length = editText2.length();
 				if (editText2_length == 0) {
-					Toast.makeText(getActivity(), "请输入Sample ID", 0).show();
+					// Toast.makeText(getActivity(), "请输入Sample ID", 0).show();
+					Toast.makeText(getActivity(), R.string.toast_Sample_ID, 0)
+							.show();
 				} else if (editText1_length == 0) {
-					Toast.makeText(getActivity(), "请输入Sample Name", 0).show();
+					Toast.makeText(getActivity(), R.string.toast_Sample_Name, 0)
+							.show();
 				} else {
-				sample_name = editText1.getText().toString();
+				sample_name = autoSampleName.getText().toString();
 				sample_id = editText2.getText().toString();
 				sample_values = new ContentValues();
 				sample_values.put("phone_id", sample_id);
@@ -112,9 +137,13 @@ public class ModelFragment extends Fragment {
 				long i = checkRepeSample(key1);
 				if (i == 0) {
 					sampleManage.insertDataToSample(sample_values);
-				Toast.makeText(getActivity(), "数据插入成功", 0).show();
+						Toast.makeText(getActivity(),
+								R.string.toast_Sample_manage1, 0).show();
+						autoSampleName.setText(null);
+						editText2.setText(null);
 				} else {
-					Toast.makeText(getActivity(), "数据已存在，请检查", 0).show();
+						Toast.makeText(getActivity(),
+								R.string.toast_Sample_manage2, 0).show();
 				}
 				}
 			}
@@ -126,15 +155,17 @@ public class ModelFragment extends Fragment {
 			public void onClick(View v) {
 				int editText1_length;
 				int editText2_length;
-				editText1_length = editText1.length();
+				editText1_length = autoSampleName.length();
 				editText2_length = editText2.length();
 				if (editText1_length == 0 && editText2_length == 0) {
-					Toast.makeText(getActivity(), "还未输入数据，不需清除", 0).show();
+					Toast.makeText(getActivity(),
+							R.string.toast_Sample_manage3, 0).show();
 				} else {
-					editText1.setText(null);
+					autoSampleName.setText(null);
 					editText2.setText(null);
 
-					Toast.makeText(getActivity(), "数据已清除", 0).show();
+					Toast.makeText(getActivity(),
+							R.string.toast_Sample_manage4, 0).show();
 				}
 			}
 		});
@@ -147,7 +178,8 @@ public class ModelFragment extends Fragment {
 		try {
 			count = sampleManage2.queryDataCount(sample, "phone_id", key);
 		} catch (Exception e) {
-			Toast.makeText(getActivity(), "数据异常", 0).show();
+			Toast.makeText(getActivity(), R.string.toast_Sample_manage5, 0)
+					.show();
 		} finally {
 		}
 		return count;
@@ -169,4 +201,21 @@ public class ModelFragment extends Fragment {
 		}
 
 	}	
+
+	void initAutoModelName() {
+		 Set<String> set = new HashSet<String>();  
+		 cursorSample = dbMW.queryAllDataSample();
+		 //cursorSample.moveToFirst();
+		 String t;
+		while (cursorSample.moveToNext()) {
+			t = cursorSample.getString(cursorSample
+					.getColumnIndex(dbOHW.SAMPLE_TABLE_KEY[1]));
+	    	 set.add(t);
+	     }
+	     String[] s = (String[])set.toArray(new String[set.size()]);
+	  	     	     	     	     
+		ArrayAdapter<String> a = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_dropdown_item_1line, s);
+	     autoSampleName.setAdapter(a);
+	}
 }

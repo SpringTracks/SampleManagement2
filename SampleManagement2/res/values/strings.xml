@@ -2,22 +2,19 @@
 <resources>
 
     <string name="app_name">SAM</string>
-	<string name="app_name2">Manage</string>
+    <string name="app_name2">Manage</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    
     <string name="lendout">Lend</string>
     <string name="returnback">Return</string>
     <string name="searchinfo">Search</string>
-
     <string name="menu_settings">Settings</string>
-    
     <string name="scan_text">Plrease focus code\nin rect frame</string>
     <string name="phone_id">Phone ID</string>
     <string name="model_name">Model Name</string>
     <string name="ad_id">AD ID</string>
     <string name="user_name">User Name</string>
-    <string name="expired_date">Expected Date</string>
+    <string name="expired_date">Return Date</string>
     <string name="sign">Signature</string>
     <string name="lend_save">Save</string>
     <string name="sign_info">Signature Information</string>
@@ -28,6 +25,7 @@
     <string name="return_confirm">return confirm</string>
     <string name="othernote">Input phone id and click ok  if you can not scan it.</string>
     <string name="imge_view_lend_user">It should display user signature</string>
+<<<<<<< HEAD
    <string name="people_name_change">Search according to AD</string>
    
 <string name="memo">Remark</string>
@@ -38,58 +36,74 @@
    <string name="employee_name">Name: </string>
    
 <!-- wjm -->
+=======
+    <string name="people_name_change">Search according to AD</string>
+    <string name="model_name_change">Search according to phone ID</string>
+    <string name="return_date_input">Choose the return date</string>
+    <string name="memo">Remark</string>
+    <string name="employee_id">AD: </string>
+    <string name="employee_name">Name: </string>
+
+    <!-- wjm -->
+>>>>>>> ec563b062a521dbce16d15cebc116a895745f210
     <string name="one_export">EXPORT ALL</string>
     <string name="model_import">Sample Import</string>
     <string name="user_import">Employee Import</string>
     <string name="lend_import">Lend Info. Import</string>
     <string name="user_manage">Sample/Employee MANAGE</string>
-    
-<string name="import_success">Import success</string>
+    <string name="import_success">Import success</string>
     <string name="import_Exception">Import Exception or empty excel, please check excel file</string>
     <string name="export_success">Export success</string>
     <string name="select_wrong_file">select wrong file, please reselect right file to import: %s</string>
-	<string name="xls_support">only support <font color="#ff0000"><b>xls</b></font> file, please save file as xls format</string>
-	
-	    <string name="model_name_manage">Sample Name</string>
-	<string name="model_id">Sample ID：</string>
-	<string name="update">Add</string>
-	<string name="cancel">Cancel</string>
-	
-	<string name="user_name_manage">Name</string>
-	<string name="user_email">AD ：</string>	
-	
-<string name="welcome1">Sample Manage</string>
-<string name="welcome2">Employee Manage</string>
-<string name="prompt_sample">Input Phone ID by scan</string>
-<string name="help_welcome1">Welcome to use Sample Management System</string>
-<string name="help_first">1 . Please go to SD/SampleManagement file find Export results</string>
-<!-- wjm  -->
-	<string name="icon1">Lend</string>
-	<string name="icon2">Return</string>
-	<string name="icon3">Search</string>
-	
-	<string name="MAIN">MAIN</string>
-	
-	<!-- add by min.pang 2016/09/08  -->
-	<string name="query">Query</string>
-	<string name="id">ID</string>
-	<string name="more">More</string>
-	<string name="showAll">Show All</string>
-	<string name="clear">Clear</string>
-	<string name="export">Export</string>
-	<string name="search">Search</string>
+    <string name="xls_support">only support <font color="#ff0000"><b>xls</b></font> file, please save file as xls format</string>
+    <string name="model_name_manage">Sample Name</string>
+    <string name="model_id">Sample ID：</string>
+    <string name="update">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="user_name_manage">Name</string>
+    <string name="user_email">AD ：</string>
+    <string name="welcome1">Sample Manage</string>
+    <string name="welcome2">Employee Manage</string>
+    <string name="prompt_sample">Input Phone ID by scan</string>
+    <string name="help_welcome1">Welcome to use Sample Management System</string>
+    <string name="help_first">1 . Please go to SD/SampleManagement file find Export results</string>
+    <string name="toast_Sample_ID">Please input Sample ID</string>
+    <string name="toast_Sample_Name">Please input Sample Name</string>
+    <string name="toast_Sample_manage1">Data has been insert successfully</string>
+    <string name="toast_Sample_manage2">Data already exists, please check!</string>
+    <string name="toast_Sample_manage3">Data is empty</string>
+    <string name="toast_Sample_manage4">Data has been cleared.</string>
+    <string name="toast_Sample_manage5">Data is abnormal </string>
+    <string name="toast_user_AD">Please input AD</string>
+    <string name="toast_user_Name">Please input User Name</string>
+
+    <!-- wjm -->
+    <string name="icon1">Lend</string>
+    <string name="icon2">Return</string>
+    <string name="icon3">Search</string>
+    <string name="MAIN">MAIN</string>
+
+    <!-- add by min.pang 2016/09/08 -->
+    <string name="query">Query</string>
+    <string name="id">ID</string>
+    <string name="more">More</string>
+    <string name="showAll">Show All</string>
+    <string name="clear">Clear</string>
+    <string name="export">Export</string>
+    <string name="search">Search</string>
     <string name="sample_manage">Sample MANAGE</string>
-	<string name="employee_manage">Employee MANAGE</string>
-	<string name="save_successful">Save Successfully!</string>
-	<string name="save_fail">Fail to save!</string>
-	<string name="repeat_record">Repeate Record!</string>
-	<string name="sample_id_null">Sample ID cannot be null</string>
-	<string name="model_name_null">Model Name cannot be null</string>
-	<string name="expected_date_null">Expected date cannot be null</string>
-	<string name="ad_null">AD cannot be null</string>
-	<string name="employee_name_null">Employee name cannot be null</string>
-	<string name="sign_null">Signature cannot be null</string>
-	<string name="result_null">Query result is null,cannot export</string>
+    <string name="employee_manage">Employee MANAGE</string>
+    <string name="save_successful">Save Successfully!</string>
+    <string name="save_fail">Fail to save!</string>
+    <string name="repeat_record">Repeate Record!</string>
+    <string name="sample_id_null">Sample ID cannot be null</string>
+    <string name="model_name_null">Model Name cannot be null</string>
+    <string name="expected_date_null">Expected date cannot be null</string>
+    <string name="ad_null">AD cannot be null</string>
+    <string name="employee_name_null">Employee name cannot be null</string>
+    <string name="sign_null">Signature cannot be null</string>
+    <string name="result_null">Query result is null,cannot export</string>
     <string name="sample_not_found">Cannot find the model name according to the ID, please check it!</string>
     <string name="clear_all">Clear All</string>
+
 </resources>
