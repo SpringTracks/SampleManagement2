@@ -44,7 +44,7 @@ public  class ReturnActivity   extends Activity {
         getActionBar().setTitle(R.string.icon2);
         setContentView(R.layout.activity_return);
         
-        final EditText input = (EditText) findViewById(R.id.editText);
+        final EditText input = (EditText) findViewById(R.id.editText2);
         dbReturn = new DBManager(ReturnActivity.this);
        //DBManager mdbm= new DBManager(ReturnActivity.this);
         
@@ -78,7 +78,7 @@ public  class ReturnActivity   extends Activity {
 				intent.setClass(ReturnActivity.this,MipcaActivityCapture.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
-				Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
+			//	Toast.makeText(getApplicationContext(),"Plz start ReturnActivity",Toast.LENGTH_SHORT).show();
                 
              //测试签名及返回   
 //                Intent intent = new Intent();
@@ -148,9 +148,9 @@ public  class ReturnActivity   extends Activity {
                 personTextView.setText(null);
 		        TextView rTextView = (TextView) findViewById(R.id.textView9);
 		        rTextView.setText(null);
-		        TextView imeiEt = (TextView) findViewById(R.id.editText);
+		        TextView imeiEt = (TextView) findViewById(R.id.editText2);
 			    imeiEt.setText(null);
-			    Toast.makeText(getApplicationContext(),"Return success!",Toast.LENGTH_SHORT).show();
+			    Toast.makeText(getApplicationContext(),R.string.Return_success,Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -189,7 +189,7 @@ public  class ReturnActivity   extends Activity {
 //			System.out.println("222222222222222222");
 			    Bundle bundle = data.getExtras();
 			     imei = bundle.getString("result");
-		    	TextView imeiEt = (TextView) findViewById(R.id.editText);
+		    	TextView imeiEt = (TextView) findViewById(R.id.editText2);
 			    imeiEt.setText(imei);
 
 //查询借出信息并显示

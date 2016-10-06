@@ -21,14 +21,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 public class Sign extends Activity {
-	private ImageView imageSign;
+//	private ImageView imageSign;
 	private PaintView mView;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sign);
 
-		imageSign = (ImageView) findViewById(R.id.iv_sign);
 		FrameLayout frameLayout = (FrameLayout) findViewById(R.id.tablet_view);
 
 		mView = new PaintView(this);
@@ -50,7 +49,7 @@ public class Sign extends Activity {
 			@Override
 			public void onClick(View v) {
 				Bitmap imageBitmap = mView.getCachebBitmap();
-				imageSign.setImageBitmap(imageBitmap);
+//				imageSign.setImageBitmap(imageBitmap);
 				byte[] imgbyte = img(imageBitmap);
 				
 //				Intent resultIntent = new Intent();
@@ -59,7 +58,7 @@ public class Sign extends Activity {
 //				bundle.putParcelable("bitmap", barcode);
 //				resultIntent.putExtra("result", imgbyte);
 	//			this.setResult(RESULT_OK, resultIntent);
-				System.out.println("点击了确定");
+				System.out.println("111111111");
 				Intent resultIntent = new Intent();
 				Bundle bundle = new Bundle();
 				bundle.putByteArray("result", imgbyte);
