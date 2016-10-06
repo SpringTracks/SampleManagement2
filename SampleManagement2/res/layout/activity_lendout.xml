@@ -91,7 +91,6 @@
                     android:layout_marginTop="@dimen/textview_top_margin"
                     android:layout_weight="2"
                     android:text="@string/model_name"
-                    android:ellipsize="end"
                     android:textSize="@dimen/text_font_size" >
                 </TextView>
 
@@ -100,6 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:hint="@string/model_name_change"
                     android:inputType="none" >
                 </EditText>
             </LinearLayout>

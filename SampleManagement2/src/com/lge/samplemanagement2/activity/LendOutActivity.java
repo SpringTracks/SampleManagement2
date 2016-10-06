@@ -213,7 +213,7 @@ public class LendOutActivity extends Activity {
 				if (CheckEditIsNullOrNot() == false) {
 				    if (CheckReLendOutRecord(mSampleID.getText().toString()) == 0) {
 				if(getDBManager().insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, cv)>0) {
-					        ClearSampleEdit();
+			        ClearAllRecordEdit();
 					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_successful),Toast.LENGTH_SHORT).show();
 				} else {
 					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_fail),Toast.LENGTH_SHORT).show();
