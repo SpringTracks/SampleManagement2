@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lge.samplemanagement2.R;
 
@@ -88,6 +89,8 @@ public class FileExplorerActivity extends Activity {
 						// 再次更新ListView
 						inflateListView(currentFiles);
 					}
+					else
+						Toast.makeText(FileExplorerActivity.this,R.string.root_dir,Toast.LENGTH_SHORT).show();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -121,7 +124,7 @@ public class FileExplorerActivity extends Activity {
 		// 为ListView设置Adapter
 		listView.setAdapter(simpleAdapter);
 		try {
-			textView.setText(currentParent.getCanonicalPath());
+			textView.setText("    "+currentParent.getCanonicalPath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

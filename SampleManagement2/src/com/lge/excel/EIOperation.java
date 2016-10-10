@@ -30,8 +30,8 @@ public class EIOperation {
 	// initData, db to excel, Export-1
 	public void writeToExcel(Cursor c, String tableName, String[] columnName) {
 		// create Excel file /SampleManagement/tableName.xls
-		String filepath = JxlExcelUtils.initExcel(tableName, columnName);
-		JxlExcelUtils.writeObjListToExcel(cursorToArrayList(c), filepath, context);
+		String filepath = PoiExcelUtils.initExcel(tableName, columnName);
+		PoiExcelUtils.writeObjListToExcel(cursorToArrayList(c), filepath, context);
 	}
 
 	// convert cursor to ArrayList type, Export-2
@@ -67,7 +67,7 @@ public class EIOperation {
 		// String filePath =
 		// JxlExcelUtils.getSDPath().toString()+"/SampleManagement/"+table+".xls";
 		Log.i(TAG, "zlp--read excel path = " + filePath);
-		ArrayList<ArrayList<String>> excelInfo = JxlExcelUtils.readFromExcel(filePath);
+		ArrayList<ArrayList<String>> excelInfo = PoiExcelUtils.readFromExcel(filePath);
 		String key = "";
 		long rowId = 0;
 		for (int i = 0; i < excelInfo.size(); i++) {
@@ -76,7 +76,7 @@ public class EIOperation {
 			for (int j = 0; j < rowExcelInfo.size(); j++) {
 				String sign = rowExcelInfo.get(j).toString();
 
-				// if insert data to LendTable£¬translate signature from string
+				// if insert data to LendTable, translate signature from string
 				// to byte then insert
 				if (table.equals(DBOpenHandler.LEND_TABLE_NAME) && j == rowExcelInfo.size()-1) {
 					try {

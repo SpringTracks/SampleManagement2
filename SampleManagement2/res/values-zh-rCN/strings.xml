@@ -34,11 +34,12 @@
     <string name="user_import">用户导入</string>
     <string name="lend_import">借用信息导入</string>
     <string name="user_manage">型号/人员管理</string>
-    <string name="import_success">导入成功</string>
+    <string name="import_success">导入成功至 SampleManagement 文件夹</string>
     <string name="import_Exception">导入异常或空的excel，请检查excel文件</string>
     <string name="export_success">导出成功</string>
     <string name="select_wrong_file">文件选择错误，请选择正确的文件导入：%s</string>
     <string name="xls_support">仅支持<font color="#ff0000"><b>xls</b></font> 格式文件，请保存文件为xls格式</string>
+    <string name="root_dir">已经返回到根目录</string>
     <string name="model_name_manage">型号名</string>
     <string name="model_id">手机编号：</string>
     <string name="update">添加</string>
