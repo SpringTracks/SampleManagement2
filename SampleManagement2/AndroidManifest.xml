@@ -36,7 +36,8 @@
         </activity>
         <activity android:name=".activity.LendOutActivity" >
         </activity>
-        <activity android:name=".activity.Sign" >
+        <activity android:name=".activity.Sign"
+           android:screenOrientation="portrait"> 
         </activity>
         <activity android:name=".activity.FileExplorerActivity" >
         </activity>
