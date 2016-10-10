@@ -31,13 +31,13 @@ import android.widget.Toast;
 public  class ReturnActivity   extends Activity {
 
 	protected static final int SCANNIN_GREQUEST_CODE = 1;
-	private  DataReturn dbReturn ;
-    private  String phonename;
-    private String person;
-    private String personid;
-    private  String date;
-    private String  imei;
-    private  String nowString;
+	private  DataReturn dbReturn=null ;
+    private  String phonename =null;
+    private String person =null;
+    private String personid =null;
+    private  String date =null;
+    private String  imei=null;
+    private  String nowString=null;
     
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,10 +98,10 @@ public  class ReturnActivity   extends Activity {
             	 imei = input.getText().toString();
              Cursor cursor =dbReturn. queryLendByPhoneId(imei);
              if (cursor.getCount()==0) {
-          	   Toast.makeText(getApplicationContext(),"找不到对应记录，请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+          	   Toast.makeText(getApplicationContext(),R.string.Return_warning2,Toast.LENGTH_SHORT).show();
 			} 
 			  if  (cursor==null){
-			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+			    	Toast.makeText(getApplicationContext(),R.string.Return_warning2,Toast.LENGTH_SHORT).show();
 			    }else{
 			    	while (cursor.moveToNext()) {
              phonename = cursor.getString(cursor.getColumnIndex("model_name"));
@@ -117,7 +117,7 @@ public  class ReturnActivity   extends Activity {
              personTextView.setText(person); 
                 TextView rTextView = (TextView) findViewById(R.id.textView9);
                 rTextView.setText(nowString);
-                System.out.println("点击了确定"+imei);
+              //  System.out.println("点击了确定"+imei);
 			    	}
 
 			    	cursor.close();
@@ -129,6 +129,10 @@ public  class ReturnActivity   extends Activity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            	if (personid==null) {
+               	   Toast.makeText(getApplicationContext(),R.string.Return_warning1,Toast.LENGTH_SHORT).show();
+     			} else {
+			
             	ContentValues cv = new ContentValues();
             	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[0],imei);
             	cv.put(DBOpenHandler.LEND_HISTORY_TABLE_KEY[1],phonename);
@@ -151,7 +155,9 @@ public  class ReturnActivity   extends Activity {
 		        TextView imeiEt = (TextView) findViewById(R.id.editText2);
 			    imeiEt.setText(null);
 			    Toast.makeText(getApplicationContext(),R.string.Return_success,Toast.LENGTH_SHORT).show();
-                
+			    personid =null;
+			    //清除persionid 用于下次判断是否点击了OK或扫描
+				}  
             }
         });
 	}
@@ -196,10 +202,10 @@ public  class ReturnActivity   extends Activity {
                 Cursor cursor =dbReturn. queryLendByPhoneId(imei);
                 //判断数据是否存在
                if (cursor.getCount()==0) {
-            	   Toast.makeText(getApplicationContext(),"找不到对应记录，请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+            	   Toast.makeText(getApplicationContext(),R.string.Return_warning2,Toast.LENGTH_SHORT).show();
 			} 
 			    if  (cursor==null){
-			    	Toast.makeText(getApplicationContext(),"请检查条码值是否正确",Toast.LENGTH_SHORT).show();
+			    	Toast.makeText(getApplicationContext(),R.string.Return_warning2,Toast.LENGTH_SHORT).show();
 			    }else{
 			    	while (cursor.moveToNext()) {
 			  //  	Log.e("tag", "1111111111111111111111111111111111111");

@@ -26,7 +26,9 @@
     <string name="othernote">Input phone id and click ok  if you can not scan it.</string>
     <string name="imge_view_lend_user">It should display user signature</string>
        <string name="Return_success">Return success</string>
-   
+       <string name="Return_warning1">Please click scan or OK before click Return Confirm</string>
+       <string name="Return_warning2">Can not find this record,please check phone id</string>
+
 <!-- wjm -->
 
     <string name="people_name_change">Search according to AD</string>
