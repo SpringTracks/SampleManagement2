@@ -37,7 +37,13 @@
   <color name="red">#FF0000</color>
 
   <!-- add by min.pang 2016/09/08 -->
+<drawable name="d_transparent">#00000000</drawable>
 
+<drawable name="d_gainsboro">#DCDCDC</drawable><!--淡灰色 -->
+
+<color name="gainsboro">#DCDCDC</color><!--淡灰色 -->
+
+<color name="darkgray">#A9A9A9</color><!--暗灰色 -->
 
 <color name="ivory">#FFFFF0</color><!--象牙色 -->
 
@@ -141,7 +147,7 @@
 
 <color name="plum">#DDA0DD</color><!--洋李色 -->
 
-<color name="gainsboro">#DCDCDC</color><!--淡灰色 -->
+
 
 <color name="crimson">#DC143C</color><!--暗深红色 -->
 
@@ -186,8 +192,6 @@
 <color name="greenyellow">#ADFF2F</color><!--黄绿色 -->
 
 <color name="lightblue">#ADD8E6</color><!--亮蓝色 -->
-
-<color name="darkgray">#A9A9A9</color><!--暗灰色 -->
 
 <color name="brown">#A52A2A</color><!--褐色 -->
 

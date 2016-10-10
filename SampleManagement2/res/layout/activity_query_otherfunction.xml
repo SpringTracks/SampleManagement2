@@ -9,22 +9,38 @@
      
        <Button
             android:id="@+id/showAll"
-            android:layout_width="75dp"
+            android:layout_width="85dp"
             android:layout_height="33dp"
             android:text="@string/showAll"
-            android:textSize="12.5sp"/>
+            android:background="@drawable/button_selector"
+            android:textSize="15sp"
+            android:textStyle="bold"
+/>
+       <!-- android:textSize="12.5sp"  -->
+            
        <Button
             android:id="@+id/clear"
             android:layout_width="60dp"
             android:layout_height="33dp"
             android:text="@string/clear"
-            android:textSize="12.5sp"/>
+            android:background="@drawable/button_selector"
+            android:textSize="15sp"
+            android:textStyle="bold"
+/>
+       <!-- android:textSize="12.5sp"  --> 
+            
        <Button
             android:id="@+id/export"
             android:layout_width="65dp"
             android:layout_height="33dp"
             android:text="@string/export"
-            android:textSize="12.5sp"/>
+            android:background="@drawable/button_selector"
+            android:textSize="15sp"
+            android:textStyle="bold"
+/>
+       
+<!-- android:textSize="12.5sp"  -->
+            
        
 </LinearLayout>
 
