@@ -309,6 +309,7 @@
             android:layout_marginLeft="@dimen/sub_layout_magin_left"
             android:layout_marginStart="@dimen/sub_layout_magin_left"
             android:layout_marginTop="@dimen/button_magin_top"
+            android:background="@drawable/button_selector"
             android:text="@string/clear_all"
             android:textSize="@dimen/button_font_size" >
         </Button>
@@ -321,6 +322,7 @@
             android:layout_alignRight="@id/LinerLayoutSign"
             android:layout_below="@id/LinerLayoutSign"
             android:layout_marginTop="@dimen/button_magin_top"
+            android:background="@drawable/button_selector"
             android:text="@string/lend_save"
             android:textSize="@dimen/button_font_size" >
         </Button>
