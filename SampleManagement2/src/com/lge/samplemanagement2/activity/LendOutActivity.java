@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -258,7 +259,17 @@ public class LendOutActivity extends Activity {
 		}
 		super.onDestroy();		
 	}
-	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		Log.i(TAG,"onConfigurationChanged!!!");	
+	super.onConfigurationChanged(newConfig);
+	if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+	// land do nothing is ok
+		Log.i(TAG,"ORIENTATION_LANDSCAPE");
+	} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+		Log.i(TAG,"ORIENTATION_PORTRAIT");
+	}
+	}
 	//Get response from scan activity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
