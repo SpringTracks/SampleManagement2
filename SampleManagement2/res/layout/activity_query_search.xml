@@ -27,7 +27,7 @@
         android:orientation="horizontal">
     <TextView 
                 
-                android:text="Model Name" 
+                android:text="@string/model_name"
                 android:layout_width="105dip"
                 android:layout_height="wrap_content" 
                 android:gravity="center"
@@ -50,7 +50,7 @@
          android:orientation="horizontal">
          <TextView 
               
-                android:text="AD ID" 
+                android:text="@string/ad_id"
                 android:layout_width="105dip"
                 android:layout_height="wrap_content" 
                 android:gravity="center"
