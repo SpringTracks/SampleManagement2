@@ -47,7 +47,7 @@
     <string name="user_manage">Sample/Employee MANAGE</string>
     <string name="import_success">Import success</string>
     <string name="import_Exception">Import Exception or empty excel, please check excel file</string>
-    <string name="export_success">Export success to /SampleManagement/ folder</string>
+    <string name="export_success">Export success to /SampleManagement/%s</string>
     <string name="select_wrong_file">select wrong file, please reselect right file to import: %s</string>
     <string name="xls_support">only support <font color="#ff0000"><b>xls</b></font> file, please save file as xls format</string>
 	<string name="root_dir">already back to the root dir</string>

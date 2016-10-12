@@ -157,7 +157,7 @@ super.onOptionsItemSelected(item);
 			Cursor ec = dbm.queryAllDataEmployee();
             operation.writeToExcel(ec,employee, key_employee);
 			ec.close();
-            Toast.makeText(MainActivity.this,R.string.export_success,Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,getString(R.string.export_success,""),Toast.LENGTH_SHORT).show();
             break;
         case R.id.import_model:	
 				Intent import_sample = new Intent(MainActivity.this, FileExplorerActivity.class);
@@ -189,40 +189,46 @@ super.onOptionsItemSelected(item);
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode){
-			case REQUEST_SAMPLE:
-				if (resultCode==RESULT_OK) {
-					String import_sample_path = data.getStringExtra("filePath");
-						Log.i("zlp-", "import_sample_path=" + import_sample_path);
-					if (import_sample_path.contains(sample + ".xls") || import_sample_path.contains(sample + ".xlsx")) {
-							long rowId = operation.insertToDb(sample, key_sample, import_sample_path);
-							operation.toast(rowId);
-						} else
-						Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file, "SampleTable.xls or SampleTable.xlsx"), Toast.LENGTH_SHORT).show();
-					}
-				break;
-			case REQUEST_EMPLOYEE:
-				if (resultCode==RESULT_OK) {
-					String import_employee_path = data.getStringExtra("filePath");
-					Log.i("zlp-", "import_employee_path=" + import_employee_path);
-					if (import_employee_path.contains(employee + ".xls") || import_employee_path.contains(employee + ".xlsx")) {
-						long rowId = operation.insertToDb(employee, key_employee, import_employee_path);
-						operation.toast(rowId);
-					} else
-						Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file, "EmployeeTable.xls or EmployeeTable.xlsx"), Toast.LENGTH_SHORT).show();
-				}
-				break;
-			case REQUEST_LEND:
-				if (resultCode==RESULT_OK) {
-					String import_lend_path = data.getStringExtra("filePath");
-					Log.i("zlp-", "import_lend_path=" + import_lend_path);
-					if (import_lend_path.contains(lend + ".xls") || import_lend_path.contains(lend + ".xlsx")) {
-						long rowId = operation.insertToDb(lend, key_lend, import_lend_path);
-						operation.toast(rowId);
-					} else
-						Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file, "LendTable.xls or LendTable.xlsx"), Toast.LENGTH_SHORT).show();
-				}
-				break;
+		switch (requestCode) {
+		case REQUEST_SAMPLE:
+			if (resultCode == RESULT_OK) {
+				String import_sample_path = data.getStringExtra("filePath");
+				Log.i("zlp-", "import_sample_path=" + import_sample_path);
+				// if (import_sample_path.contains(sample + ".xls") || import_sample_path.contains(sample + ".xlsx")) {
+				if (import_sample_path.contains(sample + ".xls") && import_sample_path.endsWith(".xls")) {
+					long rowId = operation.insertToDb(sample, key_sample, import_sample_path);
+					operation.toast(rowId);
+				} else
+					Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file, "SampleTable.xls"),
+							Toast.LENGTH_SHORT).show();
+			}
+			break;
+		case REQUEST_EMPLOYEE:
+			if (resultCode == RESULT_OK) {
+				String import_employee_path = data.getStringExtra("filePath");
+				Log.i("zlp-", "import_employee_path=" + import_employee_path);
+//				if (import_employee_path.contains(employee + ".xls") || import_employee_path.contains(employee + ".xlsx")) {
+				if (import_employee_path.contains(employee + ".xls") && import_employee_path.endsWith(".xls")) {
+					long rowId = operation.insertToDb(employee, key_employee, import_employee_path);
+					operation.toast(rowId);
+				} else
+					Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file, "EmployeeTable.xls"),
+							Toast.LENGTH_SHORT).show();
+			}
+			break;
+		case REQUEST_LEND:
+			if (resultCode == RESULT_OK) {
+				String import_lend_path = data.getStringExtra("filePath");
+				Log.i("zlp-", "import_lend_path=" + import_lend_path);
+				// if (import_lend_path.contains(lend + ".xls") || import_lend_path.contains(lend + ".xlsx")) {
+				if (import_lend_path.contains(lend + ".xls") && import_lend_path.endsWith(".xls")) {
+					long rowId = operation.insertToDb(lend, key_lend, import_lend_path);
+					operation.toast(rowId);
+				} else
+					Toast.makeText(MainActivity.this, getString(R.string.select_wrong_file, "LendTable.xls"),
+							Toast.LENGTH_SHORT).show();
+			}
+			break;
 		}
 	}
 

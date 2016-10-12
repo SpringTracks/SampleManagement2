@@ -56,7 +56,7 @@ public class FileExplorerActivity extends Activity {
 				if (currentFiles[position].isFile()) {// zlp
 					Intent i = new Intent();
 					String filePath = currentFiles[position].getPath();
-					Log.i("zlp--", "selected filePath=" + filePath);
+//					Log.i("zlp--", "selected filePath=" + filePath);
 					i.putExtra("filePath", filePath);
 					FileExplorerActivity.this.setResult(RESULT_OK, i);
 					FileExplorerActivity.this.finish();

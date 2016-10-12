@@ -1,18 +1,22 @@
 package com.lge.samplemanagement2.activity;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import com.lge.samplemanagement2.R;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,9 +52,13 @@ public class Sign extends Activity {
 
 			@Override
 			public void onClick(View v) {
+//				Bitmap imageBitmap = mView.getCachebBitmap();
 				Bitmap imageBitmap = mView.getCachebBitmap();
+				System.out.println("输出压缩前大小"+getBitmapSize(imageBitmap));//输出压缩前大小
+				Bitmap bt3 = ratio(imageBitmap);
+				System.out.println("输出压缩hou大小"+getBitmapSize(bt3));//输出压缩hou大小
 //				imageSign.setImageBitmap(imageBitmap);
-				byte[] imgbyte = img(imageBitmap);
+				byte[] imgbyte = img(bt3);
 				
 //				Intent resultIntent = new Intent();
 //				Bundle bundle = new Bundle();
@@ -191,4 +199,52 @@ public class Sign extends Activity {
 	     bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 	     return baos.toByteArray();
 	}
+	/** 
+	  * 得到bitmap的大小 
+	  */  
+	 @SuppressLint("NewApi") public static int getBitmapSize(Bitmap bitmap) {  
+	     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {    //API 19  
+	         return bitmap.getAllocationByteCount();  
+	     }  
+	     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {//API 12  
+	         return bitmap.getByteCount();  
+	     }  
+	     // 在低版本中用一行的字节x高度  
+	     return bitmap.getRowBytes() * bitmap.getHeight();                //earlier version  
+	 }  
+	 
+	 public Bitmap ratio(Bitmap image) {  
+	        ByteArrayOutputStream os = new ByteArrayOutputStream();  
+	        image.compress(Bitmap.CompressFormat.PNG, 100, os);  
+	        if( os.toByteArray().length / 1024>1024) {//判断如果图片大于1M,进行压缩避免在生成图片（BitmapFactory.decodeStream）时溢出      
+	            os.reset();//重置baos即清空baos    
+	            image.compress(Bitmap.CompressFormat.PNG, 50, os);//这里压缩50%，把压缩后的数据存放到baos中    
+	        }    
+	        ByteArrayInputStream is = new ByteArrayInputStream(os.toByteArray());    
+	        BitmapFactory.Options newOpts = new BitmapFactory.Options();    
+	        //开始读入图片，此时把options.inJustDecodeBounds 设回true了    
+	        newOpts.inJustDecodeBounds = true;  
+	        newOpts.inPreferredConfig = Config.RGB_565;  
+	        Bitmap bitmap = BitmapFactory.decodeStream(is, null, newOpts);    
+	        newOpts.inJustDecodeBounds = false;    
+	        int w = newOpts.outWidth;    
+	        int h = newOpts.outHeight;    
+	        float hh = 240f;// 设置高度为240f时，可以明显看到图片缩小了  
+	        float ww = 160f;// 设置宽度为120f，可以明显看到图片缩小了  
+	        //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可    
+	        int be = 1;//be=1表示不缩放    
+	        if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放    
+	            be = (int) (newOpts.outWidth / ww);    
+	        } else if (w < h && h > hh) {//如果高度高的话根据宽度固定大小缩放    
+	            be = (int) (newOpts.outHeight / hh);    
+	        }    
+	        if (be <= 0) be = 1;    
+	        newOpts.inSampleSize = be;//设置缩放比例    
+	        //重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了    
+	        is = new ByteArrayInputStream(os.toByteArray());    
+	        bitmap = BitmapFactory.decodeStream(is, null, newOpts);  
+	        //压缩好比例大小后再进行质量压缩  
+//	      return compress(bitmap, maxSize); // 这里再进行质量压缩的意义不大，反而耗资源，删除  
+	        return bitmap;  
+	    }
 }

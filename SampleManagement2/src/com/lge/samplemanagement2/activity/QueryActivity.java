@@ -118,7 +118,7 @@ public class QueryActivity extends Activity{
 				else {
 					cursorLend.moveToPosition(-1);
 					operation.writeToExcel(cursorLend, exportName, DBOpenHandler.LEND_TABLE_KEY);
-					Toast.makeText(getApplicationContext(), R.string.export_success, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), getString(R.string.export_success,exportName+".xls"), Toast.LENGTH_LONG).show();
 				}
 		    } 
 		});

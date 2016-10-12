@@ -52,10 +52,10 @@ public class EIOperation {
 					}
 				} else {
 					rowList.add(mCursor.getString(i));
-					System.out.print(mCursor.getString(i) + " ");
+//					System.out.print(mCursor.getString(i) + " ");
 				}
 			}
-			System.out.println("--zlp-" + TAG);
+//			System.out.println("--zlp-" + TAG);
 			dbList.add(rowList);
 		}
 		System.out.println("dbList.length= " + dbList.size());
@@ -66,7 +66,7 @@ public class EIOperation {
 	public long insertToDb(String table, String[] ColumnName, String filePath) {
 		// String filePath =
 		// JxlExcelUtils.getSDPath().toString()+"/SampleManagement/"+table+".xls";
-		Log.i(TAG, "zlp--read excel path = " + filePath);
+//		Log.i(TAG, "zlp--read excel path = " + filePath);
 		ArrayList<ArrayList<String>> excelInfo = PoiExcelUtils.readFromExcel(filePath);
 		String key = "";
 		long rowId = 0;
