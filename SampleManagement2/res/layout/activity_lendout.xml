@@ -251,11 +251,17 @@
             android:textSize="@dimen/text_font_size" >
         </TextView>
 
+<RelativeLayout
+            android:id="@+id/RelativeLayoutMemoEdit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"          
+            android:layout_below="@id/Memo"
+            android:layout_marginLeft="@dimen/sub_layout_magin_left"
+            android:layout_marginStart="@dimen/sub_layout_magin_left" >
         <EditText
             android:id="@+id/MemoEdit"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:layout_below="@+id/Memo"
             android:layout_marginEnd="@dimen/linearlayout_end_margin"
             android:layout_marginLeft="@dimen/sub_layout_magin_left"
             android:layout_marginRight="@dimen/linearlayout_right_margin"
@@ -264,11 +270,25 @@
             android:background="@drawable/color_edit_text" >
         </EditText>
 
+<ImageView
+                android:id="@+id/Delete_Memo"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/image_top_margin"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:visibility="gone"  
+                android:src="@drawable/delete_button">
+            </ImageView>
+        </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/LinerLayoutSign"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/MemoEdit"
+            android:layout_below="@id/RelativeLayoutMemoEdit"
             android:layout_marginEnd="@dimen/linearlayout_end_margin"
             android:layout_marginLeft="@dimen/sub_layout_magin_left"
             android:layout_marginRight="@dimen/linearlayout_right_margin"

@@ -11,6 +11,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,6 +69,10 @@ public class LendOutActivity extends Activity {
 
 	private Button mClearAllEdit;
 
+	private ImageView mDeleteMemoEdit;
+
+	boolean IsMemoDeleteable = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,6 +91,7 @@ public class LendOutActivity extends Activity {
 		mMemoEdit = (EditText)findViewById(R.id.MemoEdit);		
 		mModelSearch = (ImageView)findViewById(R.id.Search);
 		mClearAllEdit = (Button)findViewById(R.id.Clear_All_Button);
+		mDeleteMemoEdit = (ImageView) findViewById(R.id.Delete_Memo);
 		//用Calendar类获取系统当前日期传递给日期选择器
 		final Calendar ca = Calendar.getInstance();
 		final int currentyear = ca.get(Calendar.YEAR);
@@ -92,7 +99,8 @@ public class LendOutActivity extends Activity {
 		final int currentday = ca.get(Calendar.DAY_OF_MONTH);
 
 		//Init employee Adapter
-		mEmployeeAdapter = new EmployeeAdapter(this,null,false,getDBManager());
+		mEmployeeAdapter = new EmployeeAdapter(this, null, false,
+				getDBManager());
 		mEmployeeID.setThreshold(1);
 		mEmployeeID.setAdapter(mEmployeeAdapter);
 		
@@ -104,13 +112,17 @@ public class LendOutActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				//ViewHolder viewHolder = (ViewHolder)parent.getItemAtPosition(position);
+				// ViewHolder viewHolder =
+				// (ViewHolder)parent.getItemAtPosition(position);
 				//modelname.setText(viewHolder.tv_name.getText());
 				//osversion.setText(viewHolder.tv_osversion.getText());
-				Cursor cu = (Cursor)((ListView) parent).getItemAtPosition(position);
+				Cursor cu = (Cursor) ((ListView) parent)
+						.getItemAtPosition(position);
 				if(cu != null && cu.moveToPosition(position)) {
-					mEmployeeID.setText(cu.getString(cu.getColumnIndex("employee_id")));
-					mEmployeeName.setText(cu.getString(cu.getColumnIndex("employee_name")));
+					mEmployeeID.setText(cu.getString(cu
+							.getColumnIndex("employee_id")));
+					mEmployeeName.setText(cu.getString(cu
+							.getColumnIndex("employee_name")));
 				}
 			}
 
@@ -118,7 +130,8 @@ public class LendOutActivity extends Activity {
 		
 		//借出日期是当天日期，不可编辑
 		mLendDate.setFocusable(false);
-		mLendDate.setText(currentyear+"-"+(currentmonth+1)+"-"+currentday);
+		mLendDate.setText(currentyear + "-" + (currentmonth + 1) + "-"
+				+ currentday);
 		
 		//ReturnDate cannot be set only choose from dialog
 		mExpiredDate.setFocusable(false);
@@ -129,7 +142,8 @@ public class LendOutActivity extends Activity {
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
 					int dayOfMonth) {
 				// TODO Auto-generated method stub
-				mExpiredDate.setText(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
+				mExpiredDate.setText(year + "-" + (monthOfYear + 1) + "-"
+						+ dayOfMonth);
 			}
 			
 		};
@@ -138,16 +152,20 @@ public class LendOutActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				DatePickerDialog mDatePickerDialog = new DatePickerDialog(LendOutActivity.this, mOnDateSetListener, currentyear, currentmonth, currentday);
+				DatePickerDialog mDatePickerDialog = new DatePickerDialog(
+						LendOutActivity.this, mOnDateSetListener, currentyear,
+						currentmonth, currentday);
 				mDatePickerDialog.show();
 			}
 			
 		});	
+
 		//click to start scan activity
 		mImageview.setOnClickListener(new OnClickListener() {
 			public void onClick(View v){
 				 Intent intent = new Intent();
-					intent.setClass(LendOutActivity.this,MipcaActivityCapture.class);
+				intent.setClass(LendOutActivity.this,
+						MipcaActivityCapture.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
 			}
@@ -157,12 +175,18 @@ public class LendOutActivity extends Activity {
 		mModelSearch.setOnClickListener(new OnClickListener() {
 					public void onClick(View v){
 						if (mSampleID.getText() != null) {
-						    Cursor cu = getDBManager().querySampleByPhoneIdIfVague(mSampleID.getText().toString(),false);
+					Cursor cu = getDBManager().querySampleByPhoneIdIfVague(
+							mSampleID.getText().toString(), false);
 						    if (cu.getCount() == 0){
-							    Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sample_not_found),Toast.LENGTH_SHORT).show();
+						Toast.makeText(
+								getApplicationContext(),
+								getApplicationContext().getString(
+										R.string.sample_not_found),
+								Toast.LENGTH_SHORT).show();
 						    } else {
 							    if (cu.moveToFirst()) {
-								    mModelName.setText(cu.getString(cu.getColumnIndex(DBOpenHandler.SAMPLE_TABLE_KEY[1])));
+							mModelName.setText(cu.getString(cu
+									.getColumnIndex(DBOpenHandler.SAMPLE_TABLE_KEY[1])));
 							    }
 						    }
 					        cu.close();
@@ -203,48 +227,73 @@ public class LendOutActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				ContentValues cv = new ContentValues();
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[0], mSampleID.getText().toString());
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[1], mModelName.getText().toString());
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[2], mEmployeeID.getText().toString());
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[3], mEmployeeName.getText().toString());
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[4], mLendDate.getText().toString());
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[5], mExpiredDate.getText().toString());
-				cv.put(DBOpenHandler.LEND_TABLE_KEY[6], mMemoEdit.getText().toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[0], mSampleID.getText()
+						.toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[1], mModelName.getText()
+						.toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[2], mEmployeeID.getText()
+						.toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[3], mEmployeeName.getText()
+						.toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[4], mLendDate.getText()
+						.toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[5], mExpiredDate.getText()
+						.toString());
+				cv.put(DBOpenHandler.LEND_TABLE_KEY[6], mMemoEdit.getText()
+						.toString());
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[7], mSignInfo);
 				if (CheckEditIsNullOrNot() == false) {
 				    if (CheckReLendOutRecord(mSampleID.getText().toString()) == 0) {
-				if(getDBManager().insertDataToDB(DBOpenHandler.LEND_TABLE_NAME, cv)>0) {
+						if (getDBManager().insertDataToDB(
+								DBOpenHandler.LEND_TABLE_NAME, cv) > 0) {
 			        ClearAllRecordEdit();
-					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_successful),Toast.LENGTH_SHORT).show();
+							Toast.makeText(
+									getApplicationContext(),
+									getApplicationContext().getString(
+											R.string.save_successful),
+									Toast.LENGTH_SHORT).show();
 				} else {
-					        Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.save_fail),Toast.LENGTH_SHORT).show();
+							Toast.makeText(
+									getApplicationContext(),
+									getApplicationContext().getString(
+											R.string.save_fail),
+									Toast.LENGTH_SHORT).show();
 				        }
 				    } else {
-					    Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.repeat_record),Toast.LENGTH_SHORT).show();
+						Toast.makeText(
+								getApplicationContext(),
+								getApplicationContext().getString(
+										R.string.repeat_record),
+								Toast.LENGTH_SHORT).show();
 				    }
 				}
 			}
 		});
-	}
-/*
+
+		mMemoEdit.addTextChangedListener(textMemoWatcher);
+		mDeleteMemoEdit.setOnClickListener(new OnClickListener() {
+
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.dymantic_edit_text, menu);
-		return true;
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mMemoEdit.setText("");
 	}
     
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		});
 	}
+
+	/*
+	 * @Override public boolean onCreateOptionsMenu(Menu menu) { // Inflate the
+	 * menu; this adds items to the action bar if it is present.
+	 * getMenuInflater().inflate(R.menu.dymantic_edit_text, menu); return true;
+	 * }
+	 * 
+	 * @Override public boolean onOptionsItemSelected(MenuItem item) { // Handle
+	 * action bar item clicks here. The action bar will // automatically handle
+	 * clicks on the Home/Up button, so long // as you specify a parent activity
+	 * in AndroidManifest.xml. int id = item.getItemId(); if (id ==
+	 * R.id.action_settings) { return true; } return
+	 * super.onOptionsItemSelected(item); }
 	*/
 	@Override
 	public void onDestroy(){			
@@ -259,6 +308,7 @@ public class LendOutActivity extends Activity {
 		}
 		super.onDestroy();		
 	}
+
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		Log.i(TAG,"onConfigurationChanged!!!");	
@@ -270,6 +320,7 @@ public class LendOutActivity extends Activity {
 		Log.i(TAG,"ORIENTATION_PORTRAIT");
 	}
 	}
+
 	//Get response from scan activity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -280,12 +331,19 @@ public class LendOutActivity extends Activity {
 					Bundle bundle = data.getExtras();
 					String  imei = bundle.getString("result");
 					mSampleID.setText(imei);
-					Cursor cu = getDBManager().querySampleByPhoneIdIfVague(imei,false);
+				Cursor cu = getDBManager().querySampleByPhoneIdIfVague(imei,
+						false);
 					if (cu.getCount() == 0){
-						Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sample_not_found),Toast.LENGTH_SHORT).show();
+					Toast.makeText(
+							getApplicationContext(),
+							getApplicationContext().getString(
+									R.string.sample_not_found),
+							Toast.LENGTH_SHORT).show();
 					} else {
 						if (cu.moveToFirst()) {
-							mModelName.setText(cu.getString(cu.getColumnIndex(DBOpenHandler.SAMPLE_TABLE_KEY[1])));
+						mModelName
+								.setText(cu.getString(cu
+										.getColumnIndex(DBOpenHandler.SAMPLE_TABLE_KEY[1])));
 						}
 					}
 				    cu.close();
@@ -295,7 +353,8 @@ public class LendOutActivity extends Activity {
 				if(resultCode == RESULT_OK){				
 				Bundle bundle = data.getExtras();
 				mSignInfo = bundle.getByteArray("result");								
-				Bitmap bmpout = BitmapFactory.decodeByteArray(mSignInfo, 0, mSignInfo.length);
+				Bitmap bmpout = BitmapFactory.decodeByteArray(mSignInfo, 0,
+						mSignInfo.length);
 				mDisplaySign.setImageBitmap(bmpout);
 				//显示扫描到的内容
 				    if (mSignInfo != null) {
@@ -312,38 +371,57 @@ public class LendOutActivity extends Activity {
 		 }
 		 return mDBManager;
 	 }
+
 	private int CheckReLendOutRecord(String keyValue) {
 		int count = 0;
 		try {
-			count = getDBManager().queryDataCount(DBOpenHandler.LEND_TABLE_NAME, DBOpenHandler.LEND_TABLE_KEY[0], keyValue);
+			count = getDBManager().queryDataCount(
+					DBOpenHandler.LEND_TABLE_NAME,
+					DBOpenHandler.LEND_TABLE_KEY[0], keyValue);
 		} catch (Exception e) {
 			Toast.makeText(getApplicationContext(), "Exception!!", 0).show();
 		} 
 		return count;
 	}
+
 	private boolean CheckEditIsNullOrNot() {
 		boolean recordIsNull = true ;		
 		if (mSampleID.getText().toString().isEmpty()) {
-			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sample_id_null),Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(),
+					getApplicationContext().getString(R.string.sample_id_null),
+					Toast.LENGTH_SHORT).show();
 		}else if (mModelName.getText().toString().isEmpty()) {
-			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.model_name_null),Toast.LENGTH_SHORT).show();
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getString(R.string.model_name_null),
+					Toast.LENGTH_SHORT).show();
 		}else if (mEmployeeID.getText().toString().isEmpty()) {
-			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.ad_null),Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(),
+					getApplicationContext().getString(R.string.ad_null),
+					Toast.LENGTH_SHORT).show();
 		}else if (mEmployeeName.getText().toString().isEmpty()) {
-			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.employee_name_null),Toast.LENGTH_SHORT).show();
-		}
-        else if (mSignInfo == null){
-			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.sign_null),Toast.LENGTH_SHORT).show();
-		}
-		else if(mExpiredDate.getText().toString().isEmpty()) {
-			Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.expected_date_null),Toast.LENGTH_SHORT).show();
-		}
-		else {
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getString(
+							R.string.employee_name_null), Toast.LENGTH_SHORT)
+					.show();
+		} else if (mSignInfo == null) {
+			Toast.makeText(getApplicationContext(),
+					getApplicationContext().getString(R.string.sign_null),
+					Toast.LENGTH_SHORT).show();
+		} else if (mExpiredDate.getText().toString().isEmpty()) {
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getString(
+							R.string.expected_date_null), Toast.LENGTH_SHORT)
+					.show();
+		} else {
 			recordIsNull = false;
 		}		
 		return recordIsNull;
 		
 	}
+
 	private void ClearSampleEdit(){
 		mSampleID.setText("");
 		mModelName.setText("");
@@ -353,6 +431,7 @@ public class LendOutActivity extends Activity {
 		//mMemoEdit.setText("");	
 				
 	}
+
 	private void ClearAllRecordEdit(){
 		mSampleID.setText("");
 		mModelName.setText("");
@@ -364,4 +443,40 @@ public class LendOutActivity extends Activity {
 				
 	}
 		
+	private void setUpMemoDeleteButton() {
+		if (IsMemoDeleteable) {
+			mDeleteMemoEdit.setVisibility(View.VISIBLE);
+			mDeleteMemoEdit.setClickable(true);
+		} else {
+			mDeleteMemoEdit.setClickable(false);
+			mDeleteMemoEdit.setVisibility(View.GONE);
+		}
+	}
+
+	private TextWatcher textMemoWatcher = new TextWatcher() {
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+
+			if (mMemoEdit.getText().toString().isEmpty()) {
+				IsMemoDeleteable = false;
+			} else {
+				IsMemoDeleteable = true;
+			}
+			setUpMemoDeleteButton();
+		}
+
+		@Override
+		public void afterTextChanged(Editable s) {
+			// TODO Auto-generated method stub
+
+		}
+	};
  }
