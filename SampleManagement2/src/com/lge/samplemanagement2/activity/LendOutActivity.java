@@ -178,7 +178,7 @@ public class LendOutActivity extends Activity {
 					public void onClick(View v){
 						if (mSampleID.getText() != null) {
 					Cursor cu = getDBManager().querySampleByPhoneIdIfVague(
-							mSampleID.getText().toString(), false);
+							mSampleID.getText().toString().toUpperCase(), false);
 						    if (cu.getCount() == 0){
 						Toast.makeText(
 								getApplicationContext(),
@@ -230,7 +230,7 @@ public class LendOutActivity extends Activity {
 				// TODO Auto-generated method stub
 				ContentValues cv = new ContentValues();
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[0], mSampleID.getText()
-						.toString());
+						.toString().toUpperCase());
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[1], mModelName.getText()
 						.toString());
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[2], mEmployeeID.getText()
@@ -245,7 +245,7 @@ public class LendOutActivity extends Activity {
 						.toString());
 				cv.put(DBOpenHandler.LEND_TABLE_KEY[7], mSignInfo);
 				if (CheckEditIsNullOrNot() == false) {
-				    if (CheckReLendOutRecord(mSampleID.getText().toString()) == 0) {
+				    if (CheckReLendOutRecord(mSampleID.getText().toString().toUpperCase()) == 0) {
 						if (getDBManager().insertDataToDB(
 								DBOpenHandler.LEND_TABLE_NAME, cv) > 0) {
 			        ClearAllRecordEdit();
@@ -333,7 +333,7 @@ public class LendOutActivity extends Activity {
 					Bundle bundle = data.getExtras();
 					String  imei = bundle.getString("result");
 					mSampleID.setText(imei);
-				Cursor cu = getDBManager().querySampleByPhoneIdIfVague(imei,
+				Cursor cu = getDBManager().querySampleByPhoneIdIfVague(imei.toUpperCase(),
 						false);
 					if (cu.getCount() == 0){
 					Toast.makeText(
