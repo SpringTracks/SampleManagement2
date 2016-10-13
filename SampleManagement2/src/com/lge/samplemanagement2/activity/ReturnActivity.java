@@ -111,7 +111,8 @@ public  class ReturnActivity   extends Activity {
              person = cursor.getString(cursor.getColumnIndex("employee_name"));
              date = cursor.getString(cursor.getColumnIndex("lend_date"));
              personid = cursor.getString(cursor.getColumnIndex("employee_id"));	
-			    	
+             TextView sTextView = (TextView) findViewById(R.id.textViewy);
+             sTextView.setText(imei);  	
              TextView lTextView = (TextView) findViewById(R.id.textView8);
              lTextView.setText(date);
              TextView pnTextView = (TextView) findViewById(R.id.textView3);
@@ -144,7 +145,8 @@ public  class ReturnActivity   extends Activity {
 		        rTextView.setText(null);
 		        TextView imeiEt = (TextView) findViewById(R.id.editText2);
 			    imeiEt.setText(null);
-			    
+	             TextView sTextView = (TextView) findViewById(R.id.textViewy);
+	             sTextView.setText(null); 
 			    personid =null;
 			}
 		});
@@ -178,6 +180,8 @@ public  class ReturnActivity   extends Activity {
 		        rTextView.setText(null);
 		        TextView imeiEt = (TextView) findViewById(R.id.editText2);
 			    imeiEt.setText(null);
+	             TextView sTextView = (TextView) findViewById(R.id.textViewy);
+	             sTextView.setText(null); 
 			    Toast.makeText(getApplicationContext(),R.string.Return_success,Toast.LENGTH_SHORT).show();
 			    personid =null;
 			    //清除persionid 用于下次判断是否点击了OK或扫描
@@ -247,6 +251,8 @@ public  class ReturnActivity   extends Activity {
 
    		          TextView rTextView = (TextView) findViewById(R.id.textView9);
    		          rTextView.setText(nowString);
+   	             TextView sTextView = (TextView) findViewById(R.id.textViewy);
+   	             sTextView.setText(imei); 
 			    	}
 
 			    }
