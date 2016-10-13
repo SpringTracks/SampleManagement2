@@ -31,6 +31,7 @@ import com.lge.dbhelper.DBManager;
 import com.lge.dbhelper.DBOpenHandler;
 import com.lge.samplemanagement2.R;
 import com.lge.strcture.EmployeeAdapter;
+import com.lge.strcture.InputLowerToUpper;
 
 public class LendOutActivity extends Activity {
 	private static final String TAG = "LendOutActivity";
@@ -92,6 +93,7 @@ public class LendOutActivity extends Activity {
 		mModelSearch = (ImageView)findViewById(R.id.Search);
 		mClearAllEdit = (Button)findViewById(R.id.Clear_All_Button);
 		mDeleteMemoEdit = (ImageView) findViewById(R.id.Delete_Memo);
+		mSampleID.setTransformationMethod(new InputLowerToUpper());
 		//用Calendar类获取系统当前日期传递给日期选择器
 		final Calendar ca = Calendar.getInstance();
 		final int currentyear = ca.get(Calendar.YEAR);
