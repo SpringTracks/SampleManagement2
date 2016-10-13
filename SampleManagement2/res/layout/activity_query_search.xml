@@ -15,30 +15,35 @@
     </LinearLayout>  
     
     <LinearLayout 
-        android:layout_width="265dp"  
+        android:layout_width="fill_parent"  
         android:layout_height="match_parent" 
+        android:layout_weight="1"
         android:orientation="vertical"
         android:layout_marginLeft="5dp"
         >
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:orientation="horizontal">
     <TextView 
                 
                 android:text="@string/model_name"
-                android:layout_width="105dip"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content" 
+                android:layout_weight="2"
                 android:gravity="center"
                 android:textSize="@dimen/text_font_size"
                 
                 />
     <AutoCompleteTextView
            android:id="@+id/auto1"
-            android:layout_width="160dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:inputType="textVisiblePassword"
                                     />
             
 </LinearLayout>  
@@ -46,21 +51,25 @@
 
      <LinearLayout 
          android:layout_width="match_parent"
-         android:layout_height="40dp"
+         android:layout_height="fill_parent"
+         android:layout_weight="1"
          android:orientation="horizontal">
          <TextView 
               
                 android:text="@string/ad_id"
-                android:layout_width="105dip"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content" 
+                android:layout_weight="2"
                 android:gravity="center"
                 android:textSize="@dimen/text_font_size"
                 />
        <AutoCompleteTextView
             android:id="@+id/auto2"
-            android:layout_width="160dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:inputType="textVisiblePassword"
                                     />
             
                </LinearLayout>  
@@ -68,8 +77,9 @@
        </LinearLayout>  
        
     <LinearLayout 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"        
         android:orientation="horizontal"
         
         >
@@ -78,15 +88,11 @@
             android:id="@+id/search"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="25dp"             
-            android:layout_marginLeft="20dp"           
+            android:layout_marginTop="25dp"                   
             android:background="@drawable/search"
             />
        
-<!--   android:text="@string/search" 
-                   android:textStyle="bold"-->
-            
-            
+           
             
      </LinearLayout>
        
