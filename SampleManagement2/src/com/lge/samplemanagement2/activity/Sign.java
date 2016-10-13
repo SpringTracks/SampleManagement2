@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import com.lge.samplemanagement2.R;
 
+import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -18,16 +20,19 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Sign extends Activity {
-//	private ImageView imageSign;
+private static final String TAG = null;
+	//	private ImageView imageSign;
 	private PaintView mView;
-
+    private int signTag=0;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sign);
@@ -44,6 +49,7 @@ public class Sign extends Activity {
 			@Override
 			public void onClick(View v) {
 				mView.clear();
+				signTag=0;
 			}
 		});
 
@@ -52,11 +58,14 @@ public class Sign extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Bitmap imageBitmap = mView.getCachebBitmap();
+				if(signTag== 0){
+					Toast.makeText(getApplicationContext(),R.string.Sign_warning,Toast.LENGTH_SHORT).show();
+				}else {	
 				Bitmap imageBitmap = mView.getCachebBitmap();
 				System.out.println("输出压缩前大小"+getBitmapSize(imageBitmap));//输出压缩前大小
 				Bitmap bt3 = ratio(imageBitmap);
 				System.out.println("输出压缩hou大小"+getBitmapSize(bt3));//输出压缩hou大小
+				
 //				imageSign.setImageBitmap(imageBitmap);
 				byte[] imgbyte = img(bt3);
 				
@@ -84,8 +93,8 @@ public class Sign extends Activity {
 				
 //		        list = getIntent().getStringArrayListExtra("data");
 				
+			  }
 			}
-
 			private void setResult(int resultOk, Intent resultIntent) {
 				// TODO Auto-generated method stub
 				
@@ -136,6 +145,7 @@ public class Sign extends Activity {
 			// canvas.drawColor(BRUSH_COLOR);
 			canvas.drawBitmap(cachebBitmap, 0, 0, null);
 			canvas.drawPath(path, paint);
+
 		}
 
 		@Override
@@ -166,7 +176,7 @@ public class Sign extends Activity {
 
 		@Override
 		public boolean onTouchEvent(MotionEvent event) {
-
+			signTag=1;
 			float x = event.getX();
 			float y = event.getY();
 
@@ -212,7 +222,6 @@ public class Sign extends Activity {
 	     // 在低版本中用一行的字节x高度  
 	     return bitmap.getRowBytes() * bitmap.getHeight();                //earlier version  
 	 }  
-	 
 	 public Bitmap ratio(Bitmap image) {  
 	        ByteArrayOutputStream os = new ByteArrayOutputStream();  
 	        image.compress(Bitmap.CompressFormat.PNG, 100, os);  
@@ -229,8 +238,8 @@ public class Sign extends Activity {
 	        newOpts.inJustDecodeBounds = false;    
 	        int w = newOpts.outWidth;    
 	        int h = newOpts.outHeight;    
-	        float hh = 240f;// 设置高度为240f时，可以明显看到图片缩小了  
-	        float ww = 160f;// 设置宽度为120f，可以明显看到图片缩小了  
+	        float hh = 160f;// 设置高度为240f时，可以明显看到图片缩小了  
+	        float ww = 240f;// 设置宽度为120f，可以明显看到图片缩小了  
 	        //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可    
 	        int be = 1;//be=1表示不缩放    
 	        if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放    
@@ -246,5 +255,17 @@ public class Sign extends Activity {
 	        //压缩好比例大小后再进行质量压缩  
 //	      return compress(bitmap, maxSize); // 这里再进行质量压缩的意义不大，反而耗资源，删除  
 	        return bitmap;  
-	    }
+	    }  
+	 //屏幕旋转操作，不再重新绘制activity，但压缩后图像质量太差暂不使用（android:configChanges="orientation|screenSize" ）
+//		@Override
+//		public void onConfigurationChanged(Configuration newConfig) {
+//			Log.i(TAG,"onConfigurationChanged!!!");	
+//		super.onConfigurationChanged(newConfig);
+//		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//		// land do nothing is ok
+//			Log.i(TAG,"ORIENTATION_LANDSCAPE");
+//		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//			Log.i(TAG,"ORIENTATION_PORTRAIT");
+//		}
+//		}
 }

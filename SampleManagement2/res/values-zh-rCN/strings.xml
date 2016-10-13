@@ -9,6 +9,9 @@
     <string name="Return_warning1">   请先点击扫描或者OK</string>
     <string name="Return_success">返还成功</string>
     <string name="Return_warning2">找不到对应记录，请检查条码值是否正确</string>
+    <string name="Sign_warning">请签名</string>
+    <string name="sign_clear"> 清除</string>
+    <string name="sign_ok"> 确定</string>
  
 <!--  -->
     <string name="model_name">型号名</string>

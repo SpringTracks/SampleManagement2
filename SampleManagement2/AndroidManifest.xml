@@ -34,10 +34,12 @@
         </activity>
         <activity android:name=".activity.ReturnActivity" >
         </activity>
-        <activity android:name=".activity.LendOutActivity"             android:configChanges="orientation|screenSize|keyboardHidden" >
+        <activity android:name=".activity.LendOutActivity"      
+                   android:configChanges="orientation|screenSize|keyboardHidden"
+                    android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".activity.Sign"
-           android:screenOrientation="portrait"> 
+           android:screenOrientation="landscape"> 
         </activity>
         <activity android:name=".activity.FileExplorerActivity" >
         </activity>
