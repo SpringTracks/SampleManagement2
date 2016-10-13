@@ -36,6 +36,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.lge.strcture.InputLowerToUpper;
+
 
 public class ModelFragment extends Fragment {
 
@@ -93,6 +95,7 @@ public class ModelFragment extends Fragment {
 		imageScan = (ImageView) getActivity().findViewById(R.id.Scan);
 		autoSampleName = (AutoCompleteTextView) getActivity().findViewById(
 				R.id.ModelEditText);
+		editText2.setTransformationMethod(new InputLowerToUpper());
 		autoSampleName.setDropDownHeight(500);  
 		autoSampleName.setThreshold(1);
 		initAutoModelName();

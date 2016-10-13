@@ -24,6 +24,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -98,7 +99,14 @@ public  class ReturnActivity   extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            	//“˛≤ÿ ‰»Î∑®
+            	InputMethodManager imm = (InputMethodManager)  
+            	 getSystemService(Context.INPUT_METHOD_SERVICE);  
+            	 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            	 
+            	 
             	 imei = input.getText().toString();
+            	 imei= imei.toUpperCase();
              Cursor cursor =dbReturn. queryLendByPhoneId(imei);
              if (cursor.getCount()==0) {
           	   Toast.makeText(getApplicationContext(),R.string.Return_warning2,Toast.LENGTH_SHORT).show();

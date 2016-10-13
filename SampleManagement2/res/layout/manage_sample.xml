@@ -50,7 +50,7 @@ android:focusable="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:inputType="textPhonetic"
+            android:inputType="textVisiblePassword"
                 android:textSize="@dimen/text_font_size" />
             </LinearLayout>
 
@@ -99,7 +99,7 @@ android:focusable="true"
             android:layout_height="wrap_content"
             android:layout_weight="2"
                 android:completionThreshold="1"
-                android:dropDownHeight="1000dp"                 android:inputType="textPhonetic"
+                android:dropDownHeight="1000dp"                                 android:inputType="textVisiblePassword"
                 android:textSize="@dimen/text_font_size" />
     </LinearLayout>
     </RelativeLayout>
