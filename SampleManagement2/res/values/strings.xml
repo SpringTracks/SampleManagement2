@@ -22,8 +22,8 @@
     <string name="lend_date">Le.Date</string>
     <string name="return_date">Return Date</string>
     <string name="doscan">scan</string>
-    <string name="return_confirm">return confirm</string>
-    <string name="othernote">Input phone id and click ok  if you can not scan it.</string>
+    <string name="return_confirm">Return confirm</string>
+    <string name="othernote">Input phone id and click search  if you can not scan it.</string>
     <string name="imge_view_lend_user">It should display user signature</string>
        <string name="Return_success">Return success</string>
        <string name="Return_warning1">Please click scan or OK before click Return Confirm</string>

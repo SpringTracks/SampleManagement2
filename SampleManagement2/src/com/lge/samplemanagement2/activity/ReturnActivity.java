@@ -23,6 +23,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,7 +40,6 @@ public  class ReturnActivity   extends Activity {
     private  String date =null;
     private String  imei=null;
     private  String nowString=null;
-    
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setTitle(R.string.icon2);
@@ -70,8 +70,8 @@ public  class ReturnActivity   extends Activity {
 
 
 
-        Button scan = (Button) findViewById((Integer) R.id.button);
-        scan.setOnClickListener(new View.OnClickListener() {
+        Button scan = (Button) findViewById((Integer) R.id.scan);
+        scan.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 System.out.println("点击了扫描");
@@ -128,6 +128,27 @@ public  class ReturnActivity   extends Activity {
             }
         });
 
+        Button clearall =(Button)findViewById((Integer)R.id.button4);
+        clearall.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+                TextView lTextView = (TextView) findViewById(R.id.textView8);
+                lTextView.setText(null);
+                TextView pnTextView = (TextView) findViewById(R.id.textView3);
+                pnTextView.setText(null);
+                TextView personTextView = (TextView) findViewById(R.id.textView7);
+                personTextView.setText(null);
+		        TextView rTextView = (TextView) findViewById(R.id.textView9);
+		        rTextView.setText(null);
+		        TextView imeiEt = (TextView) findViewById(R.id.editText2);
+			    imeiEt.setText(null);
+			    
+			    personid =null;
+			}
+		});
+        
         Button delete=(Button)findViewById((Integer) R.id.button3);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +185,7 @@ public  class ReturnActivity   extends Activity {
             }
         });
 	}
-	
+
 	 //测试签名及返回  
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
