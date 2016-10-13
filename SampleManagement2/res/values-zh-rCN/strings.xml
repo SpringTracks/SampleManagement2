@@ -89,5 +89,6 @@
     <string name="result_null">查询结果为空，无法导出</string>
     <string name="sample_not_found">根据此ID不能检测到型号名,请确认!</string>
     <string name="clear_all">全部清除</string>
-
+    <string name="scan_text">请将条码完整置于框内</string>
+    
 </resources>
