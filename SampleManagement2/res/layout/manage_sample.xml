@@ -43,14 +43,15 @@ android:focusable="true"
             android:layout_marginTop="@dimen/textview_top_margin"
                 android:layout_weight="3"
                 android:text="@string/phone_id"
-/>
+                android:textSize="@dimen/text_font_size" />
 
         <EditText
             android:id="@+id/ModelIDEditText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textSize="15sp" />
+            android:inputType="textPhonetic"
+                android:textSize="@dimen/text_font_size" />
             </LinearLayout>
 
         <ImageView
@@ -89,8 +90,8 @@ android:focusable="true"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/textview_top_margin"
                 android:layout_weight="3"
-                android:text="@string/model_name_manage"
-/>
+                android:text="@string/model_name"
+                android:textSize="@dimen/text_font_size" />
 
         <AutoCompleteTextView
             android:id="@+id/ModelEditText"
@@ -98,9 +99,18 @@ android:focusable="true"
             android:layout_height="wrap_content"
             android:layout_weight="2"
                 android:completionThreshold="1"
-                android:dropDownHeight="1000dp" />
+                android:dropDownHeight="1000dp"                 android:inputType="textPhonetic"
+                android:textSize="@dimen/text_font_size" />
     </LinearLayout>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/sample_textview2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/title_padding"
+        android:textSize="@dimen/label_font_size_2" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -112,13 +122,15 @@ android:focusable="true"
             android:id="@+id/bnCancel1"
             android:layout_width="@dimen/button_width_m"
             android:layout_height="@dimen/button_height_m"
-            android:text="@string/cancel" />
+            android:background="@drawable/button_selector"
+            android:text="@string/cancel"             android:textStyle="bold" />
 
         <Button
             android:id="@+id/bnedit1"
             android:layout_width="@dimen/button_width_m"
             android:layout_height="@dimen/button_height_m"
-            android:text="@string/update" />
+            android:background="@drawable/button_selector"
+            android:text="@string/update"             android:textStyle="bold" />
     </LinearLayout>
 
 </TableLayout>

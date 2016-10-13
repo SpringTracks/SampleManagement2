@@ -99,18 +99,13 @@ public class UserFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				int editText1_length;
-				int editText2_length;
-				editText1_length = editText_AD.length();
-				editText2_length = editText_Name.length();
-				if (editText1_length == 0 && editText2_length == 0) {
-					Toast.makeText(getActivity(), R.string.toast_Sample_manage3, 0).show();
-				} else {
+
+				
 					editText_AD.setText(null);
 					editText_Name.setText(null);
 
 					Toast.makeText(getActivity(), R.string.toast_Sample_manage4, 0).show();
-				}
+				
 			}
 		});
 	}

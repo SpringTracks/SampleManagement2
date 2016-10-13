@@ -153,20 +153,11 @@ public class ModelFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				int editText1_length;
-				int editText2_length;
-				editText1_length = autoSampleName.length();
-				editText2_length = editText2.length();
-				if (editText1_length == 0 && editText2_length == 0) {
-					Toast.makeText(getActivity(),
-							R.string.toast_Sample_manage3, 0).show();
-				} else {
 					autoSampleName.setText(null);
 					editText2.setText(null);
 
-					Toast.makeText(getActivity(),
-							R.string.toast_Sample_manage4, 0).show();
-				}
+				Toast.makeText(getActivity(), R.string.toast_Sample_manage4, 0).show();
+
 			}
 		});
 	}
