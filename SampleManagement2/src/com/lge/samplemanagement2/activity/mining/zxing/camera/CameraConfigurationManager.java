@@ -211,10 +211,11 @@ final class CameraConfigurationManager {
     String maxZoomString = parameters.get("max-zoom");
     if (maxZoomString != null) {
       try {
-        int tenMaxZoom = (int) (10.0 * Double.parseDouble(maxZoomString));
-        if (tenDesiredZoom > tenMaxZoom) {
+        int tenMaxZoom = (int) (4.0 * Double.parseDouble(maxZoomString));
+//stone.wang 20161013 temporary blocked for zooming in        
+//        if (tenDesiredZoom > tenMaxZoom) {
           tenDesiredZoom = tenMaxZoom;
-        }
+//        }
       } catch (NumberFormatException nfe) {
         Log.w(TAG, "Bad max-zoom: " + maxZoomString);
       }
