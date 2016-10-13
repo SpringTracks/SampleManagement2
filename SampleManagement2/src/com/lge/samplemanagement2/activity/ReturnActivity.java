@@ -29,7 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.lge.strcture.*;
 public  class ReturnActivity   extends Activity {
 
 	protected static final int SCANNIN_GREQUEST_CODE = 1;
@@ -46,7 +46,7 @@ public  class ReturnActivity   extends Activity {
         setContentView(R.layout.activity_return);
         
         final EditText input = (EditText) findViewById(R.id.editText2);
-        input.setRawInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        input.setTransformationMethod(new InputLowerToUpper());
 //        input.setRawInputType(InputType.TYPE_CLASS_TEXT);
         dbReturn = new DBManager(ReturnActivity.this);
        //DBManager mdbm= new DBManager(ReturnActivity.this);
