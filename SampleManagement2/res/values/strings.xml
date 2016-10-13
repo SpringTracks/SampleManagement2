@@ -20,7 +20,7 @@
     <string name="sign_info">Signature Information</string>
     <string name="select_date_picker">Select Date</string>
     <string name="lend_date">Le.Date</string>
-    <string name="return_date">Return Date</string>
+    <string name="return_date">Re.Date</string>
     <string name="doscan">scan</string>
     <string name="return_confirm">Return confirm</string>
     <string name="othernote">Input phone id and click search  if you can not scan it.</string>
