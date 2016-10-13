@@ -131,7 +131,7 @@ public class ModelFragment extends Fragment {
 							.show();
 				} else {
 				sample_name = autoSampleName.getText().toString();
-				sample_id = editText2.getText().toString();
+				sample_id = editText2.getText().toString().toUpperCase();
 				sample_values = new ContentValues();
 				sample_values.put("phone_id", sample_id);
 				sample_values.put("model_name", sample_name);
