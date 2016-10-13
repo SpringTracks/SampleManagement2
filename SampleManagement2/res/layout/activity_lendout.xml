@@ -49,6 +49,7 @@
                     android:id="@+id/Phone_ID_Edit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
                     android:layout_weight="1"
                      >
                 </EditText>
@@ -100,8 +101,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:inputType="textEmailAddress"
                     android:hint="@string/model_name_change"
-                    android:inputType="none" >
+>
                 </EditText>
             </LinearLayout>
 
@@ -144,7 +146,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="none" >
+                android:inputType="textEmailAddress" >
             </AutoCompleteTextView>
         </LinearLayout>
 
@@ -268,7 +270,7 @@
             android:layout_marginRight="@dimen/linearlayout_right_margin"
             android:layout_marginStart="@dimen/sub_layout_magin_left"
             android:layout_marginTop="@dimen/textview_top_margin"
-            android:background="@drawable/color_edit_text" >
+            android:background="@drawable/color_edit_text"                         android:inputType="none" >
         </EditText>
 
 <ImageView
@@ -300,8 +302,8 @@
             <Button
                 android:id="@+id/Sign_Button"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="@dimen/textview_top_margin"
+                android:layout_height="67dp"
+                android:layout_marginTop="3dp"
                 android:layout_weight="2"
                 android:text="@string/sign"
                 android:textSize="@dimen/button_font_size" >
