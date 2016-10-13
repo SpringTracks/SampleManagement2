@@ -20,6 +20,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.DropBoxManager;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +46,8 @@ public  class ReturnActivity   extends Activity {
         setContentView(R.layout.activity_return);
         
         final EditText input = (EditText) findViewById(R.id.editText2);
+        input.setRawInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//        input.setRawInputType(InputType.TYPE_CLASS_TEXT);
         dbReturn = new DBManager(ReturnActivity.this);
        //DBManager mdbm= new DBManager(ReturnActivity.this);
         

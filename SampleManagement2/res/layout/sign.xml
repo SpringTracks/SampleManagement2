@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="确定"
+            android:text="@string/sign_ok"
             android:background="@color/action_bar" />
 
         <Button
@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="清除"
+            android:text="@string/sign_clear"
             android:background="@color/action_bar" />
     </LinearLayout>
 
