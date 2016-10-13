@@ -50,7 +50,7 @@ android:focusableInTouchMode="true" >
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-                android:inputType="textPhonetic"
+                android:inputType="textVisiblePassword"
                 android:textSize="@dimen/text_font_size" />
     </LinearLayout>
     </RelativeLayout>
@@ -80,7 +80,7 @@ android:layout_marginRight="@dimen/linearlayout_right_margin"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/textview_top_margin"
                 android:layout_weight="2"
-                android:text="@string/user_name"
+                android:text="@string/user_name_manage"
                 android:textSize="@dimen/text_font_size" />
 
         <EditText
