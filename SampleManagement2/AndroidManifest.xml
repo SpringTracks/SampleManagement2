@@ -32,7 +32,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
-        <activity android:name=".activity.ReturnActivity" >
+        <activity android:name=".activity.ReturnActivity"
+             android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".activity.LendOutActivity"      
                    android:configChanges="orientation|screenSize|keyboardHidden"
