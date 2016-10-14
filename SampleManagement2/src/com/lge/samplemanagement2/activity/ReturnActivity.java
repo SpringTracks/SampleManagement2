@@ -65,7 +65,7 @@ public  class ReturnActivity   extends Activity {
         String mMonth = String.valueOf(c.get(Calendar.MONTH) +1);// 获取当前月份 
         String mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码 
  //       String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK)); 
-         nowString=((mYear)+"."+(mMonth)+"."+mDay);
+         nowString=((mYear)+"-"+(mMonth)+"-"+mDay);
         
 
 
